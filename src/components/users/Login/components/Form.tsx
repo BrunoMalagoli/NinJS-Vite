@@ -125,12 +125,7 @@ const Form = () => {
           Login
         </Button>
 
-        <Text color="white" fontSize="14" textAlign={"center"}>
-          Don{`'`}t have a account yet? {/* do not delete the empty space*/}
-          <Link href={"/register"} fontWeight={700} color="primaryYellow">
-            Sign Up
-          </Link>
-        </Text>
+        
       </Stack>
     </form>
   );

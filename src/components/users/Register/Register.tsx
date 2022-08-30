@@ -1,8 +1,13 @@
-import { Flex, Link, Stack, Text } from "@chakra-ui/react";
+import { Flex, Link, Stack, Text } from '@chakra-ui/react'
 
-import Form from "./components/Form";
+import { useNavigate } from 'react-router-dom'
+import Form from './components/Form'
 
 const Register = () => {
+  const navigate = useNavigate()
+  function handleClickLogIn() {
+    navigate('/login', { replace: true })
+  }
   return (
     <Flex
       justify="center"
@@ -12,21 +17,26 @@ const Register = () => {
       bg="primaryBG"
       color="white"
     >
-      <Stack width="100%" p={8} maxWidth={"md"}>
+      <Stack width="100%" p={8} maxWidth={'md'}>
         <Text fontSize="2xl" fontWeight={700} mb="6" color="white">
           Register
         </Text>
 
         <Form />
-        <Text color="white" fontSize="14" textAlign={"center"}>
+        <Text color="white" fontSize="14" textAlign={'center'}>
           Already an user? {/** no borrar el espacio anterior*/}
-          <Link href={"/register"} fontWeight={700} color="primaryYellow">
+          <Link
+            as={'button'}
+            onClick={handleClickLogIn}
+            fontWeight={700}
+            color="primaryYellow"
+          >
             Log in
           </Link>
         </Text>
       </Stack>
     </Flex>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register
