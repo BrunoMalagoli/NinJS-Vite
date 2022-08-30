@@ -1,13 +1,16 @@
 import { Flex, Link, Stack, Text } from '@chakra-ui/react'
 
 import { useNavigate } from 'react-router-dom'
-import Form from './components/Form'
+import Form from './components/FormRegister'
 
 const Register = () => {
+
   const navigate = useNavigate()
+
   function handleClickLogIn() {
     navigate('/login', { replace: true })
   }
+  
   return (
     <Flex
       justify="center"

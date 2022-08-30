@@ -2,7 +2,7 @@ import { Flex, Link, Stack, Text } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 
 //components
-import Form from './components/Form'
+import Form from './components/FormLogin'
 
 export const Login = () => {
   const navigate = useNavigate()

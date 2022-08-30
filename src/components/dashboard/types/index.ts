@@ -1,5 +1,5 @@
-import Clouds from '../background/clouds/Clouds';
-import Leaves from '../background/leaves/Leaves';
+import Clouds from '../background/clouds/Clouds'
+import Leaves from '../background/leaves/Leaves'
 
 export type QuizCardProps = {
   difficult: Difficult
@@ -19,14 +19,14 @@ export enum Difficult {
 }
 
 export const BackgroundSwitch = {
-	[Difficult.genin]: Leaves,
-	[Difficult.chunin]: Clouds,
-	[Difficult.jonin]: Leaves
-};
+  [Difficult.genin]: Leaves,
+  [Difficult.chunin]: Clouds,
+  [Difficult.jonin]: Leaves,
+}
 
 export interface CircleProgressBarProps {
   passed: number
   errors: number
   speedAnimation: number
-  title: 'chunin' | 'genin' | 'chounin'
+  title: 'Chunin' | 'Genin' | 'Jonin'
 }
