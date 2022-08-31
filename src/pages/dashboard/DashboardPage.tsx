@@ -1,13 +1,15 @@
-import MobileNavBar from './components/MobileNavBar';
-import QuizCardList from './components/quiz-card/QuizCardList';
-import CircleProgressBar from './components/CircleProgressBar/CIrcleProgressBar';
-import { cardData } from './components/quiz-card/data';
-import { useNavigate } from 'react-router-dom';
 import { Avatar, Box, Button, Flex, Text } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
+import CircleProgressBar from './components/CircleProgressBar/CIrcleProgressBar';
+import MobileNavBar from './components/MobileNavBar';
+import { cardData } from './components/quiz-card/data';
+import QuizCardList from './components/quiz-card/QuizCardList';
+import toastLogout from './utils/toastLogout';
 
 const Dashboard = () => {
 	const navigate = useNavigate();
 	function handleLogout() {
+		toastLogout();
 		localStorage.removeItem('token');
 		localStorage.removeItem('username');
 		navigate('/');
@@ -32,7 +34,7 @@ const Dashboard = () => {
 							bg='transparent'
 						/>
 						<Flex flexGrow={1} direction='column' pl='1.5em'>
-							<Text>German Hornus</Text>
+							<Text>{localStorage.getItem('username')}</Text>
 							<Text>Points: as 1213123</Text>
 						</Flex>
 						<Button onClick={handleLogout} bg='primaryYellow' color='black'>
