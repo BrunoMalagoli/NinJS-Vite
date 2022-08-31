@@ -27,7 +27,6 @@ import { useNavigate } from 'react-router-dom';
 import { INITIAL_VALUES_FORM } from '../../utils/constants/initialValuesForm';
 import { userLoginSchema } from '../validation/schema';
 
-import { ToastContainer } from 'react-toastify';
 import handleErrorSweetAlert from '../utils/handleErrorSweetAlert';
 import handleSuccessLogin from '../utils/handleSuccessLogin';
 
