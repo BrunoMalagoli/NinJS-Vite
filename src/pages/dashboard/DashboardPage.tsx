@@ -15,7 +15,6 @@ const Dashboard = () => {
 	return (
 		<>
 			<Flex w='100%' h='100vh' direction='column' backgroundColor={'#16191C'}>
-				{/* <QuizCardList QuizCards={cardData} /> */}
 				<Flex direction='column' flexGrow={1} alignItems='center'>
 					<Flex
 						direction={'row'}
