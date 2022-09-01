@@ -5,7 +5,7 @@ import { PropsMiddlewaresAutentication } from '../types';
 const UserLogged: FC<PropsMiddlewaresAutentication> = ({ children }) => {
 	if (localStorage.getItem('token'))
 		return <Navigate to='/home/' replace={true} />;
-	return children;
+	return <div style={{ backgroundColor: '#16191C' }}>{children}</div>;
 };
 
 export default UserLogged;
