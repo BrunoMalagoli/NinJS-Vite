@@ -1,5 +1,3 @@
-import { useState } from 'react';
-import { useFormik } from 'formik';
 import {
 	Button,
 	Icon,
@@ -10,11 +8,13 @@ import {
 	Link,
 	Stack
 } from '@chakra-ui/react';
+import { useFormik } from 'formik';
+import { useState } from 'react';
 
 //icons
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai/';
 import { MdAlternateEmail } from 'react-icons/md';
 import { RiLockPasswordLine } from 'react-icons/ri';
-import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai/';
 
 //hooks
 import useHandleBlurAndFocus from '../../../../hooks/useHandleBlurAndFocus';
@@ -24,8 +24,11 @@ import borderError from '../../../../helpers/borderError';
 import showErrorMessage from '../../../../helpers/showErrorMessage';
 
 import { useNavigate } from 'react-router-dom';
-import { userLoginSchema } from '../validation/schema';
 import { INITIAL_VALUES_FORM } from '../../utils/constants/initialValuesForm';
+import { userLoginSchema } from '../validation/schema';
+
+import handleErrorSweetAlert from '../utils/handleErrorSweetAlert';
+import handleSuccessLogin from '../utils/handleSuccessLogin';
 
 const Form = () => {
 	const navigate = useNavigate();
@@ -55,12 +58,14 @@ const Form = () => {
 						console.log(data);
 						localStorage.setItem('token', data?.token);
 						localStorage.setItem('username', data?.username);
+						handleSuccessLogin();
 						navigate('/home/', { replace: true });
 					});
 				} else {
 					response
 						.json()
 						.then(a => {
+							handleErrorSweetAlert(a.ErrorMessage);
 							throw new Error(a.ErrorMessage);
 						})
 						.catch(err => {
@@ -80,84 +85,86 @@ const Form = () => {
 		});
 
 	return (
-		<form onSubmit={handleSubmit}>
-			<Stack spacing={4}>
-				{/* <FormControl> */}
-				<InputGroup>
-					<InputLeftElement
-						pointerEvents='none'
-						color={focus.email ? 'primaryYellow' : 'secondaryColor'}
-					>
-						<MdAlternateEmail />
-					</InputLeftElement>
-					<Input
-						type='email'
-						name='email'
-						placeholder='Email'
-						value={values.email}
-						color='white'
-						focusBorderColor='primaryYellow'
-						borderColor={borderError({ prop: 'email', errors, touched })}
-						autoComplete='off'
-						onChange={handleChange}
-						onBlur={e => {
-							handleBlur(e);
-							handleBlurUser(e);
-						}}
-						onFocus={handleFocusUser}
-					/>
-				</InputGroup>
-				{showErrorMessage({ prop: 'email', errors, touched, focus })}
-				{/* </FormControl> */}
-
-				{/* <FormControl id="password"> */}
-				<InputGroup>
-					<InputLeftElement
-						color={focus.password ? 'primaryYellow' : 'secondaryColor'}
-						pointerEvents='none'
-					>
-						<RiLockPasswordLine />
-					</InputLeftElement>
-
-					<Input
-						name='password'
-						type={showPassword ? 'text' : 'password'}
-						placeholder='Password'
-						value={values.password}
-						color='white'
-						focusBorderColor='primaryYellow'
-						borderColor={borderError({
-							prop: 'password',
-							errors,
-							touched
-						})}
-						onChange={handleChange}
-						onBlur={e => {
-							handleBlur(e);
-							handleBlurUser(e);
-						}}
-						onFocus={handleFocusUser}
-					/>
-					<InputRightElement>
-						<Icon
-							color='secondaryColor'
-							as={showPassword ? AiFillEyeInvisible : AiFillEye}
-							onClick={handleShowHidePassword}
+		<>
+			<form onSubmit={handleSubmit}>
+				<Stack spacing={4}>
+					{/* <FormControl> */}
+					<InputGroup>
+						<InputLeftElement
+							pointerEvents='none'
+							color={focus.email ? 'primaryYellow' : 'secondaryColor'}
+						>
+							<MdAlternateEmail />
+						</InputLeftElement>
+						<Input
+							type='email'
+							name='email'
+							placeholder='Email'
+							value={values.email}
+							color='white'
+							focusBorderColor='primaryYellow'
+							borderColor={borderError({ prop: 'email', errors, touched })}
+							autoComplete='off'
+							onChange={handleChange}
+							onBlur={e => {
+								handleBlur(e);
+								handleBlurUser(e);
+							}}
+							onFocus={handleFocusUser}
 						/>
-					</InputRightElement>
-				</InputGroup>
-				{showErrorMessage({ prop: 'password', errors, touched, focus })}
-				{/* </FormControl> */}
+					</InputGroup>
+					{showErrorMessage({ prop: 'email', errors, touched, focus })}
+					{/* </FormControl> */}
 
-				<Link fontSize='14' textAlign={'right'} color='secondaryColor'>
-					Forgot Password?
-				</Link>
-			</Stack>
+					{/* <FormControl id="password"> */}
+					<InputGroup>
+						<InputLeftElement
+							color={focus.password ? 'primaryYellow' : 'secondaryColor'}
+							pointerEvents='none'
+						>
+							<RiLockPasswordLine />
+						</InputLeftElement>
 
-			<Button mt={5} w='100%' type='submit' bg='primaryYellow' color='black'>
-				Login
-			</Button>
-		</form>
+						<Input
+							name='password'
+							type={showPassword ? 'text' : 'password'}
+							placeholder='Password'
+							value={values.password}
+							color='white'
+							focusBorderColor='primaryYellow'
+							borderColor={borderError({
+								prop: 'password',
+								errors,
+								touched
+							})}
+							onChange={handleChange}
+							onBlur={e => {
+								handleBlur(e);
+								handleBlurUser(e);
+							}}
+							onFocus={handleFocusUser}
+						/>
+						<InputRightElement>
+							<Icon
+								color='secondaryColor'
+								as={showPassword ? AiFillEyeInvisible : AiFillEye}
+								onClick={handleShowHidePassword}
+							/>
+						</InputRightElement>
+					</InputGroup>
+					{showErrorMessage({ prop: 'password', errors, touched, focus })}
+					{/* </FormControl> */}
+
+					<Link fontSize='14' textAlign={'right'} color='secondaryColor'>
+						Forgot Password?
+					</Link>
+				</Stack>
+
+				<Button mt={5} w='100%' type='submit' bg='primaryYellow' color='black'>
+					Login
+				</Button>
+			</form>
+		</>
 	);
 };
 

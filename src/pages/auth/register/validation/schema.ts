@@ -15,5 +15,8 @@ export const userRegisterSchema = yup.object({
 		.matches(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])./, {
 			message:
 				'Password should have at least 1 number, 1 Capital letter, 1 lower case letter and 8 characters'
-		})
+		}),
+	repeatPassword: yup
+		.string()
+		.oneOf([yup.ref('password'), null], 'Passwords must match')
 });

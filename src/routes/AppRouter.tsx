@@ -1,18 +1,31 @@
-import { Route, Routes } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import Shuriken from '../components/shuriken/Shuriken';
 import DashboardRoutes from './components/DashboardRoutes';
 import { MainRoutes } from './components/MainRoutes';
 import QuizRoutes from './components/QuizRoutes';
 import RequireAuth from './components/RequireAuth';
 import UserLogged from './components/UserLogged';
+import { pageTransition } from './utils/transitions';
 
 export const AppRoutes = () => {
+	const location = useLocation();
 	return (
-		<Routes>
+		<Routes location={location} key={location.pathname}>
 			<Route
 				path='/*'
 				element={
 					<UserLogged>
-						<MainRoutes />
+						<motion.div
+							initial='out'
+							animate='in'
+							exit='out'
+							transition={{ delay: 0.1, type: 'keyframes' }}
+							variants={pageTransition}
+						>
+							<Shuriken rotate={true} size={100} />
+							<MainRoutes />
+						</motion.div>
 					</UserLogged>
 				}
 			/>
@@ -20,7 +33,15 @@ export const AppRoutes = () => {
 				path='/home/*'
 				element={
 					<RequireAuth>
-						<DashboardRoutes />
+						<motion.div
+							initial='out'
+							animate='in'
+							exit='out'
+							transition={{ delay: 0.1, type: 'keyframes' }}
+							variants={pageTransition}
+						>
+							<Shuriken rotate={true} size={100} /> <DashboardRoutes />
+						</motion.div>
 					</RequireAuth>
 				}
 			/>

@@ -1,6 +1,6 @@
-import styles from './CircleProgressBar.module.css';
-import { CircleProgressBarProps } from '../../types';
 import { FC, useEffect, useState } from 'react';
+import { CircleProgressBarProps } from '../../types';
+import styles from './CircleProgressBar.module.css';
 
 const CircleProgressBar: FC<CircleProgressBarProps> = ({
 	passed,
@@ -70,10 +70,10 @@ const CircleProgressBar: FC<CircleProgressBarProps> = ({
 				className={styles.circularProgress}
 				style={{
 					background: `conic-gradient(
-        green ${progressBarValue}deg,
-        red ${progressBarValue}deg,
-        red ${progressBarValueError}deg,
-        #ededed 0deg
+        greenyellow ${progressBarValue}deg,
+        rgb(242, 68, 89) ${progressBarValue}deg,
+        rgb(242, 68, 89) ${progressBarValueError}deg,
+        #fff 0deg
       )`
 				}}
 			>

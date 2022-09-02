@@ -1,17 +1,30 @@
-import MobileNavBar from './components/MobileNavBar';
-import QuizCardList from './components/quiz-card/QuizCardList';
-import CircleProgressBar from './components/CircleProgressBar/CIrcleProgressBar';
-import { cardData } from './components/quiz-card/data';
-import { useNavigate } from 'react-router-dom';
 import { Avatar, Box, Button, Flex, Text } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import CircleProgressBar from './components/CircleProgressBar/CIrcleProgressBar';
+import MobileNavBar from './components/MobileNavBar';
+import { cardData } from './components/quiz-card/data';
+import QuizCardList from './components/quiz-card/QuizCardList';
+import toastLogout from './utils/toastLogout';
 
 const Dashboard = () => {
+	const [urlAvatar, seturlAvatar] = useState(
+		'https://avatars.githubusercontent.com/u/63567962?s=96&v=4'
+	);
+	const username = localStorage.getItem('username');
 	const navigate = useNavigate();
 	function handleLogout() {
+		toastLogout();
 		localStorage.removeItem('token');
 		localStorage.removeItem('username');
 		navigate('/');
 	}
+	// useEffect(() => {
+	// 	fetch(
+	// 		`https://boring-avatars-api.vercel.app/api/avatar?size=40&variant=marble`
+	// 	).then(e => console.log(e));
+	// }, []);
+
 	return (
 		<>
 			<Flex w='100%' h='100vh' direction='column' backgroundColor={'#16191C'}>
@@ -25,13 +38,9 @@ const Dashboard = () => {
 						w='95%'
 						mt={'1em'}
 					>
-						<Avatar
-							size='lg'
-							src='https://avatars.githubusercontent.com/u/63567962?s=96&v=4'
-							bg='transparent'
-						/>
+						<Avatar size='lg' src={urlAvatar} bg='transparent' />
 						<Flex flexGrow={1} direction='column' pl='1.5em'>
-							<Text>German Hornus</Text>
+							<Text>{username}</Text>
 							<Text>Points: as 1213123</Text>
 						</Flex>
 						<Button onClick={handleLogout} bg='primaryYellow' color='black'>
