@@ -14,8 +14,8 @@ const Shuriken: FC<ShurikenProps> = ({ rotate, size }) => {
 			<img
 				width={size}
 				height={size}
-				src='./shuriken.png'
-				alt='Flaticon Shuriken'
+				src='/shuriken.png'
+				alt='Shuriken NinJs'
 			/>
 		</div>
 	);
