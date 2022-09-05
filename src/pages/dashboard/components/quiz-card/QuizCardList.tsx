@@ -15,6 +15,7 @@ const QuizCardList: FC<QuizCardListProps> = ({
 				flexWrap={'wrap'}
 				p={'0.5em'}
 				gap={4}
+				marginBottom={'55px'}
 			>
 				{QuizCards.map(card => (
 					<QuizCard key={card.quizID} {...card} />
