@@ -2,7 +2,6 @@ import { Avatar, Box, Button, Flex, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CircleProgressBar from './components/CircleProgressBar/CIrcleProgressBar';
-import MobileNavBar from './components/MobileNavBar';
 import { cardData } from './components/quiz-card/data';
 import QuizCardList from './components/quiz-card/QuizCardList';
 import toastLogout from './utils/toastLogout';
@@ -48,7 +47,7 @@ const Dashboard = () => {
 							Logout
 						</Button>
 					</Flex>
-					<Flex justifyContent={'center'} gap={4}>
+					{/* <Flex justifyContent={'center'} gap={4}>
 						<CircleProgressBar
 							passed={37}
 							errors={9}
@@ -67,12 +66,9 @@ const Dashboard = () => {
 							speedAnimation={5}
 							title={'Jonin'}
 						/>
-					</Flex>
+					</Flex> */}
 				</Flex>
 				<QuizCardList QuizCards={cardData} />
-				<Box display={{ md: 'none' }}>
-					<MobileNavBar />
-				</Box>
 			</Flex>
 		</>
 	);
