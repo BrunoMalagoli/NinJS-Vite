@@ -3,7 +3,7 @@ import { Difficult, QuizCardProps } from '../../types';
 export const cardData: QuizCardProps[] = [
 	{
 		difficult: Difficult.genin,
-		quizID: 'G1',
+		questionID: 'G1',
 		number: 1,
 		completed: true
 	},
@@ -123,18 +123,18 @@ export const cardData: QuizCardProps[] = [
 	// },
 	{
 		difficult: Difficult.chunin,
-		quizID: 'C1',
+		questionID: 'C1',
 		number: 1,
 		completed: true
 	},
 	{
 		difficult: Difficult.chunin,
-		quizID: 'C2',
+		questionID: 'C2',
 		number: 2
 	},
 	{
 		difficult: Difficult.chunin,
-		quizID: 'C3',
+		questionID: 'C3',
 		number: 3,
 		completed: true
 	},
@@ -242,18 +242,18 @@ export const cardData: QuizCardProps[] = [
 	// },
 	{
 		difficult: Difficult.jonin,
-		quizID: 'J1',
+		questionID: 'J1',
 		number: 1
 	},
 	{
 		difficult: Difficult.jonin,
-		quizID: 'J2',
+		questionID: 'J2',
 		number: 2,
 		completed: false
 	},
 	{
 		difficult: Difficult.jonin,
-		quizID: 'J3',
+		questionID: 'J3',
 		number: 3
 	}
 	// {
