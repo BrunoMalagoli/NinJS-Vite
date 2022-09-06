@@ -15,6 +15,7 @@ const SkeletonCards = () => {
 			>
 				{arr.map((x, i) => (
 					<Skeleton
+						key={i}
 						startColor={theme.colors.primaryBGLight}
 						endColor={theme.colors.primaryBGShade}
 						height='130px'
