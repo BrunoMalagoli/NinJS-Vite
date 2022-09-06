@@ -61,7 +61,6 @@ const Dashboard = () => {
 			}
 		} catch (error) {
 			setSkeletonCardData(false);
-			setPage(page - 1);
 			toastMaxPage();
 			console.log(error);
 		}
@@ -92,7 +91,7 @@ const Dashboard = () => {
 							<Text>Points: as 1213123</Text>
 						</Flex>
 					</Flex>
-					<Flex
+					{/* <Flex
 						justifyContent={'space-evenly'}
 						width='100%'
 						gap={4}
@@ -116,7 +115,7 @@ const Dashboard = () => {
 							speedAnimation={5}
 							title={'Jonin'}
 						/>
-					</Flex>
+					</Flex> */}
 				</Flex>
 				<Flex>
 					<Button name='add' onClick={handleChangePage}>
@@ -127,7 +126,11 @@ const Dashboard = () => {
 					</Button>
 					<Heading color={'#fff'}> Page: {page}</Heading>
 				</Flex>
-				{cardData.length && <QuizCardList QuizCards={cardData} />}
+				{cardData.length ? (
+					<QuizCardList QuizCards={cardData} />
+				) : (
+					<h1>Not Found</h1>
+				)}
 				{skeletonCardData && <SkeletonCards />}
 			</Flex>
 		</>
