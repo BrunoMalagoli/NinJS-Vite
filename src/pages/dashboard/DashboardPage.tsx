@@ -14,6 +14,7 @@ const Dashboard = () => {
 		'https://avatars.githubusercontent.com/u/63567962?s=96&v=4'
 	);
 	const [page, setPage] = useState(1);
+	const [maxPage, setMaxPage] = useState(1000);
 	const [cardData, setCardData] = useState<QuizCardProps[]>([]);
 	const [skeletonCardData, setSkeletonCardData] = useState(true);
 
@@ -56,13 +57,18 @@ const Dashboard = () => {
 				setCardData(data.result);
 				setSkeletonCardData(false);
 			} else {
+				setCardData([]);
 				setSkeletonCardData(false);
 				throw new Error(data?.ErrorMessage);
 			}
 		} catch (error) {
-			setSkeletonCardData(false);
-			toastMaxPage();
+			if ((error as Error).message.includes('find')) {
+				setMaxPage(page);
+				toastMaxPage();
+				setPage(page - 1);
+			}
 			console.log(error);
+			setSkeletonCardData(false);
 		}
 	}
 	useEffect(() => {
@@ -118,7 +124,11 @@ const Dashboard = () => {
 					</Flex> */}
 				</Flex>
 				<Flex>
-					<Button name='add' onClick={handleChangePage}>
+					<Button
+						name='add'
+						onClick={handleChangePage}
+						disabled={page == maxPage - 1}
+					>
 						Pagina siguiente
 					</Button>
 					<Button name='rest' onClick={handleChangePage} disabled={page === 1}>
@@ -126,11 +136,7 @@ const Dashboard = () => {
 					</Button>
 					<Heading color={'#fff'}> Page: {page}</Heading>
 				</Flex>
-				{cardData.length ? (
-					<QuizCardList QuizCards={cardData} />
-				) : (
-					<h1>Not Found</h1>
-				)}
+				{cardData.length && <QuizCardList QuizCards={cardData} />}
 				{skeletonCardData && <SkeletonCards />}
 			</Flex>
 		</>
