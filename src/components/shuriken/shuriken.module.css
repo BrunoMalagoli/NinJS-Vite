@@ -19,7 +19,7 @@
   }
 
   to {
-    transform: translate(-100px, 40vh) rotate(180deg);
+    transform: translate(-100px, 40vh) rotate(-180deg);
   }
 
 }
@@ -30,7 +30,7 @@
   }
 
   to {
-    -webkit-transform: translate(-100px, 40vh) rotate(180deg);
+    -webkit-transform: translate(-100px, 40vh) rotate(-180deg);
   }
 
 }
