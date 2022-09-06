@@ -1,9 +1,10 @@
+import Matrix from '../components/background/matrix/matrix';
 import Clouds from '../components/background/clouds/Clouds';
 import Leaves from '../components/background/leaves/Leaves';
 
 export type QuizCardProps = {
 	difficult: Difficult;
-	quizID: string;
+	questionID: string;
 	number: number;
 	completed?: boolean;
 };
@@ -21,7 +22,7 @@ export enum Difficult {
 export const BackgroundSwitch = {
 	[Difficult.genin]: Leaves,
 	[Difficult.chunin]: Clouds,
-	[Difficult.jonin]: Leaves
+	[Difficult.jonin]: Matrix
 };
 
 export interface CircleProgressBarProps {
