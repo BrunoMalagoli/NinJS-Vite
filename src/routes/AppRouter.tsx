@@ -47,7 +47,7 @@ export const AppRoutes = () => {
 							<Box
 								display={{ md: 'none' }}
 								position='fixed'
-								bottom={0}
+								bottom={'-1px'}
 								width='100%'
 							>
 								<MobileNavBar />

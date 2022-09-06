@@ -17,7 +17,6 @@ const UserLogged: FC<PropsMiddlewaresAutentication> = ({ children }) => {
 				.then(data => {
 					if (data.status == 'Error') {
 						localStorage.clear();
-						return navigate('/login');
 					} else {
 						navigate('/home');
 					}

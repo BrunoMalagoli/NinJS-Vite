@@ -1,5 +1,5 @@
 import { FC, useEffect } from 'react';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { PropsMiddlewaresAutentication } from '../types';
 
 const RequireAuth: FC<PropsMiddlewaresAutentication> = ({ children }) => {
