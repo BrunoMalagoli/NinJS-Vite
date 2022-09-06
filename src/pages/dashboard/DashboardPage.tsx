@@ -1,26 +1,23 @@
 import { Avatar, Button, Flex, Heading, Text } from '@chakra-ui/react';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
-import { QuizCardProps } from './types';
 import toastMaxPage from './components/toastMaxPage';
 import QuizCardList from './components/quiz-card/QuizCardList';
 import SkeletonCards from './components/SkeletonCards';
 import CircleProgressBar from './components/CircleProgressBar/CIrcleProgressBar';
 
 import 'react-toastify/dist/ReactToastify.css';
+import DataContext from '../../context/dataContext';
 const Dashboard = () => {
 	const [urlAvatar, setUrlAvatar] = useState(
 		'https://avatars.githubusercontent.com/u/63567962?s=96&v=4'
 	);
-	const [page, setPage] = useState(1);
-	const [maxPage, setMaxPage] = useState(1000);
-	const [cardData, setCardData] = useState<QuizCardProps[]>([]);
-	const [skeletonCardData, setSkeletonCardData] = useState(true);
+
+	const [state, page, setPage, maxPage, setMaxPage] = useContext(DataContext);
 
 	const username = localStorage.getItem('username');
 
 	function handleChangePage(e: any) {
-		// console.log(e.target.name);
 		if (e.target.name === 'add') {
 			return setPage(page + 1);
 		}
@@ -28,46 +25,13 @@ const Dashboard = () => {
 			setPage(page - 1);
 		}
 	}
-
-	async function fetchData(
-		setCardData: Dispatch<SetStateAction<QuizCardProps[]>>,
-		setSkeletonCardData: Dispatch<SetStateAction<boolean>>
-	) {
-		try {
-			const response = await fetch(
-				`${import.meta.env.VITE_URL_CONECT_BACKEND}api/quiz/list?page=${page}`,
-				{
-					method: 'GET',
-					headers: {
-						'Content-Type': 'application/json',
-						'x-token': localStorage.getItem('token') || '2'
-					}
-				}
-			);
-			const data = await response.json();
-			if (response.ok) {
-				setCardData(data.result);
-				setSkeletonCardData(false);
-			} else {
-				setCardData([]);
-				setSkeletonCardData(false);
-				throw new Error(data?.ErrorMessage);
-			}
-		} catch (error) {
-			if ((error as Error).message.includes('find')) {
-				setMaxPage(page);
-				toastMaxPage();
-				setPage(page - 1);
-			}
-			console.log(error);
-			setSkeletonCardData(false);
-		}
-	}
 	useEffect(() => {
-		setCardData([]);
-		fetchData(setCardData, setSkeletonCardData);
-		return () => setSkeletonCardData(true);
-	}, [page]);
+		if ((state?.error as Error)?.message.includes('Found')) {
+			setMaxPage(page);
+			toastMaxPage();
+			setPage(page - 1);
+		}
+	}, [state]);
 
 	return (
 		<>
@@ -128,8 +92,12 @@ const Dashboard = () => {
 					</Button>
 					<Heading color={'#fff'}> Page: {page}</Heading>
 				</Flex>
-				{cardData.length && <QuizCardList QuizCards={cardData} />}
-				{skeletonCardData && <SkeletonCards />}
+				{state?.data?.length ? (
+					<QuizCardList QuizCards={state?.data} />
+				) : (
+					state.error && <h1 style={{ color: 'white' }}>Not Found</h1>
+				)}
+				{!state.data && !state?.error && <SkeletonCards />}
 			</Flex>
 		</>
 	);
