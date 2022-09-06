@@ -3,15 +3,11 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import CircleProgressBar from './components/CircleProgressBar/CIrcleProgressBar';
-import MobileNavBar from './components/MobileNavBar';
 import QuizCardList from './components/quiz-card/QuizCardList';
 import SkeletonCards from './components/SkeletonCards';
 import toastMaxPage from './components/toastMaxPage';
 import toastLogout from './utils/toastLogout';
 
-// function SkeletonCards() {
-// 	return <h1>This is a Skeleton</h1>;
-// }
 const Dashboard = () => {
 	const [urlAvatar, setUrlAvatar] = useState(
 		'https://avatars.githubusercontent.com/u/63567962?s=96&v=4'
@@ -19,6 +15,7 @@ const Dashboard = () => {
 	const [page, setPage] = useState(1);
 	const [cardData, setCardData] = useState(null);
 	const [skeletonCardData, setSkeletonCardData] = useState(true);
+
 	const username = localStorage.getItem('username');
 	const navigate = useNavigate();
 
@@ -48,7 +45,7 @@ const Dashboard = () => {
 	// 		`https://boring-avatars-api.vercel.app/api/avatar?size=40&variant=marble`
 	// 	).then(e => console.log(e));
 	// }, []);
-	
+
 	async function fetchData({ setCardData, setSkeletonCardData }) {
 		try {
 			const response = await fetch(
@@ -105,7 +102,7 @@ const Dashboard = () => {
 							Logout
 						</Button>
 					</Flex>
-					<Flex justifyContent={'center'} gap={4}>
+					{/* <Flex justifyContent={'center'} gap={4}>
 						<CircleProgressBar
 							passed={37}
 							errors={9}
@@ -124,7 +121,9 @@ const Dashboard = () => {
 							speedAnimation={5}
 							title={'Jonin'}
 						/>
-					</Flex>
+					</Flex> */}
+				</Flex>
+				<Flex>
 					<Button name='add' onClick={handleChangePage}>
 						Pagina siguiente
 					</Button>
@@ -135,9 +134,6 @@ const Dashboard = () => {
 				</Flex>
 				{cardData && <QuizCardList QuizCards={cardData} />}
 				{skeletonCardData && <SkeletonCards />}
-				<Box display={{ md: 'none' }}>
-					<MobileNavBar />
-				</Box>
 			</Flex>
 		</>
 	);
