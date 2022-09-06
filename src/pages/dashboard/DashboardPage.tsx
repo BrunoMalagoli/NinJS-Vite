@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import { Avatar, Button, Flex, Heading, Text } from '@chakra-ui/react';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
@@ -19,7 +18,6 @@ const Dashboard = () => {
 	const [skeletonCardData, setSkeletonCardData] = useState(true);
 
 	const username = localStorage.getItem('username');
-	const navigate = useNavigate();
 
 	function handleChangePage(e: any) {
 		// console.log(e.target.name);
@@ -30,12 +28,6 @@ const Dashboard = () => {
 			setPage(page - 1);
 		}
 	}
-
-	// useEffect(() => {
-	// 	fetch(
-	// 		`https://boring-avatars-api.vercel.app/api/avatar?size=40&variant=marble`
-	// 	).then(e => console.log(e));
-	// }, []);
 
 	async function fetchData(
 		setCardData: Dispatch<SetStateAction<QuizCardProps[]>>,
