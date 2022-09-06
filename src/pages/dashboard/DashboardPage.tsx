@@ -92,7 +92,12 @@ const Dashboard = () => {
 							<Text>Points: as 1213123</Text>
 						</Flex>
 					</Flex>
-					{/* <Flex justifyContent={'center'} gap={4}>
+					<Flex
+						justifyContent={'space-evenly'}
+						width='100%'
+						gap={4}
+						fontSize='8px'
+					>
 						<CircleProgressBar
 							passed={37}
 							errors={9}
@@ -111,7 +116,7 @@ const Dashboard = () => {
 							speedAnimation={5}
 							title={'Jonin'}
 						/>
-					</Flex> */}
+					</Flex>
 				</Flex>
 				<Flex>
 					<Button name='add' onClick={handleChangePage}>
