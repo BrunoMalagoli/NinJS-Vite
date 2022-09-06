@@ -18,7 +18,7 @@ const QuizCardList: FC<QuizCardListProps> = ({
 				marginBottom={'55px'}
 			>
 				{QuizCards.map(card => (
-					<QuizCard key={card.quizID} {...card} />
+					<QuizCard key={card.questionID} {...card} />
 				))}
 			</Flex>
 		</Box>

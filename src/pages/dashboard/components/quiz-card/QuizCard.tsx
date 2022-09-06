@@ -7,7 +7,7 @@ import styles from './QuizCard.module.css';
 
 const QuizCard: FC<QuizCardProps> = ({
 	difficult,
-	quizID,
+	questionID,
 	number,
 	completed
 }) => {
@@ -16,7 +16,7 @@ const QuizCard: FC<QuizCardProps> = ({
 		<Box className={`${styles['glass-card-' + difficult]} ${styles.card}`}>
 			<Background />
 			<Box>
-				<Text>{number}</Text>
+				<Text>{Number(questionID.match(/\d/)![0])}</Text>
 			</Box>
 			<Flex
 				justifyContent={'center'}
