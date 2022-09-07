@@ -1,6 +1,7 @@
 import { ChakraProvider } from '@chakra-ui/react';
 import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import DataContextProvider from './context/DataContextProvider';
 import { AppRoutes } from './routes/AppRouter';
 import theme from './styles/theme';
 
@@ -9,7 +10,9 @@ function App() {
 		<ChakraProvider theme={theme}>
 			<BrowserRouter>
 				<ToastContainer />
-				<AppRoutes />
+				<DataContextProvider>
+					<AppRoutes />
+				</DataContextProvider>
 			</BrowserRouter>
 		</ChakraProvider>
 	);

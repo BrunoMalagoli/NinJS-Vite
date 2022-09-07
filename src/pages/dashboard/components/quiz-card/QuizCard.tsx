@@ -7,23 +7,26 @@ import styles from './QuizCard.module.css';
 
 const QuizCard: FC<QuizCardProps> = ({
 	difficult,
-	quizID,
+	questionID,
 	number,
 	completed
 }) => {
 	const Background = BackgroundSwitch[difficult];
-	const navigate = useNavigate()
-	const handleClick =()=>{
-		let category = quizID.slice(0,1)
-		let id = quizID.slice(1,2)
-		console.log(`Categoria: ${category}, Id: ${id}`)
-		navigate(`/quiz/${category}/${id}`)
-	}
+	const navigate = useNavigate();
+	const handleClick = () => {
+		let category = questionID.slice(0, 1);
+		let id = questionID.slice(1, 2);
+		console.log(`Categoria: ${category}, Id: ${id}`);
+		navigate(`/quiz/${category}/${id}`);
+	};
 	return (
-		<Box onClick={handleClick} className={`${styles['glass-card-' + difficult]} ${styles.card}`}>
+		<Box
+			onClick={handleClick}
+			className={`${styles['glass-card-' + difficult]} ${styles.card}`}
+		>
 			<Background />
 			<Box>
-				<Text>{number}</Text>
+				<Text>{Number(questionID.match(/\d/)![0])}</Text>
 			</Box>
 			<Flex
 				justifyContent={'center'}

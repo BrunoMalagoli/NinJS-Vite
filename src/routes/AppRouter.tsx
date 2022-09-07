@@ -1,5 +1,7 @@
+import { Box, position } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { Route, Routes, useLocation } from 'react-router-dom';
+import MobileNavBar from '../components/MobileNavBar';
 import Shuriken from '../components/shuriken/Shuriken';
 import DashboardRoutes from './components/DashboardRoutes';
 import { MainRoutes } from './components/MainRoutes';
@@ -33,15 +35,25 @@ export const AppRoutes = () => {
 				path='/home/*'
 				element={
 					<RequireAuth>
-						<motion.div
-							initial='out'
-							animate='in'
-							exit='out'
-							transition={{ delay: 0.1, type: 'keyframes' }}
-							variants={pageTransition}
-						>
-							<Shuriken rotate={true} size={100} /> <DashboardRoutes />
-						</motion.div>
+						<>
+							<motion.div
+								initial='out'
+								animate='in'
+								exit='out'
+								transition={{ delay: 0.1, type: 'keyframes' }}
+								variants={pageTransition}
+							>
+								<Shuriken rotate={true} size={100} /> <DashboardRoutes />
+							</motion.div>
+							<Box
+								display={{ md: 'none' }}
+								position='fixed'
+								bottom={'-1px'}
+								width='100%'
+							>
+								<MobileNavBar />
+							</Box>
+						</>
 					</RequireAuth>
 				}
 			/>

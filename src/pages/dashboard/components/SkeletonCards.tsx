@@ -1,0 +1,31 @@
+import { Box, Flex, Skeleton } from '@chakra-ui/react';
+import theme from '../../../styles/theme';
+const SkeletonCards = () => {
+	const arr = ['s', 's', 's', 's', 's', 's', 's', 's', 's', 's'];
+
+	return (
+		<Box overflowY={'scroll'}>
+			<Flex
+				justifyContent={'center'}
+				alignContent={'center'}
+				flexWrap={'wrap'}
+				p={'0.5em'}
+				gap={4}
+				marginBottom={'55px'}
+			>
+				{arr.map((x, i) => (
+					<Skeleton
+						key={i}
+						startColor={theme.colors.primaryBGLight}
+						endColor={theme.colors.primaryBGShade}
+						height='130px'
+						width='130px'
+						borderRadius={'10px'}
+					/>
+				))}
+			</Flex>
+		</Box>
+	);
+};
+
+export default SkeletonCards;
