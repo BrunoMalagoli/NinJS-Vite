@@ -2,7 +2,7 @@ import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 import React, { FC, useState } from 'react';
 import useFetch from '../hooks/useFetch';
 import { QuizCardProps } from '../pages/dashboard/types';
-import DataContext from './dataContext';
+import DataContext from './DataContext';
 
 const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 	const [page, setPage] = useState(1);
