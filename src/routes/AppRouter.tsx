@@ -45,11 +45,14 @@ export const AppRoutes = () => {
 					</RequireAuth>
 				}
 			/>
-			<Route path='/quiz/*' element={
-				<RequireAuth>
-					<QuizRoutes/>
-				</RequireAuth>
-			}/>
+			<Route
+				path='/quiz/*'
+				element={
+					<RequireAuth>
+						<QuizRoutes />
+					</RequireAuth>
+				}
+			/>
 		</Routes>
 	);
 };
