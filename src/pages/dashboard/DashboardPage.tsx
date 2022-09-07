@@ -1,22 +1,50 @@
-import { Avatar, Button, Flex, Heading, Text } from '@chakra-ui/react';
+import { Avatar, Button, Flex, Select, Text } from '@chakra-ui/react';
 import { useContext, useEffect, useState } from 'react';
 
-import toastMaxPage from './components/toastMaxPage';
 import QuizCardList from './components/quiz-card/QuizCardList';
 import SkeletonCards from './components/SkeletonCards';
-import CircleProgressBar from './components/CircleProgressBar/CIrcleProgressBar';
+import toastMaxPage from './components/toastMaxPage';
 
+import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import 'react-toastify/dist/ReactToastify.css';
 import DataContext from '../../context/dataContext';
+import theme from '../../styles/theme';
+
 const Dashboard = () => {
 	const [urlAvatar, setUrlAvatar] = useState(
 		'https://avatars.githubusercontent.com/u/63567962?s=96&v=4'
 	);
 
-	const [state, page, setPage, maxPage, setMaxPage] = useContext(DataContext);
+	const [state, page, setPage, maxPage, setMaxPage, seturlSearchParams] =
+		useContext(DataContext);
 
 	const username = localStorage.getItem('username');
 
+	function handleSetFilters(e: any) {
+		switch (e.target.name) {
+			// case 'completed':
+			// 	console.log(e.target.value);
+			// 	seturlSearchParams(prev => ({
+			// 		...prev,
+			// 		completed: !prev.completed
+			// 	}));
+			// 	break;
+			case 'completed':
+				seturlSearchParams(prev => ({
+					...prev,
+					completed: e.target.value
+				}));
+				break;
+			case 'difficult':
+				seturlSearchParams(prev => ({
+					...prev,
+					difficult: e.target.value
+				}));
+				break;
+			default:
+				break;
+		}
+	}
 	function handleChangePage(e: any) {
 		if (e.target.name === 'add') {
 			return setPage(page + 1);
@@ -79,18 +107,32 @@ const Dashboard = () => {
 						/>
 					</Flex> */}
 				</Flex>
-				<Flex>
-					<Button
-						name='add'
-						onClick={handleChangePage}
-						disabled={page == maxPage - 1}
+				<Flex justifyContent={'center'} alignItems='center' gap='1rem'>
+					<Text color={'#fff'}>Estado: </Text>
+					<Select
+						onChange={handleSetFilters}
+						name='completed'
+						color={'white'}
+						w='auto'
 					>
-						Pagina siguiente
-					</Button>
-					<Button name='rest' onClick={handleChangePage} disabled={page === 1}>
-						Pagina Anterior
-					</Button>
-					<Heading color={'#fff'}> Page: {page}</Heading>
+						<option value='all'>Todas</option>
+						<option value='aprobadas'>Aprobadas</option>
+						<option value='falladas'>Falladas</option>
+					</Select>
+					<Text color={'#fff'}>Dificultad: </Text>
+					<Select
+						onChange={handleSetFilters}
+						name='difficult'
+						color={'white'}
+						w='auto'
+					>
+						<option value='all'>Todas</option>
+						<option value='jonin'>Jonin</option>
+						<option value='genin'>Genin</option>
+						<option value='chunin'>Chunin</option>
+					</Select>
+					{/* <Text color={'#fff'}>Completed</Text> */}
+					{/* <Checkbox onChange={handleSetFilters} name='completed' /> */}
 				</Flex>
 				{state?.data?.length ? (
 					<QuizCardList QuizCards={state?.data} />
@@ -98,6 +140,25 @@ const Dashboard = () => {
 					state.error && <h1 style={{ color: 'white' }}>Not Found</h1>
 				)}
 				{!state.data && !state?.error && <SkeletonCards />}
+				<Flex justifyContent={'center'} gap='1rem' alignItems='center'>
+					<Button
+						name='rest'
+						onClick={handleChangePage}
+						disabled={page === 1}
+						background={theme.colors.primaryYellow}
+					>
+						<AiOutlineLeft />
+					</Button>
+					<Text color={'#fff'}> Page: {page}</Text>
+					<Button
+						name='add'
+						onClick={handleChangePage}
+						disabled={page == maxPage - 1}
+						background={theme.colors.primaryYellow}
+					>
+						<AiOutlineRight />
+					</Button>
+				</Flex>
 			</Flex>
 		</>
 	);
