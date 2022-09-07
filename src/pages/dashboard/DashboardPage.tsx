@@ -7,8 +7,8 @@ import toastMaxPage from './components/toastMaxPage';
 
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import 'react-toastify/dist/ReactToastify.css';
-import DataContext from '../../context/dataContext';
 import theme from '../../styles/theme';
+import DataContext from '../../context/DataContext';
 
 const Dashboard = () => {
 	const [urlAvatar, setUrlAvatar] = useState(
@@ -22,27 +22,18 @@ const Dashboard = () => {
 
 	function handleSetFilters(e: any) {
 		switch (e.target.name) {
-			// case 'completed':
-			// 	console.log(e.target.value);
-			// 	seturlSearchParams(prev => ({
-			// 		...prev,
-			// 		completed: !prev.completed
-			// 	}));
-			// 	break;
 			case 'completed':
-				seturlSearchParams(prev => ({
+				seturlSearchParams((prev: any) => ({
 					...prev,
 					completed: e.target.value
 				}));
-				break;
 			case 'difficult':
-				seturlSearchParams(prev => ({
+				seturlSearchParams((prev: any) => ({
 					...prev,
 					difficult: e.target.value
 				}));
-				break;
 			default:
-				break;
+				setPage(1);
 		}
 	}
 	function handleChangePage(e: any) {
@@ -55,9 +46,9 @@ const Dashboard = () => {
 	}
 	useEffect(() => {
 		if ((state?.error as Error)?.message.includes('Found')) {
-			setMaxPage(page);
 			toastMaxPage();
 			setPage(page - 1);
+			setMaxPage(page);
 		}
 	}, [state]);
 

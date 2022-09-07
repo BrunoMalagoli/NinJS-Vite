@@ -1,8 +1,8 @@
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useFetch from '../hooks/useFetch';
 import { QuizCardProps } from '../pages/dashboard/types';
-import DataContext from './dataContext';
+import DataContext from './DataContext';
 
 const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 	const [page, setPage] = useState(1);
@@ -17,12 +17,16 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 	// let all;
 	let difficult;
 
+	useEffect(() => {
+		setMaxPage(1000);
+	}, [urlSearchParams]);
+
 	if (urlSearchParams.completed === 'all') {
 		completed = '';
 	} else if (urlSearchParams.completed === 'aprobadas') {
-		completed = '&completed=true';
+		completed = '&completed=true&all=true';
 	} else {
-		completed = '&completed=false';
+		completed = '&completed=false&all=true';
 	}
 
 	if (urlSearchParams.difficult === 'all') {
