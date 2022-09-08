@@ -16,7 +16,7 @@ const QuizCard: FC<QuizCardProps> = ({
 		<Box className={`${styles['glass-card-' + difficult]} ${styles.card}`}>
 			<Background />
 			<Box>
-				<Text>{Number(questionID.match(/\d/)![0])}</Text>
+				<Text>{number}</Text>
 			</Box>
 			<Flex
 				justifyContent={'center'}
