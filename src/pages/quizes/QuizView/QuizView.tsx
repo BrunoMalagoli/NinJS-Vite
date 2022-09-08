@@ -27,6 +27,12 @@ const QuizView = () => {
 			setQuizData(state.data);
 		}
 		const errorToast = () => {
+			if (state.error?.message.includes('Found')) {
+				toast.error('Ups ocurrio un error encontrando tu pregunta', {
+					position: toast.POSITION.BOTTOM_CENTER
+				});
+				return;
+			}
 			toast.error(state.error?.message, {
 				position: toast.POSITION.BOTTOM_CENTER
 			});

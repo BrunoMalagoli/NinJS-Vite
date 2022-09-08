@@ -1,33 +1,37 @@
+import { useState } from 'react';
 import {
-	Box,
 	Center,
-	Checkbox,
-	CheckboxGroup,
+	Text,
 	Container,
+	Radio,
+	RadioGroup,
 	Stack
 } from '@chakra-ui/react';
-import { qData } from '../../../utils/interfaces/index';
 
+import { qData } from '../../../utils/interfaces/index';
+import theme from '../../../../../../styles/theme';
 const Answers = ({ quizData }: qData) => {
+	const [checkedValue, setCheckedValue] = useState('A');
+
 	return (
 		<Container>
 			<Center>
-				<CheckboxGroup>
+				<RadioGroup onChange={setCheckedValue} value={checkedValue}>
 					<Stack spacing={2} direction={'column'}>
-						<Checkbox spacing={'1rem'} color={'white'}>
-							{quizData.answers['A']}
-						</Checkbox>
-						<Checkbox spacing={'1rem'} color={'white'}>
-							{quizData.answers['B']}
-						</Checkbox>
-						<Checkbox spacing={'1rem'} color={'white'}>
-							{quizData.answers['C']}
-						</Checkbox>
-						<Checkbox spacing={'1rem'} color={'white'}>
-							{quizData.answers['D']}
-						</Checkbox>
+						<Radio value='A' spacing={'1rem'} colorScheme={'yellow'}>
+							<Text color={'primaryYellow'}>{quizData.answers['A']}</Text>
+						</Radio>
+						<Radio value='B' spacing={'1rem'} colorScheme={'yellow'}>
+							<Text color={'primaryYellow'}>{quizData.answers['B']}</Text>
+						</Radio>
+						<Radio value='C' spacing={'1rem'} colorScheme={'yellow'}>
+							<Text color={'primaryYellow'}>{quizData.answers['C']}</Text>
+						</Radio>
+						<Radio value='D' spacing={'1rem'} colorScheme={'yellow'}>
+							<Text color={'primaryYellow'}>{quizData.answers['D']}</Text>
+						</Radio>
 					</Stack>
-				</CheckboxGroup>
+				</RadioGroup>
 			</Center>
 		</Container>
 	);

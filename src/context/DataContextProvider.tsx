@@ -7,6 +7,7 @@ import DataContext from './DataContext';
 const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 	const [page, setPage] = useState(1);
 	const [maxPage, setMaxPage] = useState(10000);
+	const [checkedAnswers, setCheckedAnswers] = useState(0);
 	const state = useFetch<QuizCardProps[]>(
 		`${import.meta.env.VITE_URL_CONECT_BACKEND}api/quiz/list?page=${page}`,
 		{
