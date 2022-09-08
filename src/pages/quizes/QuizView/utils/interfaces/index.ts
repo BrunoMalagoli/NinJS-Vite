@@ -7,7 +7,8 @@ type answers = {
 export type quizResponse = {
 	answers: answers;
 	difficult: string;
-	img: string;
+	code: string;
+	question: string;
 };
 
 export interface qData {
