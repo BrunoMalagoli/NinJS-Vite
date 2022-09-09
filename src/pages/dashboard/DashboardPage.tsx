@@ -13,8 +13,8 @@ import SkeletonCards from './components/SkeletonCards';
 
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import 'react-toastify/dist/ReactToastify.css';
-import DataContext from '../../context/DataContext';
 import theme from '../../styles/theme';
+import DataContext from '../../context/data/DataContext';
 
 const Dashboard = () => {
 	const [urlAvatar, setUrlAvatar] = useState(
@@ -25,8 +25,6 @@ const Dashboard = () => {
 		useContext(DataContext);
 
 	const username = localStorage.getItem('username');
-
-	console.log({ state });
 
 	function handleSetFilters(e: any) {
 		switch (e.target.name) {
@@ -103,7 +101,7 @@ const Dashboard = () => {
 							color={'white'}
 							w='125px'
 							backgroundColor={theme.colors.primaryBGShade}
-							variant={'outlined'}
+							variant={'filled'}
 						>
 							<option
 								value='all'
@@ -144,7 +142,7 @@ const Dashboard = () => {
 							color={'white'}
 							w='125px'
 							backgroundColor={theme.colors.primaryBGShade}
-							variant={'outlined'}
+							variant={'filled'}
 						>
 							<option
 								value='all'
