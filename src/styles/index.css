@@ -12,6 +12,6 @@ body {
 }
 
 #root {
-	height: inherit;
-	width: inherit;
+	height: 100%;
+	width: 100%;
 }
