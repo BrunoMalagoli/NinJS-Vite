@@ -24,11 +24,11 @@ const AvatarRadioGroup = () => {
 			p='8px'
 			m='10px'
 			mx='0'
+			mb='0'
+			mt='0'
 			fontSize={{ base: '60px', md: '80px' }}
 			flexWrap={'wrap'}
 			justifyContent='center'
-			backgroundColor={theme.colors.primaryBGShade}
-			borderRadius='16px'
 		>
 			{options.map(value => {
 				const radio = getRadioProps({ value });
