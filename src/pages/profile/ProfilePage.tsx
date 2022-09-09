@@ -1,34 +1,40 @@
-import { Flex, Text } from '@chakra-ui/react';
-import Avatar from 'boring-avatars';
 import { useContext } from 'react';
+import { Box, Flex, Text } from '@chakra-ui/react';
+import Avatar from 'boring-avatars';
 import ProfileContext from '../../context/profile/ProfileContext';
+import UsernameInput from './components/UsernameInput';
 import CircleProgressBar from '../dashboard/components/CircleProgressBar/CIrcleProgressBar';
-import AvatarRadioGroup from './components/AvatarRadioGroup';
 
 const ProfilePage = () => {
 	const { variant, username } = useContext(ProfileContext);
 	return (
-		<Flex h='100%' p='1em' flexDirection={'column'}>
+		<Flex
+			h='100%'
+			p='1em'
+			flexDirection={'column'}
+			alignItems='center'
+			overflowY={'scroll'}
+		>
 			<Flex
 				direction={'row'}
-				p='1em'
+				p='16px'
 				borderRadius={'0.5em'}
 				color={'white'}
 				w='95%'
-				mt={'1em'}
+				fontSize={{ base: '80px', md: '100px' }}
 			>
-				<Avatar name={username} variant={variant} size={'100px'} />
+				<Avatar name={username} variant={variant} size={'1em'} />
 				<Flex
 					direction='column'
 					flexGrow={1}
-					pl='1.5em'
+					pl='24px'
 					justifyContent={'center'}
 				>
 					<Text color={'white'} fontSize={{ base: 'md', md: 'xl' }}>
 						{username}
 					</Text>
-					<Text color={'white'} fontSize={{ base: 'md', md: 'xl' }}>
-						Completed: 14 / 48
+					<Text color={'white'} fontSize={{ base: 'xs', sm: 'md', md: 'xl' }}>
+						Completadas: 14 / 48
 					</Text>
 				</Flex>
 			</Flex>
@@ -57,13 +63,9 @@ const ProfilePage = () => {
 					title={'Jonin'}
 				/>
 			</Flex>
-			<AvatarRadioGroup />
+			<UsernameInput />
 		</Flex>
 	);
 };
-/* <Avatar name={'zJaaal'} variant='bauhaus' size={'100px'} />
-			<Avatar name={'zJaaal'} variant='ring' size={'100px'} />
-			<Avatar name={'zJaaal'} variant='beam' size={'100px'} />
-			<Avatar name={'zJaaal'} variant='pixel' size={'100px'} />
-			<Avatar name={'zJaaal'} variant='sunset' size={'100px'} /> */
+
 export default ProfilePage;
