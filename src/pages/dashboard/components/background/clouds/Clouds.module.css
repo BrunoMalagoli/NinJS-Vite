@@ -31,9 +31,9 @@
 /* ANIMATIONS */
 
 .x1 {
-	-webkit-animation: animateCloud 25s linear infinite;
-	-moz-animation: animateCloud 25s linear infinite;
-	animation: animateCloud 25s linear infinite;
+	-webkit-animation: animateCloud 15s linear infinite;
+	-moz-animation: animateCloud 15s linear infinite;
+	animation: animateCloud 15s linear infinite;
 
 	-webkit-transform: scale(0.2) translateY(450px);
 	-moz-transform: scale(0.2) translateY(450px);
