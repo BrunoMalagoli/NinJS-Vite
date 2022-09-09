@@ -67,7 +67,7 @@ const Dashboard = () => {
 
 	return (
 		<>
-			<Flex w='100%' h='100vh' direction='column' backgroundColor={'#16191C'}>
+			<Flex w='100%' h='100%' direction='column' backgroundColor={'#16191C'}>
 				{/* <QuizCardList QuizCards={cardData} /> */}
 				<Flex direction='column' alignItems='center'>
 					<Flex
@@ -85,31 +85,6 @@ const Dashboard = () => {
 							<Text>Points: as 1213123</Text>
 						</Flex>
 					</Flex>
-					{/* <Flex
-						justifyContent={'space-evenly'}
-						width='100%'
-						gap={4}
-						fontSize='8px'
-					>
-						<CircleProgressBar
-							passed={37}
-							errors={9}
-							speedAnimation={5}
-							title={'Genin'}
-						/>
-						<CircleProgressBar
-							passed={91}
-							errors={1}
-							speedAnimation={3}
-							title={'Chunin'}
-						/>
-						<CircleProgressBar
-							passed={7}
-							errors={2}
-							speedAnimation={5}
-							title={'Jonin'}
-						/>
-					</Flex> */}
 				</Flex>
 				<Flex
 					justifyContent={'center'}
@@ -118,29 +93,97 @@ const Dashboard = () => {
 					mb='.7rem'
 					mt='.7rem'
 				>
-					<Text color={'#fff'}>Estado: </Text>
-					<Select
-						onChange={handleSetFilters}
-						name='completed'
-						color={'white'}
-						w='auto'
-					>
-						<option value='all'>Todas</option>
-						<option value='aprobadas'>Aprobadas</option>
-						<option value='falladas'>Falladas</option>
-					</Select>
-					<Text color={'#fff'}>Dificultad: </Text>
-					<Select
-						onChange={handleSetFilters}
-						name='difficult'
-						color={'white'}
-						w='auto'
-					>
-						<option value='all'>Todas</option>
-						<option value='jonin'>Jonin</option>
-						<option value='genin'>Genin</option>
-						<option value='chunin'>Chunin</option>
-					</Select>
+					<Flex flexDirection={'column'} alignItems='center'>
+						<Text color={'#fff'} marginBottom='5px'>
+							Estado
+						</Text>
+						<Select
+							onChange={handleSetFilters}
+							name='completed'
+							color={'white'}
+							w='125px'
+							backgroundColor={theme.colors.primaryBGShade}
+							variant={'outlined'}
+						>
+							<option
+								value='all'
+								style={{
+									backgroundColor: theme.colors.primaryBGShade,
+									border: 'none'
+								}}
+							>
+								Todas
+							</option>
+							<option
+								value='aprobadas'
+								style={{
+									backgroundColor: theme.colors.primaryBGShade,
+									border: 'none'
+								}}
+							>
+								Aprobadas
+							</option>
+							<option
+								value='falladas'
+								style={{
+									backgroundColor: theme.colors.primaryBGShade,
+									border: 'none'
+								}}
+							>
+								Falladas
+							</option>
+						</Select>
+					</Flex>
+					<Flex flexDirection={'column'} alignItems='center'>
+						<Text color={'#fff'} marginBottom='5px'>
+							Dificultad
+						</Text>
+						<Select
+							onChange={handleSetFilters}
+							name='difficult'
+							color={'white'}
+							w='125px'
+							backgroundColor={theme.colors.primaryBGShade}
+							variant={'outlined'}
+						>
+							<option
+								value='all'
+								style={{
+									backgroundColor: theme.colors.primaryBGShade,
+									border: 'none'
+								}}
+							>
+								Todas
+							</option>
+							<option
+								value='jonin'
+								style={{
+									backgroundColor: theme.colors.primaryBGShade,
+									border: 'none'
+								}}
+							>
+								Jonin
+							</option>
+							<option
+								value='genin'
+								style={{
+									backgroundColor: theme.colors.primaryBGShade,
+									border: 'none'
+								}}
+							>
+								Genin
+							</option>
+							<option
+								value='chunin'
+								style={{
+									backgroundColor: theme.colors.primaryBGShade,
+									border: 'none'
+								}}
+							>
+								Chunin
+							</option>
+						</Select>
+					</Flex>
 					{/* <Text color={'#fff'}>Completed</Text> */}
 					{/* <Checkbox onChange={handleSetFilters} name='completed' /> */}
 				</Flex>
