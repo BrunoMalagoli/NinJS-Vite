@@ -11,7 +11,7 @@ body {
 	position: relative;
 }
 
-#root {
-	height: 100%;
-	width: 100%;
+div#root {
+	height: inherit;
+	width: inherit;
 }
