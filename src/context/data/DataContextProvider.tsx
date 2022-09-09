@@ -1,7 +1,7 @@
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 import { useState } from 'react';
-import useFetch from '../hooks/useFetch';
-import { QuizCardProps } from '../pages/dashboard/types';
+import useFetch from '../../hooks/useFetch';
+import { QuizCardProps } from '../../pages/dashboard/types';
 import DataContext from './DataContext';
 
 const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
@@ -12,10 +12,8 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 		difficult: 'all'
 	});
 
-	console.log({ urlSearchParams });
 	let completed;
 	let difficult;
-
 
 	if (urlSearchParams.completed === 'all') {
 		completed = '';
@@ -39,7 +37,6 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 		import.meta.env.VITE_URL_CONECT_BACKEND
 	}api/quiz/list?page=${page}${difficult}${completed}`;
 
-	console.log(url);
 	const state = useFetch<QuizCardProps[]>(url, {
 		method: 'GET',
 		headers: {
