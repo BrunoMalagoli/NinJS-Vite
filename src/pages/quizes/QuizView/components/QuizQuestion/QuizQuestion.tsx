@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
 import NextQuizButton from '../../../../../components/NextQuizButton';
 import { qData } from '../../utils/interfaces';
 import Answers from './components/Answers';
@@ -10,6 +10,7 @@ const QuizQuestion = ({ quizData }: qData) => {
 		<Box>
 			<QuizCode code={quizData.code} />
 			<Questions questions={quizData.question} />
+
 			<Answers quizData={quizData} />
 			<NextQuizButton />
 		</Box>

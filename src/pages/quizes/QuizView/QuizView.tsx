@@ -43,7 +43,7 @@ const QuizView = () => {
 	return (
 		<div style={{ height: '100vh' }}>
 			{quizData ? (
-				<Container>
+				<Container paddingTop={'5%'}>
 					<QuizQuestion quizData={quizData!} />
 				</Container>
 			) : (
