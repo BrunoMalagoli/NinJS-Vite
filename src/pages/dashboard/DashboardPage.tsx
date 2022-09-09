@@ -1,9 +1,15 @@
-import { Avatar, Button, Flex, Heading, Select, Text } from '@chakra-ui/react';
+import {
+	Avatar,
+	Flex,
+	Heading,
+	IconButton,
+	Select,
+	Text
+} from '@chakra-ui/react';
 import { useContext, useEffect, useState } from 'react';
 
 import QuizCardList from './components/quiz-card/QuizCardList';
 import SkeletonCards from './components/SkeletonCards';
-import toastMaxPage from './components/toastMaxPage';
 
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import 'react-toastify/dist/ReactToastify.css';
@@ -43,22 +49,20 @@ const Dashboard = () => {
 		}
 	}
 
-	function handleChangePage(e: any) {
-		if (e.target.name === 'add') {
-			return setPage(page + 1);
-		}
-
-		if (page !== 1) {
-			setPage(page - 1);
-		}
+	function handleChangePageMinus(e: any) {
+		setPage(page - 1);
 	}
-
+	function handleChangePageAdd(e: any) {
+		return setPage(page + 1);
+	}
 	useEffect(() => {
 		if ((state?.error as Error)?.message.includes('Found')) {
-			toastMaxPage();
 			setMaxPage(1);
 		}
 		setMaxPage(state?.data?.maxPage);
+		if (page > maxPage) {
+			setPage(maxPage);
+		}
 	}, [state]);
 
 	return (
@@ -107,7 +111,13 @@ const Dashboard = () => {
 						/>
 					</Flex> */}
 				</Flex>
-				<Flex justifyContent={'center'} alignItems='center' gap='1rem'>
+				<Flex
+					justifyContent={'center'}
+					alignItems='center'
+					gap='1rem'
+					mb='.7rem'
+					mt='.7rem'
+				>
 					<Text color={'#fff'}>Estado: </Text>
 					<Select
 						onChange={handleSetFilters}
@@ -144,32 +154,29 @@ const Dashboard = () => {
 						</Flex>
 					)
 				)}
-				{state?.data?.questions.length && (
-					<Flex
-						justifyContent={'center'}
-						gap='1rem'
-						alignItems='center'
-						mb={'4rem'}
-					>
-						<Button
-							name='rest'
-							onClick={handleChangePage}
-							disabled={page === 1}
-							background={theme.colors.primaryYellow}
-						>
-							<AiOutlineLeft />
-						</Button>
-						<Text color={'#fff'}>{page}</Text>
-						<Button
-							name='add'
-							onClick={handleChangePage}
-							disabled={page == maxPage}
-							background={theme.colors.primaryYellow}
-						>
-							<AiOutlineRight />
-						</Button>
-					</Flex>
-				)}
+				<Flex
+					justifyContent={'center'}
+					gap='1rem'
+					alignItems='center'
+					mb={'4rem'}
+					mt='.70rem'
+				>
+					<IconButton
+						aria-label='Search database'
+						onClick={handleChangePageMinus}
+						disabled={page === 1}
+						background={theme.colors.primaryYellow}
+						icon={<AiOutlineLeft />}
+					/>
+					<Text color={'#fff'}>{page}</Text>
+					<IconButton
+						aria-label='Search database'
+						icon={<AiOutlineRight />}
+						onClick={handleChangePageAdd}
+						disabled={page == maxPage}
+						background={theme.colors.primaryYellow}
+					/>
+				</Flex>
 			</Flex>
 		</>
 	);
