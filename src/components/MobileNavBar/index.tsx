@@ -1,6 +1,6 @@
 import { Box, Flex } from '@chakra-ui/react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { MdHome, MdLeaderboard, MdLogout, MdSettings } from 'react-icons/md';
+import { MdHome, MdLeaderboard, MdLogout, MdPerson } from 'react-icons/md';
 import toastLogout from '../../pages/dashboard/utils/toastLogout';
 
 import theme from '../../styles/theme';
@@ -41,11 +41,11 @@ const MobileNavBar = () => {
 					}
 				/>
 			</Box>
-			<Box onClick={() => navigate('/home/settings')}>
-				<MdSettings
+			<Box onClick={() => navigate('/home/profile')}>
+				<MdPerson
 					size={'30px'}
 					color={
-						location.pathname == '/home/settings'
+						location.pathname == '/home/profile'
 							? theme.colors.primaryYellow
 							: theme.colors.primaryBGLight
 					}
