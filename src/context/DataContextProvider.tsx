@@ -1,25 +1,21 @@
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import useFetch from '../hooks/useFetch';
 import { QuizCardProps } from '../pages/dashboard/types';
 import DataContext from './DataContext';
 
 const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 	const [page, setPage] = useState(1);
-	const [maxPage, setMaxPage] = useState(10000);
+	const [maxPage, setMaxPage] = useState(1);
 	const [urlSearchParams, seturlSearchParams] = useState({
-		difficult: 'all',
-		completed: 'all'
+		completed: 'all',
+		difficult: 'all'
 	});
 
 	console.log({ urlSearchParams });
 	let completed;
-	// let all;
 	let difficult;
 
-	useEffect(() => {
-		setMaxPage(1000);
-	}, [urlSearchParams]);
 
 	if (urlSearchParams.completed === 'all') {
 		completed = '';

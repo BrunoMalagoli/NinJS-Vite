@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
 import { Box, Flex } from '@chakra-ui/react';
+import { FC } from 'react';
 
 import { QuizCardListProps } from '../../types';
 import QuizCard from './QuizCard';
@@ -8,7 +8,7 @@ const QuizCardList: FC<QuizCardListProps> = ({
 	QuizCards
 }: QuizCardListProps) => {
 	return (
-		<Box overflowY={'scroll'}>
+		<Box overflowY={'scroll'} h='100%'>
 			<Flex
 				justifyContent={'center'}
 				alignContent={'center'}

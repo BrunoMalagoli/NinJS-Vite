@@ -1,4 +1,4 @@
-import { Avatar, Button, Flex, Select, Text } from '@chakra-ui/react';
+import { Avatar, Button, Flex, Heading, Select, Text } from '@chakra-ui/react';
 import { useContext, useEffect, useState } from 'react';
 
 import QuizCardList from './components/quiz-card/QuizCardList';
@@ -7,8 +7,8 @@ import toastMaxPage from './components/toastMaxPage';
 
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import 'react-toastify/dist/ReactToastify.css';
-import theme from '../../styles/theme';
 import DataContext from '../../context/DataContext';
+import theme from '../../styles/theme';
 
 const Dashboard = () => {
 	const [urlAvatar, setUrlAvatar] = useState(
@@ -20,6 +20,8 @@ const Dashboard = () => {
 
 	const username = localStorage.getItem('username');
 
+	console.log({ state });
+
 	function handleSetFilters(e: any) {
 		switch (e.target.name) {
 			case 'completed':
@@ -27,29 +29,36 @@ const Dashboard = () => {
 					...prev,
 					completed: e.target.value
 				}));
+				setPage(1);
+				break;
 			case 'difficult':
 				seturlSearchParams((prev: any) => ({
 					...prev,
 					difficult: e.target.value
 				}));
+				setPage(1);
+				break;
 			default:
 				setPage(1);
 		}
 	}
+
 	function handleChangePage(e: any) {
 		if (e.target.name === 'add') {
 			return setPage(page + 1);
 		}
+
 		if (page !== 1) {
 			setPage(page - 1);
 		}
 	}
+
 	useEffect(() => {
 		if ((state?.error as Error)?.message.includes('Found')) {
 			toastMaxPage();
-			setPage(page - 1);
-			setMaxPage(page);
+			setMaxPage(1);
 		}
+		setMaxPage(state?.data?.maxPage);
 	}, [state]);
 
 	return (
@@ -125,31 +134,42 @@ const Dashboard = () => {
 					{/* <Text color={'#fff'}>Completed</Text> */}
 					{/* <Checkbox onChange={handleSetFilters} name='completed' /> */}
 				</Flex>
-				{state?.data?.length ? (
-					<QuizCardList QuizCards={state?.data} />
-				) : (
-					state.error && <h1 style={{ color: 'white' }}>Not Found</h1>
-				)}
 				{!state.data && !state?.error && <SkeletonCards />}
-				<Flex justifyContent={'center'} gap='1rem' alignItems='center'>
-					<Button
-						name='rest'
-						onClick={handleChangePage}
-						disabled={page === 1}
-						background={theme.colors.primaryYellow}
+				{state?.data?.questions.length ? (
+					<QuizCardList QuizCards={state?.data?.questions} />
+				) : (
+					state.error && (
+						<Flex h='100%' justifyContent={'center'} alignItems='center'>
+							<Heading style={{ color: 'white' }}>Not Found</Heading>
+						</Flex>
+					)
+				)}
+				{state?.data?.questions.length && (
+					<Flex
+						justifyContent={'center'}
+						gap='1rem'
+						alignItems='center'
+						mb={'4rem'}
 					>
-						<AiOutlineLeft />
-					</Button>
-					<Text color={'#fff'}> Page: {page}</Text>
-					<Button
-						name='add'
-						onClick={handleChangePage}
-						disabled={page == maxPage - 1}
-						background={theme.colors.primaryYellow}
-					>
-						<AiOutlineRight />
-					</Button>
-				</Flex>
+						<Button
+							name='rest'
+							onClick={handleChangePage}
+							disabled={page === 1}
+							background={theme.colors.primaryYellow}
+						>
+							<AiOutlineLeft />
+						</Button>
+						<Text color={'#fff'}>{page}</Text>
+						<Button
+							name='add'
+							onClick={handleChangePage}
+							disabled={page == maxPage}
+							background={theme.colors.primaryYellow}
+						>
+							<AiOutlineRight />
+						</Button>
+					</Flex>
+				)}
 			</Flex>
 		</>
 	);
