@@ -1,8 +1,12 @@
 import { Flex, Text } from '@chakra-ui/react';
 import Avatar from 'boring-avatars';
+import { useContext } from 'react';
+import ProfileContext from '../../context/profile/ProfileContext';
 import CircleProgressBar from '../dashboard/components/CircleProgressBar/CIrcleProgressBar';
+import AvatarRadioGroup from './components/AvatarRadioGroup';
 
 const ProfilePage = () => {
+	const { variant, username } = useContext(ProfileContext);
 	return (
 		<Flex h='100%' p='1em' flexDirection={'column'}>
 			<Flex
@@ -13,7 +17,7 @@ const ProfilePage = () => {
 				w='95%'
 				mt={'1em'}
 			>
-				<Avatar name={localStorage.getItem('username')!} size={'100px'} />
+				<Avatar name={username} variant={variant} size={'100px'} />
 				<Flex
 					direction='column'
 					flexGrow={1}
@@ -21,7 +25,7 @@ const ProfilePage = () => {
 					justifyContent={'center'}
 				>
 					<Text color={'white'} fontSize={{ base: 'md', md: 'xl' }}>
-						{localStorage.getItem('username')}
+						{username}
 					</Text>
 					<Text color={'white'} fontSize={{ base: 'md', md: 'xl' }}>
 						Completed: 14 / 48
@@ -43,7 +47,7 @@ const ProfilePage = () => {
 				<CircleProgressBar
 					passed={91}
 					errors={1}
-					speedAnimation={3}
+					speedAnimation={5}
 					title={'Chunin'}
 				/>
 				<CircleProgressBar
@@ -53,6 +57,7 @@ const ProfilePage = () => {
 					title={'Jonin'}
 				/>
 			</Flex>
+			<AvatarRadioGroup />
 		</Flex>
 	);
 };
