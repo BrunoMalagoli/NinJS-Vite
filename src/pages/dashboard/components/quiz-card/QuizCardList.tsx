@@ -18,7 +18,11 @@ const QuizCardList: FC<QuizCardListProps> = ({
 				marginBottom={'55px'}
 			>
 				{QuizCards.map(card => (
-					<QuizCard key={card.questionID} {...card} />
+					<QuizCard
+						key={card.questionID}
+						{...card}
+						number={Number(card.questionID.match(/\d*/g)![1])}
+					/>
 				))}
 			</Flex>
 		</Box>

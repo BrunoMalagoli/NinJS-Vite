@@ -15,9 +15,8 @@ const QuizCard: FC<QuizCardProps> = ({
 	const navigate = useNavigate();
 	const handleClick = () => {
 		let category = questionID.slice(0, 1);
-		let id = questionID.slice(1, 2);
-		console.log(`Categoria: ${category}, Id: ${id}`);
-		navigate(`/quiz/${category}/${id}`);
+		console.log(`Categoria: ${category}, Id: ${number}`);
+		navigate(`/quiz/${category}/${number}`);
 	};
 	return (
 		<Box
@@ -26,7 +25,7 @@ const QuizCard: FC<QuizCardProps> = ({
 		>
 			<Background />
 			<Box>
-				<Text>{Number(questionID.match(/\d/)![0])}</Text>
+				<Text>{number}</Text>
 			</Box>
 			<Flex
 				justifyContent={'center'}

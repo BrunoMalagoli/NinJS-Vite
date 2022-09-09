@@ -6,10 +6,6 @@ import Questions from './components/Questions';
 import QuizCode from './components/QuizCode';
 const QuizQuestion = ({ quizData }: qData) => {
 	console.log({ quizData });
-	quizData.code = `const func = (firstParam, secondParam = 4){
-		return firstParam + secondParam 
-	  }
-	  console.log(func(2,null))`;
 	return (
 		<Box>
 			<QuizCode code={quizData.code} />
