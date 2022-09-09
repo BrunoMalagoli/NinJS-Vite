@@ -1,6 +1,6 @@
 @-webkit-keyframes animateCloud {
 	0% {
-		margin-left: -300px;
+		margin-left: -200px;
 	}
 
 	100% {
@@ -10,7 +10,7 @@
 
 @-moz-keyframes animateCloud {
 	0% {
-		margin-left: -300px;
+		margin-left: -200px;
 	}
 
 	100% {
@@ -20,7 +20,7 @@
 
 @keyframes animateCloud {
 	0% {
-		margin-left: -300px;
+		margin-left: -200px;
 	}
 
 	100% {
@@ -75,13 +75,11 @@
 .cloud {
 	background: #fff;
 	background: -moz-linear-gradient(to bottom, #fff 5%, #f1f1f1 100%);
-	background: -webkit-gradient(
-		linear,
-		to right bottom,
-		to right top,
-		color-stop(5%, #fff),
-		color-stop(100%, #f1f1f1)
-	);
+	background: -webkit-gradient(linear,
+			to right bottom,
+			to right top,
+			color-stop(5%, #fff),
+			color-stop(100%, #f1f1f1));
 	background: -webkit-linear-gradient(to bottom, #fff 5%, #f1f1f1 100%);
 	background: -o-linear-gradient(to bottom, #fff 5%, #f1f1f1 100%);
 	background: -ms-linear-gradient(to bottom, #fff 5%, #f1f1f1 100%);
