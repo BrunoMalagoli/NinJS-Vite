@@ -1,12 +1,5 @@
-import {
-	InputGroup,
-	InputLeftElement,
-	Input,
-	Button,
-	Box
-} from '@chakra-ui/react';
+import { Button, Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
 import { useFormik } from 'formik';
-import React from 'react';
 import { BiUserCircle } from 'react-icons/bi';
 import borderError from '../../../helpers/borderError';
 import showErrorMessage from '../../../helpers/showErrorMessage';
@@ -76,7 +69,7 @@ const UsernameInput = () => {
 				color='black'
 				marginBottom={'10px'}
 			>
-				Save
+				Guardar
 			</Button>
 		</form>
 	);
