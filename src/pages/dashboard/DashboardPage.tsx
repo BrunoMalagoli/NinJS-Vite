@@ -154,15 +154,6 @@ const Dashboard = () => {
 								Todas
 							</option>
 							<option
-								value='jonin'
-								style={{
-									backgroundColor: theme.colors.primaryBGShade,
-									border: 'none'
-								}}
-							>
-								Jonin
-							</option>
-							<option
 								value='genin'
 								style={{
 									backgroundColor: theme.colors.primaryBGShade,
@@ -179,6 +170,15 @@ const Dashboard = () => {
 								}}
 							>
 								Chunin
+							</option>
+							<option
+								value='jonin'
+								style={{
+									backgroundColor: theme.colors.primaryBGShade,
+									border: 'none'
+								}}
+							>
+								Jonin
 							</option>
 						</Select>
 					</Flex>

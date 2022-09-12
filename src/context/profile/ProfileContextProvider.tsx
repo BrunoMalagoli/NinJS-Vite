@@ -1,5 +1,5 @@
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useMemo, useState, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import useFetch from '../../hooks/useFetch';
@@ -14,6 +14,7 @@ const ProfileContextProvider = ({
 	children: ReactJSXElement;
 }) => {
 	const navigate = useNavigate();
+
 	const state = useFetch<QuizCardProps[]>(
 		`${import.meta.env.VITE_URL_CONECT_BACKEND}api/user/progress`,
 		{
@@ -84,6 +85,7 @@ const ProfileContextProvider = ({
 		if (state.data) {
 			return state.data.filter(x => x.completed == true).length;
 		}
+		return 0;
 	}, [state.data]);
 
 	const [variant, setVariant] = useState(
@@ -144,7 +146,6 @@ const ProfileContextProvider = ({
 			navigate('/');
 		}
 	}, [state]);
-
 	return (
 		<ProfileContext.Provider
 			value={{

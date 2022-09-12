@@ -6,14 +6,15 @@ import UsernameInput from './components/UsernameInput';
 import CircleProgressBar from '../dashboard/components/CircleProgressBar/CIrcleProgressBar';
 
 const ProfilePage = () => {
-	const { variant, username } = useContext(ProfileContext);
+	const { variant, username, jonin, genin, chunin, completed } =
+		useContext(ProfileContext);
 	return (
 		<Flex
 			h='100%'
 			p='1em'
 			flexDirection={'column'}
 			alignItems='center'
-			overflowY={'scroll'}
+			overflowY={'auto'}
 		>
 			<Flex
 				direction={'row'}
@@ -34,7 +35,7 @@ const ProfilePage = () => {
 						{username}
 					</Text>
 					<Text color={'white'} fontSize={{ base: 'xs', sm: 'md', md: 'xl' }}>
-						Completadas: 14 / 48
+						Completadas: {completed} / 48
 					</Text>
 				</Flex>
 			</Flex>
@@ -45,20 +46,20 @@ const ProfilePage = () => {
 				fontSize={{ base: '7px', sm: '8px', md: '10px', lg: '12px' }}
 			>
 				<CircleProgressBar
-					passed={37}
-					errors={9}
+					passed={genin.passed}
+					errors={genin.failed}
 					speedAnimation={5}
 					title={'Genin'}
 				/>
 				<CircleProgressBar
-					passed={91}
-					errors={1}
+					passed={chunin.passed}
+					errors={chunin.failed}
 					speedAnimation={5}
 					title={'Chunin'}
 				/>
 				<CircleProgressBar
-					passed={7}
-					errors={2}
+					passed={jonin.passed}
+					errors={jonin.failed}
 					speedAnimation={5}
 					title={'Jonin'}
 				/>
