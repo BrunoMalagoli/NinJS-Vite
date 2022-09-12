@@ -49,7 +49,7 @@ const Form = () => {
 			},
 			body: JSON.stringify({
 				password: values.password,
-				email: values.email
+				email: values.email.toLowerCase()
 			})
 		})
 			.then(response => {

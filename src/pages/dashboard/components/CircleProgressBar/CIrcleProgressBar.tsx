@@ -70,10 +70,10 @@ const CircleProgressBar: FC<CircleProgressBarProps> = ({
 				className={styles.circularProgress}
 				style={{
 					background: `conic-gradient(
-        greenyellow ${progressBarValue}deg,
-        rgb(242, 68, 89) ${progressBarValue}deg,
-        rgb(242, 68, 89) ${progressBarValueError}deg,
-        #fff 0deg
+						#02B65C ${progressBarValue}deg,
+						#C0354A ${progressBarValue}deg,
+						#C0354A ${progressBarValueError}deg,
+				#535B65 0deg
       )`
 				}}
 			>

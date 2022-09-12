@@ -11,10 +11,6 @@ const Clouds = () => {
 				<div className={styles.cloud}></div>
 			</div>
 
-			<div className={styles.x4}>
-				<div className={styles.cloud}></div>
-			</div>
-
 			<div className={styles.x5}>
 				<div className={styles.cloud}></div>
 			</div>
