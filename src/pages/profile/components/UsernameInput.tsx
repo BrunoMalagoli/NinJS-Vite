@@ -1,8 +1,11 @@
 import { Button, Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
 import { useFormik } from 'formik';
+import React, { useContext, useEffect } from 'react';
 import { BiUserCircle } from 'react-icons/bi';
+import ProfileContext from '../../../context/profile/ProfileContext';
 import borderError from '../../../helpers/borderError';
 import showErrorMessage from '../../../helpers/showErrorMessage';
+import useDebounce from '../../../hooks/useDebounce';
 import useHandleBlurAndFocus from '../../../hooks/useHandleBlurAndFocus';
 import theme from '../../../styles/theme';
 import { ProfileInfo } from '../types';
@@ -10,6 +13,7 @@ import profileSchema from '../validation/schema';
 import AvatarRadioGroup from './AvatarRadioGroup';
 
 const UsernameInput = () => {
+	const { setUsername } = useContext(ProfileContext);
 	const initialValues: ProfileInfo = {
 		username: ''
 	};
@@ -25,11 +29,19 @@ const UsernameInput = () => {
 			validationSchema: profileSchema,
 			onSubmit
 		});
+	const debouncedUsername = useDebounce<string>(values.username);
+
+	useEffect(() => {
+		if (debouncedUsername.length < 4 || debouncedUsername.length > 20)
+			return setUsername(localStorage.getItem('username'));
+		setUsername(debouncedUsername);
+	}, [debouncedUsername]);
+
 	return (
 		<form
 			onSubmit={handleSubmit}
 			style={{
-				marginTop: '8px',
+				marginTop: '20px',
 				backgroundColor: theme.colors.primaryBGShade,
 				padding: '8px',
 				borderRadius: '16px',
