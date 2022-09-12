@@ -1,4 +1,10 @@
-import { Button, Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
+import {
+	Box,
+	Button,
+	Input,
+	InputGroup,
+	InputLeftElement
+} from '@chakra-ui/react';
 import { useFormik } from 'formik';
 import React, { useContext, useEffect } from 'react';
 import { BiUserCircle } from 'react-icons/bi';
@@ -38,52 +44,56 @@ const UsernameInput = () => {
 	}, [debouncedUsername]);
 
 	return (
-		<form
-			onSubmit={handleSubmit}
+		<Box
 			style={{
 				marginTop: '20px',
 				backgroundColor: theme.colors.primaryBGShade,
 				padding: '8px',
-				borderRadius: '16px',
-				marginBottom: '56px'
+				borderRadius: '16px'
+			}}
+			marginBottom={{
+				base: '56px',
+				md: '0'
 			}}
 		>
-			<InputGroup color='white'>
-				<InputLeftElement
-					mt='1'
-					pointerEvents='none'
-					color={focus.username ? 'primaryYellow' : 'secondaryColor'}
+			<form onSubmit={handleSubmit}>
+				<InputGroup color='white'>
+					<InputLeftElement
+						mt='1'
+						pointerEvents='none'
+						color={focus.username ? 'primaryYellow' : 'secondaryColor'}
+					>
+						<BiUserCircle />
+					</InputLeftElement>
+					<Input
+						type='text'
+						name='username'
+						placeholder='Nombre de usuario'
+						value={values.username}
+						focusBorderColor='primaryYellow'
+						mt='1'
+						borderColor={borderError({ prop: 'username', errors, touched })}
+						onChange={handleChange}
+						onBlur={e => {
+							handleBlur(e);
+							handleBlurUser(e);
+						}}
+						onFocus={handleFocusUser}
+					/>
+				</InputGroup>
+				{showErrorMessage({ prop: 'username', errors, touched, focus })}
+				<AvatarRadioGroup />
+				<Button
+					w='100%'
+					type='submit'
+					bg='primaryYellow'
+					color='black'
+					marginBottom={'10px'}
 				>
-					<BiUserCircle />
-				</InputLeftElement>
-				<Input
-					type='text'
-					name='username'
-					placeholder='Nombre de usuario'
-					value={values.username}
-					focusBorderColor='primaryYellow'
-					mt='1'
-					borderColor={borderError({ prop: 'username', errors, touched })}
-					onChange={handleChange}
-					onBlur={e => {
-						handleBlur(e);
-						handleBlurUser(e);
-					}}
-					onFocus={handleFocusUser}
-				/>
-			</InputGroup>
-			{showErrorMessage({ prop: 'username', errors, touched, focus })}
-			<AvatarRadioGroup />
-			<Button
-				w='100%'
-				type='submit'
-				bg='primaryYellow'
-				color='black'
-				marginBottom={'10px'}
-			>
-				Guardar
-			</Button>
-		</form>
+					Guardar
+				</Button>
+			</form>
+		</Box>
 	);
 };
 
