@@ -13,7 +13,7 @@ const ProfilePage = () => {
 			p='1em'
 			flexDirection={'column'}
 			alignItems='center'
-			overflowY={'scroll'}
+			overflowY={'auto'}
 		>
 			<Flex
 				direction={'row'}
