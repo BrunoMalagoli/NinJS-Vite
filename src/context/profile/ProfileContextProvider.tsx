@@ -1,5 +1,5 @@
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Swal from 'sweetalert2';
 import useFetch from '../../hooks/useFetch';
 import handleErrorSweetAlert from '../../pages/auth/login/utils/handleErrorSweetAlert';
@@ -21,20 +21,10 @@ const ProfileContextProvider = ({
 			}
 		}
 	);
-	const [jonin, setJonin] = useState({
-		passed: 0,
-		failed: 0
-	});
-	const [genin, setGenin] = useState({
-		passed: 0,
-		failed: 0
-	});
-	const [chunin, setChunin] = useState({ passed: 0, failed: 0 });
-	const [completed, setCompleted] = useState(0);
 
-	useEffect(() => {
+	const jonin = useMemo(() => {
 		if (state.data) {
-			setJonin({
+			return {
 				passed:
 					(state.data?.filter(
 						x => x.difficult == 'Jonin' && x.completed == true
@@ -47,8 +37,13 @@ const ProfileContextProvider = ({
 					).length *
 						100) /
 					16
-			});
-			setGenin({
+			};
+		}
+		return { passed: 0, failed: 0 };
+	}, [state.data]);
+	const genin = useMemo(() => {
+		if (state.data) {
+			return {
 				passed:
 					(state.data?.filter(
 						x => x.difficult == 'Genin' && x.completed == true
@@ -61,8 +56,13 @@ const ProfileContextProvider = ({
 					).length *
 						100) /
 					16
-			});
-			setChunin({
+			};
+		}
+		return { passed: 0, failed: 0 };
+	}, [state.data]);
+	const chunin = useMemo(() => {
+		if (state.data) {
+			return {
 				passed:
 					(state.data?.filter(
 						x => x.difficult == 'Chunin' && x.completed == true
@@ -73,10 +73,16 @@ const ProfileContextProvider = ({
 					(state.data?.filter(
 						x => x.difficult == 'Chunin' && x.completed == false
 					).length ?? 0 * 100) / 16
-			});
-			setCompleted(state.data.filter(x => x.completed == true).length);
+			};
 		}
-	}, [state]);
+		return { passed: 0, failed: 0 };
+	}, [state.data]);
+
+	const completed = useMemo(() => {
+		if (state.data) {
+			return state.data.filter(x => x.completed == true).length;
+		}
+	}, [state.data]);
 
 	const [variant, setVariant] = useState(
 		localStorage.getItem('variant')! || ''
