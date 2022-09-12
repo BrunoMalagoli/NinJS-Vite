@@ -59,6 +59,7 @@ const Form = () => {
 						console.log(data);
 						localStorage.setItem('token', data?.token);
 						localStorage.setItem('username', data?.username);
+						localStorage.setItem('variant', data?.variant);
 						navigate('/home', { replace: true });
 					});
 				} else {
