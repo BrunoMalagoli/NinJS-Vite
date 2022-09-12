@@ -9,8 +9,7 @@ const MobileNavBar = () => {
 	const navigate = useNavigate();
 	function handleLogout() {
 		toastLogout();
-		localStorage.removeItem('token');
-		localStorage.removeItem('username');
+		localStorage.clear();
 		navigate('/');
 	}
 	return (
