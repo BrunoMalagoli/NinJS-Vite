@@ -19,19 +19,19 @@ import profileSchema from '../validation/schema';
 import AvatarRadioGroup from './AvatarRadioGroup';
 
 const UsernameInput = () => {
-	const { setUsername } = useContext(ProfileContext);
-	const initialValues: ProfileInfo = {
-		username: ''
-	};
+	const { setUsername, username, updateProfile } = useContext(ProfileContext);
 	const { handleFocusUser, handleBlurUser, focus } = useHandleBlurAndFocus({
 		username: false
 	});
 	const onSubmit = (values: ProfileInfo) => {
-		console.log(values);
+		if (values.username.length < 4 || values.username.length > 20) {
+			values.username = username;
+		}
+		updateProfile(values.username);
 	};
 	const { handleSubmit, handleChange, values, errors, touched, handleBlur } =
 		useFormik({
-			initialValues: initialValues,
+			initialValues: { username },
 			validationSchema: profileSchema,
 			onSubmit
 		});
