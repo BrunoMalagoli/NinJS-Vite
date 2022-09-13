@@ -1,4 +1,4 @@
-import { Box, position } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import MobileNavBar from '../components/MobileNavBar';

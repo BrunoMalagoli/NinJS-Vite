@@ -4,14 +4,14 @@ const SkeletonCards = () => {
 	const arr = ['s', 's', 's', 's', 's', 's', 's', 's', 's', 's'];
 
 	return (
-		<Box overflowY={'scroll'} w='100%' h='100%'>
+		<Box overflowY={'scroll'} w={{ base: '100%', lg: '50%' }} h='100%'>
 			<Flex
 				justifyContent={'center'}
 				alignContent={'center'}
 				flexWrap={'wrap'}
 				p={'0.5em'}
 				gap={4}
-				marginBottom={'55px'}
+				// marginBottom={'55px'}
 			>
 				{arr.map((x, i) => (
 					<Skeleton
