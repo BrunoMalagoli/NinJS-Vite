@@ -1,10 +1,13 @@
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
 import { QuizCardProps } from '../../pages/dashboard/types';
+import toastLogout from '../../pages/dashboard/utils/toastLogout';
 import DataContext from './DataContext';
 
 const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
+	const navigate = useNavigate();
 	const [page, setPage] = useState(1);
 	const [maxPage, setMaxPage] = useState(1);
 	const [urlSearchParams, seturlSearchParams] = useState({
@@ -44,6 +47,14 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 			'x-token': localStorage.getItem('token') || '2'
 		}
 	});
+
+	useEffect(() => {
+		if (state.error?.message.includes('Bad Request')) {
+			toastLogout();
+			localStorage.clear();
+			navigate('/');
+		}
+	}, [state]);
 
 	return (
 		<DataContext.Provider

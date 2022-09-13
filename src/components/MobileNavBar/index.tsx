@@ -8,7 +8,6 @@ const MobileNavBar = () => {
 	const location = useLocation();
 
 	const navigate = useNavigate();
-
 	return (
 		<Flex
 			h='56px'
@@ -27,7 +26,7 @@ const MobileNavBar = () => {
 					}
 				/>
 			</Box>
-			<Box onClick={() => navigate('/home')}>
+			<Box onClick={() => navigate('/home')} >
 				<MdHome
 					size={'30px'}
 					color={
