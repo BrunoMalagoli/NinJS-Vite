@@ -65,7 +65,7 @@ const Dashboard = () => {
 	return (
 		<Flex
 			w='100%'
-			h='100%'
+			h='100vh'
 			direction='column'
 			backgroundColor={'#16191C'}
 			alignItems='center'
