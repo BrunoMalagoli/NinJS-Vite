@@ -13,7 +13,7 @@ const QuizCardList: FC<QuizCardListProps> = ({
 				justifyContent={'center'}
 				alignContent={'center'}
 				flexWrap={'wrap'}
-				p={'0.5em'}
+				p={'0.8em'}
 				gap={4}
 			>
 				{QuizCards.map(card => (
