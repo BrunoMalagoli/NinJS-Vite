@@ -9,12 +9,11 @@ import {
 } from '@chakra-ui/react';
 
 import { qData } from '../../../utils/interfaces/index';
-import theme from '../../../../../../styles/theme';
 const Answers = ({ quizData }: qData) => {
 	const [checkedValue, setCheckedValue] = useState('A');
 
 	return (
-		<Container>
+		<Container paddingTop={'15%'}>
 			<Center>
 				<RadioGroup onChange={setCheckedValue} value={checkedValue}>
 					<Stack spacing={2} direction={'column'}>

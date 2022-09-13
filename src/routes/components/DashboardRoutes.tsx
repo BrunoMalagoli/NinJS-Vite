@@ -1,14 +1,14 @@
 import { Route, Routes } from 'react-router-dom';
 import Dashboard from '../../pages/dashboard/DashboardPage';
 import LeaderboardPage from '../../pages/leaderboard/LeaderboardPage';
-import SettingsPage from '../../pages/settings/SettingsPage';
+import ProfilePage from '../../pages/profile/ProfilePage';
 
 const DashboardRoutes = () => {
 	return (
 		<>
 			<Routes>
 				<Route path='/' element={<Dashboard />} />
-				<Route path='/settings' element={<SettingsPage />} />
+				<Route path='/profile' element={<ProfilePage />} />
 				<Route path='/leaderboard' element={<LeaderboardPage />} />
 			</Routes>
 		</>

@@ -1,3 +1,6 @@
+*{
+	touch-action: none;
+}
 html,
 body {
 	height: 100%;
@@ -5,13 +8,14 @@ body {
 	margin: 0;
 	padding: 0;
 	overflow-x: hidden;
+	
 }
 
 body {
 	position: relative;
 }
 
-#root {
+div#root {
 	height: inherit;
 	width: inherit;
 }

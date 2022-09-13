@@ -41,9 +41,9 @@ const QuizView = () => {
 	}, [state]);
 	console.log(quizData);
 	return (
-		<div style={{ height: '100vh' }}>
+		<div style={{ height: '100%' }}>
 			{quizData ? (
-				<Container paddingTop={'5%'}>
+				<Container height={'inherit'} paddingTop={'5%'}>
 					<QuizQuestion quizData={quizData!} />
 				</Container>
 			) : (

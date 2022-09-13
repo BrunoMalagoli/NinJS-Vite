@@ -1,41 +1,72 @@
-import { Avatar, Button, Flex, Heading, Text } from '@chakra-ui/react';
+import {
+	Avatar,
+	Flex,
+	Heading,
+	IconButton,
+	Select,
+	Text
+} from '@chakra-ui/react';
 import { useContext, useEffect, useState } from 'react';
 
-import toastMaxPage from './components/toastMaxPage';
 import QuizCardList from './components/quiz-card/QuizCardList';
 import SkeletonCards from './components/SkeletonCards';
-import CircleProgressBar from './components/CircleProgressBar/CIrcleProgressBar';
 
+import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import 'react-toastify/dist/ReactToastify.css';
-import DataContext from '../../context/DataContext';
+
+import theme from '../../styles/theme';
+import DataContext from '../../context/data/DataContext';
+
 const Dashboard = () => {
 	const [urlAvatar, setUrlAvatar] = useState(
 		'https://avatars.githubusercontent.com/u/63567962?s=96&v=4'
 	);
 
-	const [state, page, setPage, maxPage, setMaxPage] = useContext(DataContext);
+	const [state, page, setPage, maxPage, setMaxPage, seturlSearchParams] =
+		useContext(DataContext);
 
 	const username = localStorage.getItem('username');
 
-	function handleChangePage(e: any) {
-		if (e.target.name === 'add') {
-			return setPage(page + 1);
+	function handleSetFilters(e: any) {
+		switch (e.target.name) {
+			case 'completed':
+				seturlSearchParams((prev: any) => ({
+					...prev,
+					completed: e.target.value
+				}));
+				setPage(1);
+				break;
+			case 'difficult':
+				seturlSearchParams((prev: any) => ({
+					...prev,
+					difficult: e.target.value
+				}));
+				setPage(1);
+				break;
+			default:
+				setPage(1);
 		}
-		if (page !== 1) {
-			setPage(page - 1);
-		}
+	}
+
+	function handleChangePageMinus(e: any) {
+		setPage(page - 1);
+	}
+	function handleChangePageAdd(e: any) {
+		return setPage(page + 1);
 	}
 	useEffect(() => {
 		if ((state?.error as Error)?.message.includes('Found')) {
-			setMaxPage(page);
-			toastMaxPage();
-			setPage(page - 1);
+			setMaxPage(1);
+		}
+		setMaxPage(state?.data?.maxPage);
+		if (page > maxPage) {
+			setPage(maxPage);
 		}
 	}, [state]);
 
 	return (
 		<>
-			<Flex w='100%' h='100vh' direction='column' backgroundColor={'#16191C'}>
+			<Flex w='100%' h='100%' direction='column' backgroundColor={'#16191C'}>
 				{/* <QuizCardList QuizCards={cardData} /> */}
 				<Flex direction='column' alignItems='center'>
 					<Flex
@@ -53,51 +84,141 @@ const Dashboard = () => {
 							<Text>Points: as 1213123</Text>
 						</Flex>
 					</Flex>
-					{/* <Flex
-						justifyContent={'space-evenly'}
-						width='100%'
-						gap={4}
-						fontSize='8px'
-					>
-						<CircleProgressBar
-							passed={37}
-							errors={9}
-							speedAnimation={5}
-							title={'Genin'}
-						/>
-						<CircleProgressBar
-							passed={91}
-							errors={1}
-							speedAnimation={3}
-							title={'Chunin'}
-						/>
-						<CircleProgressBar
-							passed={7}
-							errors={2}
-							speedAnimation={5}
-							title={'Jonin'}
-						/>
-					</Flex> */}
 				</Flex>
-				<Flex>
-					<Button
-						name='add'
-						onClick={handleChangePage}
-						disabled={page == maxPage - 1}
-					>
-						Pagina siguiente
-					</Button>
-					<Button name='rest' onClick={handleChangePage} disabled={page === 1}>
-						Pagina Anterior
-					</Button>
-					<Heading color={'#fff'}> Page: {page}</Heading>
+				<Flex
+					justifyContent={'center'}
+					alignItems='center'
+					gap='1rem'
+					mb='.7rem'
+					mt='.7rem'
+				>
+					<Flex flexDirection={'column'} alignItems='center'>
+						<Text color={'#fff'} marginBottom='5px'>
+							Estado
+						</Text>
+						<Select
+							onChange={handleSetFilters}
+							name='completed'
+							color={'white'}
+							w='125px'
+							backgroundColor={theme.colors.primaryBGShade}
+							variant={'filled'}
+						>
+							<option
+								value='all'
+								style={{
+									backgroundColor: theme.colors.primaryBGShade,
+									border: 'none'
+								}}
+							>
+								Todas
+							</option>
+							<option
+								value='aprobadas'
+								style={{
+									backgroundColor: theme.colors.primaryBGShade,
+									border: 'none'
+								}}
+							>
+								Aprobadas
+							</option>
+							<option
+								value='falladas'
+								style={{
+									backgroundColor: theme.colors.primaryBGShade,
+									border: 'none'
+								}}
+							>
+								Falladas
+							</option>
+						</Select>
+					</Flex>
+					<Flex flexDirection={'column'} alignItems='center'>
+						<Text color={'#fff'} marginBottom='5px'>
+							Dificultad
+						</Text>
+						<Select
+							onChange={handleSetFilters}
+							name='difficult'
+							color={'white'}
+							w='125px'
+							backgroundColor={theme.colors.primaryBGShade}
+							variant={'filled'}
+						>
+							<option
+								value='all'
+								style={{
+									backgroundColor: theme.colors.primaryBGShade,
+									border: 'none'
+								}}
+							>
+								Todas
+							</option>
+							<option
+								value='jonin'
+								style={{
+									backgroundColor: theme.colors.primaryBGShade,
+									border: 'none'
+								}}
+							>
+								Jonin
+							</option>
+							<option
+								value='genin'
+								style={{
+									backgroundColor: theme.colors.primaryBGShade,
+									border: 'none'
+								}}
+							>
+								Genin
+							</option>
+							<option
+								value='chunin'
+								style={{
+									backgroundColor: theme.colors.primaryBGShade,
+									border: 'none'
+								}}
+							>
+								Chunin
+							</option>
+						</Select>
+					</Flex>
+					{/* <Text color={'#fff'}>Completed</Text> */}
+					{/* <Checkbox onChange={handleSetFilters} name='completed' /> */}
 				</Flex>
-				{state?.data?.length ? (
-					<QuizCardList QuizCards={state?.data} />
-				) : (
-					state.error && <h1 style={{ color: 'white' }}>Not Found</h1>
-				)}
 				{!state.data && !state?.error && <SkeletonCards />}
+				{state?.data?.questions.length ? (
+					<QuizCardList QuizCards={state?.data?.questions} />
+				) : (
+					state.error && (
+						<Flex h='100%' justifyContent={'center'} alignItems='center'>
+							<Heading style={{ color: 'white' }}>Not Found</Heading>
+						</Flex>
+					)
+				)}
+				<Flex
+					justifyContent={'center'}
+					gap='1rem'
+					alignItems='center'
+					mb={'4rem'}
+					mt='.70rem'
+				>
+					<IconButton
+						aria-label='Search database'
+						onClick={handleChangePageMinus}
+						disabled={page === 1}
+						background={theme.colors.primaryYellow}
+						icon={<AiOutlineLeft />}
+					/>
+					<Text color={'#fff'}>{page}</Text>
+					<IconButton
+						aria-label='Search database'
+						icon={<AiOutlineRight />}
+						onClick={handleChangePageAdd}
+						disabled={page == maxPage}
+						background={theme.colors.primaryYellow}
+					/>
+				</Flex>
 			</Flex>
 		</>
 	);

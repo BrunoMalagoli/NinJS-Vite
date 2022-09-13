@@ -4,7 +4,7 @@ const SkeletonCards = () => {
 	const arr = ['s', 's', 's', 's', 's', 's', 's', 's', 's', 's'];
 
 	return (
-		<Box overflowY={'scroll'}>
+		<Box overflowY={'scroll'} w='100%' h='100%'>
 			<Flex
 				justifyContent={'center'}
 				alignContent={'center'}

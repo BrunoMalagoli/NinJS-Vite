@@ -24,6 +24,7 @@ export const AppRoutes = () => {
 							exit='out'
 							transition={{ delay: 0.1, type: 'keyframes' }}
 							variants={pageTransition}
+							style={{ height: '100%' }}
 						>
 							<Shuriken rotate={true} size={100} />
 							<MainRoutes />
@@ -42,6 +43,7 @@ export const AppRoutes = () => {
 								exit='out'
 								transition={{ delay: 0.1, type: 'keyframes' }}
 								variants={pageTransition}
+								style={{ height: '100%' }}
 							>
 								<Shuriken rotate={true} size={100} /> <DashboardRoutes />
 							</motion.div>
