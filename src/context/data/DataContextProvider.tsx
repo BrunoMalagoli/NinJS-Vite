@@ -51,10 +51,15 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 	});
 
 	useEffect(() => {
-		if (state.error?.message.includes('Bad Request')) {
-			toastLogout();
+		if (state.error?.message.includes('Unauthorized')) {
 			localStorage.clear();
-			navigate('/');
+			navigate('/login');
+			setPage(1);
+			setMaxPage(1);
+			seturlSearchParams({
+				completed: 'all',
+				difficult: 'all'
+			});
 		}
 	}, [state]);
 

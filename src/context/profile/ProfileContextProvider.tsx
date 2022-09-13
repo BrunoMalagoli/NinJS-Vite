@@ -90,11 +90,9 @@ const ProfileContextProvider = ({
 		return 0;
 	}, [state.data]);
 
-	const [variant, setVariant] = useState(
-		localStorage.getItem('variant')! || ''
-	);
+	const [variant, setVariant] = useState(localStorage.getItem('variant') || '');
 	const [username, setUsername] = useState(
-		localStorage.getItem('username')! || ''
+		localStorage.getItem('username') || ''
 	);
 
 	const updateProfile = useCallback(
@@ -142,10 +140,9 @@ const ProfileContextProvider = ({
 		[variant]
 	);
 	useEffect(() => {
-		if (state.error?.message.includes('Bad Request')) {
-			toastLogout();
+		if (state.error?.message.includes('Unauthorized')) {
 			localStorage.clear();
-			navigate('/');
+			navigate('/login');
 		}
 	}, [state]);
 
