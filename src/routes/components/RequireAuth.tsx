@@ -6,13 +6,9 @@ import { PropsMiddlewaresAutentication } from '../types';
 
 const RequireAuth: FC<PropsMiddlewaresAutentication> = ({ children }) => {
 	return (
-		<DataContextProvider>
-			<ProfileContextProvider>
-				<div style={{ backgroundColor: '#16191C', height: 'inherit' }}>
-					{children}
-				</div>
-			</ProfileContextProvider>
-		</DataContextProvider>
+		<div style={{ backgroundColor: '#16191C', height: 'inherit' }}>
+			{children}
+		</div>
 	);
 };
 
