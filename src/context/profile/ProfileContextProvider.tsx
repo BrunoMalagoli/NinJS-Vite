@@ -140,7 +140,10 @@ const ProfileContextProvider = ({
 		[variant]
 	);
 	useEffect(() => {
-		if (state.error?.message.includes('Unauthorized')) {
+		if (
+			state.error?.message.includes('Unauthorized') ||
+			!localStorage.getItem('token')
+		) {
 			localStorage.clear();
 			navigate('/login');
 		}
