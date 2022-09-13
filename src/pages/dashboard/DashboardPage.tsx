@@ -70,7 +70,7 @@ const Dashboard = () => {
 			backgroundColor={'#16191C'}
 			alignItems='center'
 		>
-			<Flex direction='column' alignItems='center'>
+			{/* <Flex direction='column' alignItems='center'>
 				<Flex
 					direction={'row'}
 					p='1em'
@@ -86,7 +86,7 @@ const Dashboard = () => {
 						<Text>Points: as 1213123</Text>
 					</Flex>
 				</Flex>
-			</Flex>
+			</Flex> */}
 			<Flex
 				justifyContent={'center'}
 				alignItems='center'
