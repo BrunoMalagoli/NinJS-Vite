@@ -6,62 +6,100 @@ import theme from '../../styles/theme';
 
 function DesktopNavBar() {
 	const location = useLocation();
+
 	return (
 		<Flex h='100vh'>
 			<Flex
-				w={'12rem'}
+				w={'30%'}
 				color='#fff'
-				background={theme.colors.primaryBGLight}
+				background={theme.colors.primaryBGShade}
 				flexDirection='column'
 				display={{ sm: 'none', md: 'flex' }}
 				className='containerDesktopNavBar'
 			>
-				<NavLink to='/home'>
-					<Flex m={'.5rem '} gap='1rem' alignItems={'center'}>
-						<MdHome
-							size={'30px'}
-							color={
-								location.pathname == '/home' || location.pathname == '/home/'
-									? theme.colors.primaryYellow
-									: theme.colors.primaryBGLight
-							}
-						/>
-						Home
-					</Flex>
-				</NavLink>
-				<NavLink to='profile'>
-					<Flex m={'.5rem '} gap='1rem' alignItems={'center'}>
-						<MdPerson
-							size={'30px'}
-							color={
-								location.pathname == '/home/profile'
-									? theme.colors.primaryYellow
-									: theme.colors.primaryBGLight
-							}
-						/>
-						Profile
-					</Flex>
-				</NavLink>
-				<NavLink to='leaderboard'>
-					<Flex m={'.5rem '} gap='1rem' alignItems={'center'}>
-						<MdLeaderboard
-							size={'30px'}
-							color={
-								location.pathname == '/home/leaderboard'
-									? theme.colors.primaryYellow
-									: theme.colors.primaryBGLight
-							}
-						/>
-						Leaderboard
-					</Flex>
-				</NavLink>
+				<Box
+					style={{
+						background:
+							location.pathname == '/home' || location.pathname == '/home/'
+								? '#1f2122'
+								: ''
+					}}
+					_hover={{
+						background: '#37393a'
+					}}
+				>
+					<NavLink to='/home'>
+						<Flex m={'.5rem '} gap='1rem' alignItems={'center'}>
+							<MdHome
+								size={'30px'}
+								color={
+									location.pathname == '/home' || location.pathname == '/home/'
+										? theme.colors.primaryYellow
+										: theme.colors.primaryBGLight
+								}
+							/>
+							Home
+						</Flex>
+					</NavLink>
+				</Box>
+				<Box
+					style={{
+						background: location.pathname == '/home/profile' ? '#1f2122' : ''
+					}}
+					_hover={{
+						background: '#37393a'
+					}}
+				>
+					<NavLink to='profile'>
+						<Flex m={'.5rem '} gap='1rem' alignItems={'center'}>
+							<MdPerson
+								size={'30px'}
+								color={
+									location.pathname == '/home/profile'
+										? theme.colors.primaryYellow
+										: theme.colors.primaryBGLight
+								}
+							/>
+							Profile
+						</Flex>
+					</NavLink>
+				</Box>
+				<Box
+					style={{
+						background:
+							location.pathname == '/home/leaderboard' ? '#1f2122' : ''
+					}}
+					_hover={{
+						background: '#37393a'
+					}}
+				>
+					<NavLink to='leaderboard'>
+						<Flex m={'.5rem '} gap='1rem' alignItems={'center'}>
+							<MdLeaderboard
+								size={'30px'}
+								color={
+									location.pathname == '/home/leaderboard'
+										? theme.colors.primaryYellow
+										: theme.colors.primaryBGLight
+								}
+							/>
+							Leaderboard
+						</Flex>
+					</NavLink>
+				</Box>
 				<Box flexGrow={1}></Box>
-				<NavLink to='/' onClick={handleLogout}>
-					<Flex m={'.5rem '} gap='1rem' alignItems={'center'}>
-						<MdLogout size={'30px'} color={theme.colors.error} />
-						Logout
-					</Flex>
-				</NavLink>
+				<Box
+					_hover={{
+						background: '#37393a'
+					}}
+				>
+					<NavLink to='/' onClick={handleLogout}>
+						<Flex m={'.5rem '} gap='1rem' alignItems={'center'}>
+							<MdLogout size={'30px'} color={theme.colors.error} />
+							Logout
+						</Flex>
+					</NavLink>
+				</Box>
 			</Flex>
 			<Outlet />
 		</Flex>

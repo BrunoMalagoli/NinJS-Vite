@@ -1,9 +1,9 @@
-import { useContext } from 'react';
-import { Box, Flex, Text } from '@chakra-ui/react';
+import { Flex, Text } from '@chakra-ui/react';
 import Avatar from 'boring-avatars';
+import { useContext } from 'react';
 import ProfileContext from '../../context/profile/ProfileContext';
-import UsernameInput from './components/UsernameInput';
 import CircleProgressBar from '../dashboard/components/CircleProgressBar/CIrcleProgressBar';
+import UsernameInput from './components/UsernameInput';
 
 const ProfilePage = () => {
 	const { variant, username, jonin, genin, chunin, completed } =
@@ -12,6 +12,7 @@ const ProfilePage = () => {
 		<Flex
 			h='100%'
 			p='1em'
+			w='100%'
 			flexDirection={'column'}
 			alignItems='center'
 			overflowY={'auto'}
