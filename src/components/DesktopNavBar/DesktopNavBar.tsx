@@ -23,10 +23,10 @@ function DesktopNavBar() {
 					display='flex'
 					justifyContent='center'
 					alignItems='center'
-					mt='1'
-					mb='1'
+					mt='3'
+					mb='3'
 				>
-					Nin<Text color={'white'}>JS</Text>
+					<Text color={'white'}>Nin</Text>JS
 				</Heading>
 				<Box
 					style={{
