@@ -1,4 +1,4 @@
-import { Box, Flex } from '@chakra-ui/react';
+import { Box, Flex, Heading, Text } from '@chakra-ui/react';
 import { MdHome, MdLeaderboard, MdLogout, MdPerson } from 'react-icons/md';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import handleLogout from '../../helpers/handleLogout';
@@ -8,15 +8,26 @@ function DesktopNavBar() {
 	const location = useLocation();
 
 	return (
-		<Flex h='100vh'>
+		<Flex>
 			<Flex
 				w={'30%'}
+				h='100vh'
 				color='#fff'
+				display={{ base: 'none', md: 'flex' }}
 				background={theme.colors.primaryBGShade}
 				flexDirection='column'
-				display={{ sm: 'none', md: 'flex' }}
 				className='containerDesktopNavBar'
 			>
+				<Heading
+					color={theme.colors.primaryYellow}
+					display='flex'
+					justifyContent='center'
+					alignItems='center'
+					mt='1'
+					mb='1'
+				>
+					Nin<Text color={'white'}>JS</Text>
+				</Heading>
 				<Box
 					style={{
 						background:

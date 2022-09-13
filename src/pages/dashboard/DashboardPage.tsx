@@ -70,7 +70,6 @@ const Dashboard = () => {
 			backgroundColor={'#16191C'}
 			alignItems='center'
 		>
-			{/* <QuizCardList QuizCards={cardData} /> */}
 			<Flex direction='column' alignItems='center'>
 				<Flex
 					direction={'row'}
