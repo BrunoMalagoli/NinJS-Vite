@@ -36,15 +36,17 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 		difficult = '&difficult=Chunin';
 	}
 
-	let url = `${
-		import.meta.env.VITE_URL_CONECT_BACKEND
-	}api/quiz/list?page=${page}${difficult}${completed}`;
+	let url = localStorage.getItem('token')
+		? `${
+				import.meta.env.VITE_URL_CONECT_BACKEND
+		  }api/quiz/list?page=${page}${difficult}${completed}`
+		: undefined;
 
 	const state = useFetch<QuizCardProps[]>(url, {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json',
-			'x-token': localStorage.getItem('token') || '2'
+			'x-token': localStorage.getItem('token') || ''
 		}
 	});
 

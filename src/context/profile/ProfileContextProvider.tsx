@@ -16,12 +16,14 @@ const ProfileContextProvider = ({
 	const navigate = useNavigate();
 
 	const state = useFetch<QuizCardProps[]>(
-		`${import.meta.env.VITE_URL_CONECT_BACKEND}api/user/progress`,
+		localStorage.getItem('token')
+			? `${import.meta.env.VITE_URL_CONECT_BACKEND}api/user/progress`
+			: undefined,
 		{
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
-				'x-token': localStorage.getItem('token') || '2'
+				'x-token': localStorage.getItem('token') || ''
 			}
 		}
 	);
@@ -146,6 +148,7 @@ const ProfileContextProvider = ({
 			navigate('/');
 		}
 	}, [state]);
+
 	return (
 		<ProfileContext.Provider
 			value={{
