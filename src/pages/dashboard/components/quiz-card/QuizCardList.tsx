@@ -8,7 +8,7 @@ const QuizCardList: FC<QuizCardListProps> = ({
 	QuizCards
 }: QuizCardListProps) => {
 	return (
-		<Box overflowY={'auto'} h='100%' w={{ base: '100%', lg: '50%' }}>
+		<Box overflowY={'auto'} h='100%' w={{ base: '100%', lg: '60%' }}>
 			<Flex
 				justifyContent={'center'}
 				alignContent={'center'}
