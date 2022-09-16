@@ -1,4 +1,4 @@
-.shuriken {
+.shuriken-transition {
   position: fixed;
   display: inline-block;
   animation-name: rotating;
@@ -12,6 +12,17 @@
   -webkit-animation-timing-function: linear;
 }
 
+.shuriken-rotate {
+  animation-name: rotate;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+
+  -webkit-animation-name: rotate;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+}
 
 @keyframes rotating {
   from {
@@ -31,6 +42,29 @@
 
   to {
     -webkit-transform: translate(-100px, 40vh) rotate(-180deg);
+  }
+
+}
+
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(-180deg);
+  }
+
+}
+
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(-180deg);
   }
 
 }

@@ -1,12 +1,7 @@
-import { Flex } from '@chakra-ui/react';
-import React from 'react';
+import NotFound from '../404/NotFound';
 
 const LeaderboardPage = () => {
-	return (
-		<Flex h='100vh'>
-			<h5 style={{ color: 'white' }}>LeaderboardPage</h5>
-		</Flex>
-	);
+	return <NotFound />;
 };
 
 export default LeaderboardPage;

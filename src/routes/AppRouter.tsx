@@ -25,7 +25,7 @@ export const AppRoutes = () => {
 							variants={pageTransition}
 							style={{ height: '100%' }}
 						>
-							<Shuriken rotate={true} size={100} />
+							<Shuriken rotate={'transition'} size={100} />
 							<MainRoutes />
 						</motion.div>
 					</UserLogged>
@@ -44,7 +44,8 @@ export const AppRoutes = () => {
 								variants={pageTransition}
 								style={{ height: '100%' }}
 							>
-								<Shuriken rotate={true} size={100} /> <DashboardRoutes />
+								<Shuriken rotate={'transition'} size={100} />{' '}
+								<DashboardRoutes />
 							</motion.div>
 							<Box
 								display={{ md: 'none' }}
