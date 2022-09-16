@@ -56,7 +56,7 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 			!localStorage.getItem('token')
 		) {
 			localStorage.clear();
-			navigate('/login');
+			navigate('/');
 			setPage(1);
 			setMaxPage(1);
 			seturlSearchParams({

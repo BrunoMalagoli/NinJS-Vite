@@ -145,7 +145,7 @@ const ProfileContextProvider = ({
 			!localStorage.getItem('token')
 		) {
 			localStorage.clear();
-			navigate('/login');
+			navigate('/');
 		}
 	}, [state]);
 
