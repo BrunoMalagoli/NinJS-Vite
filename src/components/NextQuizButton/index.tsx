@@ -13,8 +13,9 @@ const NextQuizButton = () => {
 					variant={'outline'}
 					color={'#F8D859'}
 					padding={'1rem  1.5rem'}
+					type='submit'
 				>
-					Siguiente pregunta
+					Enviar
 				</Button>
 			</Flex>
 		</Box>

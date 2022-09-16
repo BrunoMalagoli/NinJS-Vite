@@ -2,9 +2,9 @@ import { Center, Container, Spinner } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import QuizQuestion from './components/QuizQuestion/QuizQuestion';
-import { qData, quizResponse } from './utils/interfaces';
+import { quizResponse } from './utils/interfaces';
 import useFetch from '../../../hooks/useFetch';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 const QuizView = () => {
 	const { category, id } = useParams();
 	const questionID = category + id!;

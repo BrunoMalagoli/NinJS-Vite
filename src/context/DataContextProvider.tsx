@@ -2,12 +2,11 @@ import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 import React, { FC, useState } from 'react';
 import useFetch from '../hooks/useFetch';
 import { QuizCardProps } from '../pages/dashboard/types';
-import DataContext from './DataContext';
+import DataContext from './data/DataContext';
 
 const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 	const [page, setPage] = useState(1);
 	const [maxPage, setMaxPage] = useState(10000);
-	const [checkedAnswers, setCheckedAnswers] = useState(0);
 	const state = useFetch<QuizCardProps[]>(
 		`${import.meta.env.VITE_URL_CONECT_BACKEND}api/quiz/list?page=${page}`,
 		{

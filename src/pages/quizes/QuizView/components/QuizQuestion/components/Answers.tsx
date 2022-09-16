@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import {
 	Center,
 	Text,
@@ -7,15 +7,16 @@ import {
 	RadioGroup,
 	Stack
 } from '@chakra-ui/react';
-
+import AnswersContext from '../../../../../../context/answers/AnswersContext';
 import { qData } from '../../../utils/interfaces/index';
+import styles from './styles/Answers.module.css';
 const Answers = ({ quizData }: qData) => {
-	const [checkedValue, setCheckedValue] = useState('A');
-
+	const [checkedAnswer, setCheckedAnswer] = useContext(AnswersContext);
+	console.log({ checkedAnswer });
 	return (
-		<Container paddingTop={'15%'}>
+		<Container className={styles.answersContainer}>
 			<Center>
-				<RadioGroup onChange={setCheckedValue} value={checkedValue}>
+				<RadioGroup onChange={setCheckedAnswer} value={checkedAnswer}>
 					<Stack spacing={2} direction={'column'}>
 						<Radio value='A' spacing={'1rem'} colorScheme={'yellow'}>
 							<Text color={'primaryYellow'}>{quizData.answers['A']}</Text>
