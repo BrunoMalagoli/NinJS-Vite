@@ -40,32 +40,35 @@ const ProfilePage = () => {
 					</Text>
 				</Flex>
 			</Flex>
-			<Flex
-				justifyContent={'space-evenly'}
-				width='100%'
-				gap={4}
-				fontSize={{ base: '7px', sm: '8px', md: '10px', lg: '12px' }}
-			>
-				<CircleProgressBar
-					passed={genin.passed}
-					errors={genin.failed}
-					speedAnimation={5}
-					title={'Genin'}
-				/>
-				<CircleProgressBar
-					passed={chunin.passed}
-					errors={chunin.failed}
-					speedAnimation={5}
-					title={'Chunin'}
-				/>
-				<CircleProgressBar
-					passed={jonin.passed}
-					errors={jonin.failed}
-					speedAnimation={5}
-					title={'Jonin'}
-				/>
+			<Flex flexDirection={'column'}>
+				<Flex
+					justifyContent={'space-between'}
+					width='100%'
+					gap={4}
+					fontSize={{ base: '7px', sm: '8px', md: '10px', lg: '12px' }}
+					// maxW=""
+				>
+					<CircleProgressBar
+						passed={genin.passed}
+						errors={genin.failed}
+						speedAnimation={5}
+						title={'Genin'}
+					/>
+					<CircleProgressBar
+						passed={chunin.passed}
+						errors={chunin.failed}
+						speedAnimation={5}
+						title={'Chunin'}
+					/>
+					<CircleProgressBar
+						passed={jonin.passed}
+						errors={jonin.failed}
+						speedAnimation={5}
+						title={'Jonin'}
+					/>
+				</Flex>
+				<UsernameInput />
 			</Flex>
-			<UsernameInput />
 		</Flex>
 	);
 };
