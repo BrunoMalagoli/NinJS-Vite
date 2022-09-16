@@ -36,11 +36,12 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 		difficult = '&difficult=Chunin';
 	}
 
-	let url = localStorage.getItem('token')
-		? `${
-				import.meta.env.VITE_URL_CONECT_BACKEND
-		  }api/quiz/list?page=${page}${difficult}${completed}`
-		: undefined;
+	let url =
+		localStorage.getItem('token') && localStorage.getItem('token')?.length
+			? `${
+					import.meta.env.VITE_URL_CONECT_BACKEND
+			  }api/quiz/list?page=${page}${difficult}${completed}`
+			: undefined;
 
 	const state = useFetch<QuizCardProps[]>(url, {
 		method: 'GET',
@@ -52,11 +53,13 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 
 	useEffect(() => {
 		if (
-			state.error?.message.includes('Unauthorized') ||
-			!localStorage.getItem('token')
+			(state.error?.message.includes('Unauthorized') ||
+				!localStorage.getItem('token') ||
+				!localStorage.getItem('token')?.length) &&
+			location.pathname.includes('/home')
 		) {
 			localStorage.clear();
-			navigate('/');
+			navigate('/login');
 			setPage(1);
 			setMaxPage(1);
 			seturlSearchParams({
@@ -64,7 +67,7 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 				difficult: 'all'
 			});
 		}
-	}, [state]);
+	}, [state, url]);
 
 	return (
 		<DataContext.Provider

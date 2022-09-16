@@ -1,6 +1,6 @@
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 import { useMemo, useState, useCallback, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import useFetch from '../../hooks/useFetch';
 import handleErrorSweetAlert from '../../pages/auth/login/utils/handleErrorSweetAlert';
@@ -14,9 +14,10 @@ const ProfileContextProvider = ({
 	children: ReactJSXElement;
 }) => {
 	const navigate = useNavigate();
+	const location = useLocation();
 
 	const state = useFetch<QuizCardProps[]>(
-		localStorage.getItem('token')
+		localStorage.getItem('token') && localStorage.getItem('token')?.length
 			? `${import.meta.env.VITE_URL_CONECT_BACKEND}api/user/progress`
 			: undefined,
 		{
@@ -140,12 +141,16 @@ const ProfileContextProvider = ({
 		[variant]
 	);
 	useEffect(() => {
+		console.log(location.pathname);
+		console.log(state.error);
 		if (
-			state.error?.message.includes('Unauthorized') ||
-			!localStorage.getItem('token')
+			(state.error?.message.includes('Unauthorized') ||
+				!localStorage.getItem('token') ||
+				!localStorage.getItem('token')?.length) &&
+			location.pathname.includes('/home')
 		) {
 			localStorage.clear();
-			navigate('/');
+			navigate('/login');
 		}
 	}, [state]);
 
