@@ -1,19 +1,21 @@
-import { useContext } from 'react';
-import { Box, Flex, Text } from '@chakra-ui/react';
+import { Flex, Text } from '@chakra-ui/react';
 import Avatar from 'boring-avatars';
+import { useContext } from 'react';
 import ProfileContext from '../../context/profile/ProfileContext';
-import UsernameInput from './components/UsernameInput';
 import CircleProgressBar from '../dashboard/components/CircleProgressBar/CIrcleProgressBar';
+import UsernameInput from './components/UsernameInput';
 
 const ProfilePage = () => {
-	const { variant, username } = useContext(ProfileContext);
+	const { variant, username, jonin, genin, chunin, completed } =
+		useContext(ProfileContext);
 	return (
 		<Flex
 			h='100%'
 			p='1em'
+			w='100%'
 			flexDirection={'column'}
 			alignItems='center'
-			overflowY={'scroll'}
+			overflowY={'auto'}
 		>
 			<Flex
 				direction={'row'}
@@ -34,36 +36,39 @@ const ProfilePage = () => {
 						{username}
 					</Text>
 					<Text color={'white'} fontSize={{ base: 'xs', sm: 'md', md: 'xl' }}>
-						Completadas: 14 / 48
+						Completadas: {completed} / 48
 					</Text>
 				</Flex>
 			</Flex>
-			<Flex
-				justifyContent={'space-evenly'}
-				width='100%'
-				gap={4}
-				fontSize={{ base: '7px', sm: '8px', md: '10px', lg: '12px' }}
-			>
-				<CircleProgressBar
-					passed={37}
-					errors={9}
-					speedAnimation={5}
-					title={'Genin'}
-				/>
-				<CircleProgressBar
-					passed={91}
-					errors={1}
-					speedAnimation={5}
-					title={'Chunin'}
-				/>
-				<CircleProgressBar
-					passed={7}
-					errors={2}
-					speedAnimation={5}
-					title={'Jonin'}
-				/>
+			<Flex flexDirection={'column'}>
+				<Flex
+					justifyContent={'space-between'}
+					width='100%'
+					gap={4}
+					fontSize={{ base: '7px', sm: '8px', md: '10px', lg: '12px' }}
+					// maxW=""
+				>
+					<CircleProgressBar
+						passed={genin.passed}
+						errors={genin.failed}
+						speedAnimation={5}
+						title={'Genin'}
+					/>
+					<CircleProgressBar
+						passed={chunin.passed}
+						errors={chunin.failed}
+						speedAnimation={5}
+						title={'Chunin'}
+					/>
+					<CircleProgressBar
+						passed={jonin.passed}
+						errors={jonin.failed}
+						speedAnimation={5}
+						title={'Jonin'}
+					/>
+				</Flex>
+				<UsernameInput />
 			</Flex>
-			<UsernameInput />
 		</Flex>
 	);
 };

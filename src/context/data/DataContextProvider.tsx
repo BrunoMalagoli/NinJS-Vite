@@ -1,10 +1,13 @@
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
 import { QuizCardProps } from '../../pages/dashboard/types';
+import toastLogout from '../../pages/dashboard/utils/toastLogout';
 import DataContext from './DataContext';
 
 const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
+	const navigate = useNavigate();
 	const [page, setPage] = useState(1);
 	const [maxPage, setMaxPage] = useState(1);
 	const [urlSearchParams, seturlSearchParams] = useState({
@@ -33,17 +36,38 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 		difficult = '&difficult=Chunin';
 	}
 
-	let url = `${
-		import.meta.env.VITE_URL_CONECT_BACKEND
-	}api/quiz/list?page=${page}${difficult}${completed}`;
+	let url =
+		localStorage.getItem('token') && localStorage.getItem('token')?.length
+			? `${
+					import.meta.env.VITE_URL_CONECT_BACKEND
+			  }api/quiz/list?page=${page}${difficult}${completed}`
+			: undefined;
 
 	const state = useFetch<QuizCardProps[]>(url, {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json',
-			'x-token': localStorage.getItem('token') || '2'
+			'x-token': localStorage.getItem('token') || ''
 		}
 	});
+
+	useEffect(() => {
+		if (
+			(state.error?.message.includes('Unauthorized') ||
+				!localStorage.getItem('token') ||
+				!localStorage.getItem('token')?.length) &&
+			location.pathname.includes('/home')
+		) {
+			localStorage.clear();
+			navigate('/login');
+			setPage(1);
+			setMaxPage(1);
+			seturlSearchParams({
+				completed: 'all',
+				difficult: 'all'
+			});
+		}
+	}, [state, url]);
 
 	return (
 		<DataContext.Provider

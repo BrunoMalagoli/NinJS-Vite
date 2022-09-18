@@ -1,18 +1,13 @@
 import { Box, Flex } from '@chakra-ui/react';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { MdHome, MdLeaderboard, MdLogout, MdPerson } from 'react-icons/md';
-import toastLogout from '../../pages/dashboard/utils/toastLogout';
+import { useLocation, useNavigate } from 'react-router-dom';
+import handleLogout from '../../helpers/handleLogout';
 
 import theme from '../../styles/theme';
 const MobileNavBar = () => {
 	const location = useLocation();
+
 	const navigate = useNavigate();
-	function handleLogout() {
-		toastLogout();
-		localStorage.removeItem('token');
-		localStorage.removeItem('username');
-		navigate('/');
-	}
 	return (
 		<Flex
 			h='56px'
@@ -31,7 +26,7 @@ const MobileNavBar = () => {
 					}
 				/>
 			</Box>
-			<Box onClick={() => navigate('/home')}>
+			<Box onClick={() => navigate('/home')} >
 				<MdHome
 					size={'30px'}
 					color={
@@ -51,7 +46,12 @@ const MobileNavBar = () => {
 					}
 				/>
 			</Box>
-			<Box onClick={handleLogout}>
+			<Box
+				onClick={() => {
+					handleLogout();
+					navigate('/');
+				}}
+			>
 				<MdLogout size={'30px'} color={theme.colors.error} />
 			</Box>
 		</Flex>

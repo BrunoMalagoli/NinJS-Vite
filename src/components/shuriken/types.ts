@@ -1,4 +1,4 @@
 export type ShurikenProps = {
-	rotate: boolean;
+	rotate: 'transition' | 'rotate' | 'none';
 	size: number;
 };

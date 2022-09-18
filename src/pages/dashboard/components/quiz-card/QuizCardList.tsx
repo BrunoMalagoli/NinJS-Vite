@@ -8,12 +8,12 @@ const QuizCardList: FC<QuizCardListProps> = ({
 	QuizCards
 }: QuizCardListProps) => {
 	return (
-		<Box overflowY={'scroll'} h='100%'>
+		<Box overflowY={'auto'} h='100%' w={{ base: '100%', lg: '60%' }}>
 			<Flex
 				justifyContent={'center'}
 				alignContent={'center'}
 				flexWrap={'wrap'}
-				p={'0.5em'}
+				p={'0.8em'}
 				gap={4}
 			>
 				{QuizCards.map(card => (

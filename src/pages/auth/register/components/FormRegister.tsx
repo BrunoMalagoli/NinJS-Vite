@@ -1,9 +1,3 @@
-import { useState } from 'react';
-import { useFormik } from 'formik';
-import { BiUserCircle } from 'react-icons/bi';
-import { MdAlternateEmail } from 'react-icons/md';
-import { RiLockPasswordLine } from 'react-icons/ri';
-import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai/';
 import {
 	Button,
 	Icon,
@@ -13,15 +7,21 @@ import {
 	InputRightElement,
 	Stack
 } from '@chakra-ui/react';
+import { useFormik } from 'formik';
+import { useState } from 'react';
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai/';
+import { BiUserCircle } from 'react-icons/bi';
+import { MdAlternateEmail } from 'react-icons/md';
+import { RiLockPasswordLine } from 'react-icons/ri';
 import borderError from '../../../../helpers/borderError';
 import showErrorMessage from '../../../../helpers/showErrorMessage';
 import useHandleBlurAndFocus from '../../../../hooks/useHandleBlurAndFocus';
 
 //import { onSubmit } from "../../api/onSubmit";
 import { useNavigate } from 'react-router-dom';
-import { userRegisterSchema } from '../validation/schema';
-import { INITIAL_VALUES_FORM } from '../../utils/constants/initialValuesForm';
 import { handleShowHidePasswordTypes } from '../../types';
+import { INITIAL_VALUES_FORM } from '../../utils/constants/initialValuesForm';
+import { userRegisterSchema } from '../validation/schema';
 
 const Form = () => {
 	const navigate = useNavigate();
@@ -50,7 +50,7 @@ const Form = () => {
 			body: JSON.stringify({
 				username: values.username,
 				password: values.password,
-				email: values.email
+				email: values.email.toLowerCase()
 			})
 		})
 			.then(response => {
@@ -59,6 +59,7 @@ const Form = () => {
 						console.log(data);
 						localStorage.setItem('token', data?.token);
 						localStorage.setItem('username', data?.username);
+						localStorage.setItem('variant', data?.variant);
 						navigate('/home', { replace: true });
 					});
 				} else {

@@ -1,7 +1,7 @@
 import { useEffect, useReducer, useRef } from 'react';
 import { FetchActions, State } from '../types';
 
-function useFetch<T>(url: string, options: RequestInit) {
+function useFetch<T>(url?: string, options?: RequestInit) {
 	const cancelRequest = useRef<boolean>(false);
 
 	const initialState: State<T> = {
@@ -35,10 +35,10 @@ function useFetch<T>(url: string, options: RequestInit) {
 
 	useEffect(() => {
 		cancelRequest.current = false;
+		if (!url) return;
 
 		const fetchData = async () => {
 			dispatch({ type: 'loading' });
-
 			try {
 				const response = await fetch(url, options);
 				if (!response.ok) {

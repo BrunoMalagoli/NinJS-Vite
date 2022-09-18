@@ -11,10 +11,10 @@ function App() {
 	return (
 		<ChakraProvider theme={theme}>
 			<BrowserRouter>
-				<ToastContainer />
 				<DataContextProvider>
 					<ProfileContextProvider>
 						<AnswersContextProvider>
+            <ToastContainer />
 							<AppRoutes />
 						</AnswersContextProvider>
 					</ProfileContextProvider>

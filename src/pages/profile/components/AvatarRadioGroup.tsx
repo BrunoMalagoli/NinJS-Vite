@@ -26,7 +26,7 @@ const AvatarRadioGroup = () => {
 			mx='0'
 			mb='0'
 			mt='0'
-			fontSize={{ base: '60px', md: '80px' }}
+			fontSize={{ base: '50px', sm: '60px', md: '60px', lg: '80px' }}
 			flexWrap={'wrap'}
 			justifyContent='center'
 		>
