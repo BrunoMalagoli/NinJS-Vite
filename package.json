@@ -27,6 +27,7 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
+    "@types/canvas-confetti": "^1.4.3",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@types/react-syntax-highlighter": "^15.5.5",

@@ -4,6 +4,8 @@ import {
 	FormControl,
 	Modal,
 	ModalOverlay,
+	ScaleFade,
+	SlideFade,
 	useDisclosure
 } from '@chakra-ui/react';
 import NextQuizButton from '../../../../../components/NextQuizButton';
@@ -18,7 +20,7 @@ import { toast } from 'react-toastify';
 import { CustomModalContent } from './components/CustomModalContent';
 import { Result } from './components/types/index';
 const QuizQuestion = ({ quizData }: qData) => {
-	const [checkedAnswer] = useContext(AnswersContext);
+	const [checkedAnswer, setCheckedAnswer] = useContext(AnswersContext);
 	const [reviewResponse, setReviewResponse] = useState<Result>();
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const { category, id } = useParams();
@@ -49,6 +51,7 @@ const QuizQuestion = ({ quizData }: qData) => {
 				}
 				toast.error('Error inesperado');
 			});
+		setCheckedAnswer('A');
 	}
 
 	return (
@@ -69,6 +72,8 @@ const QuizQuestion = ({ quizData }: qData) => {
 				colorScheme={'yellow'}
 				isOpen={isOpen}
 				onClose={onClose}
+				motionPreset={'slideInRight'}
+				closeOnOverlayClick={false}
 				useInert
 				isCentered
 			>
