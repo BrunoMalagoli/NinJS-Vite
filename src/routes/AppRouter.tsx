@@ -1,4 +1,4 @@
-import { Box, position } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import MobileNavBar from '../components/MobileNavBar';
@@ -26,7 +26,7 @@ export const AppRoutes = () => {
 							variants={pageTransition}
 							style={{ height: '100%' }}
 						>
-							<Shuriken rotate={true} size={100} />
+							<Shuriken rotate={'transition'} size={100} />
 							<MainRoutes />
 						</motion.div>
 					</UserLogged>
@@ -45,7 +45,8 @@ export const AppRoutes = () => {
 								variants={pageTransition}
 								style={{ height: '100%' }}
 							>
-								<Shuriken rotate={true} size={100} /> <DashboardRoutes />
+								<Shuriken rotate={'transition'} size={100} />{' '}
+								<DashboardRoutes />
 							</motion.div>
 							<Box
 								display={{ md: 'none' }}

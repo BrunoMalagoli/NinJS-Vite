@@ -1,7 +1,6 @@
-import { FC } from 'react';
-import styles from './shuriken.module.css';
+import { FC, useEffect, useState } from 'react';
 import { ShurikenProps } from './types';
-
+import './Shuriken.styles.css';
 /**
  * @description Set size to 100 if you want it to rotate and not break the page
  * @param rotate Sets if it will rotate or not
@@ -10,7 +9,7 @@ import { ShurikenProps } from './types';
  */
 const Shuriken: FC<ShurikenProps> = ({ rotate, size }) => {
 	return (
-		<div className={rotate ? styles.shuriken : ''}>
+		<div className={rotate != 'none' ? 'shuriken-' + rotate : ''}>
 			<img
 				width={size}
 				height={size}

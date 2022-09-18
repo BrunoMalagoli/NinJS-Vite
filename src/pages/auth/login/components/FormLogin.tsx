@@ -49,7 +49,7 @@ const Form = () => {
 			},
 			body: JSON.stringify({
 				password: values.password,
-				email: values.email
+				email: values.email.toLowerCase()
 			})
 		})
 			.then(response => {
@@ -58,6 +58,7 @@ const Form = () => {
 						console.log(data);
 						localStorage.setItem('token', data?.token);
 						localStorage.setItem('username', data?.username);
+						localStorage.setItem('variant', data?.variant);
 						handleSuccessLogin();
 						navigate('/home/', { replace: true });
 					});
