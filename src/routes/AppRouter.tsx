@@ -5,6 +5,7 @@ import MobileNavBar from '../components/MobileNavBar';
 import Shuriken from '../components/shuriken/Shuriken';
 import DashboardRoutes from './components/DashboardRoutes';
 import { MainRoutes } from './components/MainRoutes';
+import QuizRoutes from './components/QuizRoutes';
 import RequireAuth from './components/RequireAuth';
 import UserLogged from './components/UserLogged';
 import { pageTransition } from './utils/transitions';
@@ -56,6 +57,14 @@ export const AppRoutes = () => {
 								<MobileNavBar />
 							</Box>
 						</>
+					</RequireAuth>
+				}
+			/>
+			<Route
+				path='/quiz/*'
+				element={
+					<RequireAuth>
+						<QuizRoutes />
 					</RequireAuth>
 				}
 			/>

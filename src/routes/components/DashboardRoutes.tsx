@@ -1,8 +1,11 @@
+
+import { Route, Routes } from 'react-router-dom';
 import { Box, Flex } from '@chakra-ui/react';
 import { Link, Outlet, Route, Routes } from 'react-router-dom';
 import DesktopNavBar from '../../components/DesktopNavBar/DesktopNavBar';
 import handleLogout from '../../helpers/handleLogout';
 import NotFound from '../../pages/404/NotFound';
+
 import Dashboard from '../../pages/dashboard/DashboardPage';
 import LeaderboardPage from '../../pages/leaderboard/LeaderboardPage';
 import ProfilePage from '../../pages/profile/ProfilePage';

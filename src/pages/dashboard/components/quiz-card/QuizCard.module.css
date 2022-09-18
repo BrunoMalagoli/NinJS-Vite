@@ -23,7 +23,6 @@
 	border: 1px solid #CF4F62;
 	/* box-shadow: 0px 0px 5px 0px #CF4F62c0; */
 }
-
 .card {
 	position: relative;
 	display: flex;
@@ -36,4 +35,8 @@
 	padding: 0.5em;
 	overflow: hidden;
 	z-index: 2;
+}
+
+.card:hover{
+	cursor: pointer;
 }

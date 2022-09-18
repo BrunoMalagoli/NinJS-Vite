@@ -9,7 +9,8 @@ const theme = extendTheme({
 		primaryBGLight: '#535B65',
 		primaryBGShade: '#25292D',
 		primaryColor: '#F3F4F6',
-		secondaryColor: '#C1C1C1'
+		secondaryColor: '#C1C1C1',
+		success: '#02B65C'
 	}
 });
 

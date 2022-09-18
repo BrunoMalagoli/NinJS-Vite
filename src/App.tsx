@@ -1,6 +1,7 @@
 import { ChakraProvider } from '@chakra-ui/react';
 import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import AnswersContextProvider from './context/answers/AnswersContextProvider';
 import DataContextProvider from './context/data/DataContextProvider';
 import ProfileContextProvider from './context/profile/ProfileContextProvider';
 import { AppRoutes } from './routes/AppRouter';
@@ -12,10 +13,10 @@ function App() {
 			<BrowserRouter>
 				<DataContextProvider>
 					<ProfileContextProvider>
-						<>
-							<ToastContainer />
+						<AnswersContextProvider>
+            <ToastContainer />
 							<AppRoutes />
-						</>
+						</AnswersContextProvider>
 					</ProfileContextProvider>
 				</DataContextProvider>
 			</BrowserRouter>

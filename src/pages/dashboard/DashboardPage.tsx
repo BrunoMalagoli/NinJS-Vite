@@ -10,6 +10,9 @@ import { useContext, useEffect, useState } from 'react';
 
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import 'react-toastify/dist/ReactToastify.css';
+
+import theme from '../../styles/theme';
+
 import DataContext from '../../context/data/DataContext';
 import theme from '../../styles/theme';
 import QuizCardList from './components/quiz-card/QuizCardList';

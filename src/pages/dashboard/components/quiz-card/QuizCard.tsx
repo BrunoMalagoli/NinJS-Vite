@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Badge, Box, Flex, Text } from '@chakra-ui/react';
 
 import { BackgroundSwitch, QuizCardProps } from '../../types';
-
+import { useNavigate } from 'react-router-dom';
 import styles from './QuizCard.module.css';
 
 const QuizCard: FC<QuizCardProps> = ({
@@ -12,8 +12,17 @@ const QuizCard: FC<QuizCardProps> = ({
 	completed
 }) => {
 	const Background = BackgroundSwitch[difficult];
+	const navigate = useNavigate();
+	const handleClick = () => {
+		let category = questionID.slice(0, 1);
+		console.log(`Categoria: ${category}, Id: ${number}`);
+		navigate(`/quiz/${category}/${number}`);
+	};
 	return (
-		<Box className={`${styles['glass-card-' + difficult]} ${styles.card}`}>
+		<Box
+			onClick={handleClick}
+			className={`${styles['glass-card-' + difficult]} ${styles.card}`}
+		>
 			<Background />
 			<Box>
 				<Text>{number}</Text>

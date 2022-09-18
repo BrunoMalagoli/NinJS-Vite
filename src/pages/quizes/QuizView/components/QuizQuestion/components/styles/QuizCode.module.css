@@ -1,0 +1,10 @@
+.codeContainer{
+    padding-top: 2%;
+}
+
+@media screen and (max-width: 500px){
+    .codeContainer{
+        padding-top: 6%;
+    }
+    
+}
