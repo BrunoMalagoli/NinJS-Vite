@@ -1,4 +1,4 @@
-import { Result } from './types/index';
+import { ModalContentProps } from './types/index';
 import { FC } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
@@ -11,7 +11,11 @@ import {
 } from '@chakra-ui/react';
 import createNextQuizUrl from '../../../../../../helpers/createNextQuizUrl';
 
-export const CustomModalContent: FC<Result> = ({ correct, explanation }) => {
+export const CustomModalContent: FC<ModalContentProps> = ({
+	correct,
+	explanation,
+	onClose
+}) => {
 	const navigate = useNavigate();
 
 	const location = useLocation();
@@ -21,7 +25,7 @@ export const CustomModalContent: FC<Result> = ({ correct, explanation }) => {
 	}
 
 	function nextQuizClick() {
-		correct && navigate(createNextQuizUrl(location.pathname));
+		correct ? navigate(createNextQuizUrl(location.pathname)) : onClose();
 	}
 
 	return (
