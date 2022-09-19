@@ -9,22 +9,14 @@ import {
 import { useContext, useEffect, useState } from 'react';
 
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
-import 'react-toastify/dist/ReactToastify.css';
 import DataContext from '../../context/data/DataContext';
 import theme from '../../styles/theme';
 import QuizCardList from './components/quiz-card/QuizCardList';
 import SkeletonCards from './components/SkeletonCards';
 
 const Dashboard = () => {
-	const [urlAvatar, setUrlAvatar] = useState(
-		'https://avatars.githubusercontent.com/u/63567962?s=96&v=4'
-	);
-
 	const [state, page, setPage, maxPage, setMaxPage, seturlSearchParams] =
 		useContext(DataContext);
-
-	const username = localStorage.getItem('username');
-
 	function handleSetFilters(e: any) {
 		switch (e.target.name) {
 			case 'completed':
