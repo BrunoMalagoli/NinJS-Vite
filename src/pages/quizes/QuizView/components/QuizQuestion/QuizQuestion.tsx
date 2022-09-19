@@ -17,6 +17,7 @@ import Questions from './components/Questions';
 import QuizCode from './components/QuizCode';
 import AnswersContext from '../../../../../context/answers/AnswersContext';
 import NextQuizButton from '../../../../../components/NextQuizButton';
+import toastStyles from '../../../../../styles/toast';
 
 const QuizQuestion = ({ quizData }: QuizData) => {
 	const [checkedAnswer, setCheckedAnswer] = useContext(AnswersContext);
@@ -52,9 +53,11 @@ const QuizQuestion = ({ quizData }: QuizData) => {
 			})
 			.catch(err => {
 				if (err.message?.includes('Internal')) {
-					toast.error('Ups algo sucedió mal! (Internal server error)');
+					toast.error('Ups algo sucedió mal! (Internal server error)', {
+						style: toastStyles
+					});
 				}
-				toast.error('Error inesperado');
+				toast.error('Error inesperado', { style: toastStyles });
 			});
 		setCheckedAnswer('A');
 	}

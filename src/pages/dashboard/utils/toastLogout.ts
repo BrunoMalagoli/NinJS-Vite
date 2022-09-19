@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import toastStyles from '../../../styles/toast';
 
 export default function toastLogout() {
 	toast.success(
@@ -11,7 +11,8 @@ export default function toastLogout() {
 			closeOnClick: true,
 			pauseOnHover: false,
 			draggable: true,
-			progress: undefined
+			progress: undefined,
+			style: toastStyles
 		}
 	);
 }

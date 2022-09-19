@@ -3,8 +3,9 @@ import { useParams } from 'react-router-dom';
 import { QuizResponse } from './utils/interfaces';
 import { useEffect, useState } from 'react';
 import { Center, Container, Spinner } from '@chakra-ui/react';
-import QuizQuestion from './components/QuizQuestion/QuizQuestion';
 import useFetch from '../../../hooks/useFetch';
+import toastStyles from '../../../styles/toast';
+import QuizQuestion from './components/QuizQuestion/QuizQuestion';
 
 const QuizView = () => {
 	const { category, id } = useParams();
@@ -34,12 +35,14 @@ const QuizView = () => {
 		const errorToast = () => {
 			if (state.error?.message.includes('Found')) {
 				toast.error('Ups ocurrio un error encontrando tu pregunta', {
-					position: toast.POSITION.BOTTOM_CENTER
+					position: toast.POSITION.BOTTOM_CENTER,
+					style: toastStyles
 				});
 				return;
 			}
 			toast.error(state.error?.message, {
-				position: toast.POSITION.BOTTOM_CENTER
+				position: toast.POSITION.BOTTOM_CENTER,
+				style: toastStyles
 			});
 		};
 		errorToast();
