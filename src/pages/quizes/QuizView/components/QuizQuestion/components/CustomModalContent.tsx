@@ -3,16 +3,12 @@ import { FC } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
 	Button,
-	Container,
 	Flex,
 	ModalBody,
 	ModalContent,
 	ModalHeader,
 	Text
 } from '@chakra-ui/react';
-import { toast } from 'react-toastify';
-import theme from '../../../../../../styles/theme';
-import toastStyles from '../../../../../../styles/toast';
 import createNextQuizUrl from '../../../../../../helpers/createNextQuizUrl';
 
 export const CustomModalContent: FC<Result> = ({ correct, explanation }) => {
@@ -25,9 +21,7 @@ export const CustomModalContent: FC<Result> = ({ correct, explanation }) => {
 	}
 
 	function nextQuizClick() {
-		correct
-			? navigate(createNextQuizUrl(location.pathname))
-			: window.location.reload();
+		correct && navigate(createNextQuizUrl(location.pathname));
 	}
 
 	return (

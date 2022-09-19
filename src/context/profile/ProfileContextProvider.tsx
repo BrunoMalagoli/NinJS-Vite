@@ -141,8 +141,6 @@ const ProfileContextProvider = ({
 		[variant]
 	);
 	useEffect(() => {
-		console.log(location.pathname);
-		console.log(state.error);
 		if (
 			(state.error?.message.includes('Unauthorized') ||
 				!localStorage.getItem('token') ||
