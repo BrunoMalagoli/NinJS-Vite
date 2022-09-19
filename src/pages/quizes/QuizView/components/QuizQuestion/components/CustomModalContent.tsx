@@ -1,5 +1,5 @@
 import { Result } from './types/index';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
 	Button,
@@ -10,51 +10,24 @@ import {
 	ModalHeader,
 	Text
 } from '@chakra-ui/react';
+import { toast } from 'react-toastify';
+import theme from '../../../../../../styles/theme';
+import toastStyles from '../../../../../../styles/toast';
+import createNextQuizUrl from '../../../../../../helpers/createNextQuizUrl';
 
 export const CustomModalContent: FC<Result> = ({ correct, explanation }) => {
-	const [nextQuizUrl, setNextQuizUrl] = useState('');
-
 	const navigate = useNavigate();
 
 	const location = useLocation();
-
-	console.log(location.pathname);
-
-	function createNextQuizUrl() {
-		let currentUrl = location.pathname;
-
-		let id = parseInt(currentUrl.slice(8, 10));
-
-		let category = currentUrl.slice(6, 7).trim();
-
-		if (id === 16) {
-			switch (category) {
-				case 'G':
-					category = 'C';
-					id = 1;
-					break;
-				case 'C':
-					category = 'J';
-					id = 1;
-					break;
-				case 'J':
-					break;
-				default:
-					throw new Error();
-			}
-		} else {
-			id++;
-		}
-		let newUrl = `/quiz/${category}/${id}`;
-		return newUrl;
-	}
 
 	function handleClick() {
 		navigate('/home');
 	}
 
 	function nextQuizClick() {
-		correct ? navigate(createNextQuizUrl()) : window.location.reload();
+		correct
+			? navigate(createNextQuizUrl(location.pathname))
+			: window.location.reload();
 	}
 
 	return (
