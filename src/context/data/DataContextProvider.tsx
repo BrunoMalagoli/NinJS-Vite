@@ -1,36 +1,40 @@
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useDebounce from '../../hooks/useDebounce';
 import useFetch from '../../hooks/useFetch';
 import { QuizCardProps } from '../../pages/dashboard/types';
 import toastLogout from '../../pages/dashboard/utils/toastLogout';
 import DataContext from './DataContext';
 
 const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
+	const initialState = {
+		completed: 'Todas',
+		difficult: 'Todas'
+	};
 	const navigate = useNavigate();
 	const [page, setPage] = useState(1);
 	const [maxPage, setMaxPage] = useState(1);
-	const [urlSearchParams, seturlSearchParams] = useState({
-		completed: 'all',
-		difficult: 'all'
-	});
+	const [urlSearchParams, seturlSearchParams] = useState(initialState);
+
+	const value = useDebounce<number>(page, 250);
 
 	let completed;
 	let difficult;
 
-	if (urlSearchParams.completed === 'all') {
+	if (urlSearchParams.completed === 'Todas') {
 		completed = '';
-	} else if (urlSearchParams.completed === 'aprobadas') {
+	} else if (urlSearchParams.completed === 'Aprobadas') {
 		completed = '&completed=true&all=true';
 	} else {
 		completed = '&completed=false&all=true';
 	}
 
-	if (urlSearchParams.difficult === 'all') {
+	if (urlSearchParams.difficult === 'Todas') {
 		difficult = '';
-	} else if (urlSearchParams.difficult === 'jonin') {
+	} else if (urlSearchParams.difficult === 'Jonin') {
 		difficult = '&difficult=Jonin';
-	} else if (urlSearchParams.difficult === 'genin') {
+	} else if (urlSearchParams.difficult === 'Genin') {
 		difficult = '&difficult=Genin';
 	} else {
 		difficult = '&difficult=Chunin';
@@ -40,7 +44,7 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 		localStorage.getItem('token') && localStorage.getItem('token')?.length
 			? `${
 					import.meta.env.VITE_URL_CONECT_BACKEND
-			  }api/quiz/list?page=${page}${difficult}${completed}`
+			  }api/quiz/list?page=${value}${difficult}${completed}`
 			: undefined;
 
 	const state = useFetch<QuizCardProps[]>(url, {
@@ -52,6 +56,7 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 	});
 
 	useEffect(() => {
+		console.log(urlSearchParams);
 		if (
 			(state.error?.message.includes('Unauthorized') ||
 				!localStorage.getItem('token') ||
@@ -62,16 +67,13 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 			navigate('/login');
 			setPage(1);
 			setMaxPage(1);
-			seturlSearchParams({
-				completed: 'all',
-				difficult: 'all'
-			});
+			seturlSearchParams(initialState);
 		}
 	}, [state, url]);
 
 	return (
 		<DataContext.Provider
-			value={[
+			value={{
 				state,
 				page,
 				setPage,
@@ -79,7 +81,7 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 				setMaxPage,
 				seturlSearchParams,
 				urlSearchParams
-			]}
+			}}
 		>
 			{children}
 		</DataContext.Provider>
