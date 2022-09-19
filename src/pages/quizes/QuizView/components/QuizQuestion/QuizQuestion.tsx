@@ -38,6 +38,9 @@ const QuizQuestion = ({ quizData }: QuizData) => {
 	let token = localStorage.getItem('token');
 
 	function handleSubmit() {
+		if (!reviewBody.answer.length) {
+			return toast.error('Selecciona una opcion.', { style: toastStyles });
+		}
 		fetch(`${import.meta.env.VITE_URL_CONECT_BACKEND}api/quiz/review`, {
 			headers: {
 				'Content-type': 'application/json',
@@ -59,7 +62,7 @@ const QuizQuestion = ({ quizData }: QuizData) => {
 				}
 				toast.error('Error inesperado', { style: toastStyles });
 			});
-		setCheckedAnswer('A');
+		setCheckedAnswer('');
 	}
 
 	return (
