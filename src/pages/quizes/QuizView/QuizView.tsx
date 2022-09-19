@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { QuizResponse } from './utils/interfaces';
 import { useEffect, useState } from 'react';
 import { Center, Container, Spinner } from '@chakra-ui/react';
@@ -9,6 +9,8 @@ import QuizQuestion from './components/QuizQuestion/QuizQuestion';
 
 const QuizView = () => {
 	const { category, id } = useParams();
+
+	const navigate = useNavigate();
 
 	const questionID = category + id!;
 
@@ -32,18 +34,29 @@ const QuizView = () => {
 		if (state.data) {
 			setQuizData(state.data);
 		}
+		if (
+			(state.error?.message.includes('Unauthorized') ||
+				!localStorage.getItem('token') ||
+				!localStorage.getItem('token')?.length) &&
+			location.pathname.includes('/quiz')
+		) {
+			localStorage.clear();
+			navigate('/login');
+		}
 		const errorToast = () => {
 			if (state.error?.message.includes('Found')) {
-				toast.error('Ups ocurrio un error encontrando tu pregunta', {
+				toast.error('Parece que trataste de ir a tierras desconocidas...', {
 					position: toast.POSITION.BOTTOM_CENTER,
 					style: toastStyles
 				});
-				return;
+				navigate('/home');
+			} else if (state.error) {
+				toast.error('Parece que algo salio mal :c', {
+					position: toast.POSITION.BOTTOM_CENTER,
+					style: toastStyles
+				});
+				navigate('/home');
 			}
-			toast.error(state.error?.message, {
-				position: toast.POSITION.BOTTOM_CENTER,
-				style: toastStyles
-			});
 		};
 		errorToast();
 	}, [state]);
