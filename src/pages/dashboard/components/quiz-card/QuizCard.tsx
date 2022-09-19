@@ -14,8 +14,7 @@ const QuizCard: FC<QuizCardProps> = ({
 	const Background = BackgroundSwitch[difficult];
 	const navigate = useNavigate();
 	const handleClick = () => {
-		let category = questionID.slice(0, 1);
-		console.log(`Categoria: ${category}, Id: ${number}`);
+		let category = questionID.match(/[A-Z]/g)![0];
 		navigate(`/quiz/${category}/${number}`);
 	};
 	return (
