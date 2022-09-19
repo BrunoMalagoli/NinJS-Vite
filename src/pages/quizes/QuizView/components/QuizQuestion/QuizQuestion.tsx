@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 import { QuizData } from '../../utils/interfaces';
-import { Result } from './components/types/index';
+import { ModalContentProps } from './components/types/index';
 import { useParams } from 'react-router-dom';
 import { CustomModalContent } from './components/CustomModalContent';
 import { Form, Formik } from 'formik';
@@ -22,7 +22,7 @@ import toastStyles from '../../../../../styles/toast';
 const QuizQuestion = ({ quizData }: QuizData) => {
 	const [checkedAnswer, setCheckedAnswer] = useContext(AnswersContext);
 
-	const [reviewResponse, setReviewResponse] = useState<Result>();
+	const [reviewResponse, setReviewResponse] = useState<ModalContentProps>();
 
 	const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -39,30 +39,31 @@ const QuizQuestion = ({ quizData }: QuizData) => {
 
 	function handleSubmit() {
 		if (!reviewBody.answer.length) {
-			return toast.error('Selecciona una opcion.', { style: toastStyles });
-		}
-		fetch(`${import.meta.env.VITE_URL_CONECT_BACKEND}api/quiz/review`, {
-			headers: {
-				'Content-type': 'application/json',
-				'x-token': token as string
-			},
-			method: 'PUT',
-			body: JSON.stringify(reviewBody)
-		})
-			.then(data => data.json())
-			.then(response => {
-				setReviewResponse(response.result);
-				onOpen();
+			toast.error('Selecciona una opcion.', { style: toastStyles });
+		} else {
+			fetch(`${import.meta.env.VITE_URL_CONECT_BACKEND}api/quiz/review`, {
+				headers: {
+					'Content-type': 'application/json',
+					'x-token': token as string
+				},
+				method: 'PUT',
+				body: JSON.stringify(reviewBody)
 			})
-			.catch(err => {
-				if (err.message?.includes('Internal')) {
-					toast.error('Ups algo sucedió mal! (Internal server error)', {
-						style: toastStyles
-					});
-				}
-				toast.error('Error inesperado', { style: toastStyles });
-			});
-		setCheckedAnswer('');
+				.then(data => data.json())
+				.then(response => {
+					setReviewResponse(response.result);
+					onOpen();
+				})
+				.catch(err => {
+					if (err.message?.includes('Internal')) {
+						toast.error('Ups algo sucedió mal! (Internal server error)', {
+							style: toastStyles
+						});
+					}
+					toast.error('Error inesperado', { style: toastStyles });
+				});
+			setCheckedAnswer('');
+		}
 	}
 
 	return (
@@ -89,7 +90,7 @@ const QuizQuestion = ({ quizData }: QuizData) => {
 				isCentered
 			>
 				<ModalOverlay />
-				<CustomModalContent {...reviewResponse!} />
+				<CustomModalContent {...reviewResponse!} onClose={onClose} />
 			</Modal>
 		</Flex>
 	);
