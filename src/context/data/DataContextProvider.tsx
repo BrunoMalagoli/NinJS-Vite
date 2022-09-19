@@ -71,7 +71,15 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 
 	return (
 		<DataContext.Provider
-			value={[state, page, setPage, maxPage, setMaxPage, seturlSearchParams]}
+			value={[
+				state,
+				page,
+				setPage,
+				maxPage,
+				setMaxPage,
+				seturlSearchParams,
+				urlSearchParams
+			]}
 		>
 			{children}
 		</DataContext.Provider>

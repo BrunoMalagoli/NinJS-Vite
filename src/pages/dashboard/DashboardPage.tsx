@@ -15,8 +15,16 @@ import QuizCardList from './components/quiz-card/QuizCardList';
 import SkeletonCards from './components/SkeletonCards';
 
 const Dashboard = () => {
-	const [state, page, setPage, maxPage, setMaxPage, seturlSearchParams] =
-		useContext(DataContext);
+	const [
+		state,
+		page,
+		setPage,
+		maxPage,
+		setMaxPage,
+		seturlSearchParams,
+		urlSearchParams
+	] = useContext(DataContext);
+
 	function handleSetFilters(e: any) {
 		switch (e.target.name) {
 			case 'completed':
@@ -45,10 +53,18 @@ const Dashboard = () => {
 		return setPage(page + 1);
 	}
 	useEffect(() => {
-		if ((state?.error as Error)?.message.includes('Found')) {
-			setMaxPage(1);
-		}
+		seturlSearchParams({
+			completed: 'all',
+			difficult: 'all'
+		});
+		// setPage(1);
+	}, []);
+
+	useEffect(() => {
 		setMaxPage(state?.data?.maxPage);
+		if ((state?.error as Error)?.message.includes('Found')) {
+			return setMaxPage(1);
+		}
 		if (page > maxPage) {
 			setPage(maxPage);
 		}
@@ -62,23 +78,6 @@ const Dashboard = () => {
 			backgroundColor={'#16191C'}
 			alignItems='center'
 		>
-			{/* <Flex direction='column' alignItems='center'>
-				<Flex
-					direction={'row'}
-					p='1em'
-					borderRadius={'0.5em'}
-					color={'white'}
-					className='glass'
-					w='95%'
-					mt={'1em'}
-				>
-					<Avatar size='lg' src={urlAvatar} bg='transparent' />
-					<Flex direction='column' flexGrow={1} pl='1.5em'>
-						<Text>{username}</Text>
-						<Text>Points: as 1213123</Text>
-					</Flex>
-				</Flex>
-			</Flex> */}
 			<Flex
 				justifyContent={'center'}
 				alignItems='center'
@@ -98,6 +97,7 @@ const Dashboard = () => {
 							w='125px'
 							backgroundColor={theme.colors.primaryBGShade}
 							variant={'filled'}
+							value={urlSearchParams.completed}
 						>
 							<option
 								value='all'
@@ -140,6 +140,7 @@ const Dashboard = () => {
 						w='125px'
 						backgroundColor={theme.colors.primaryBGShade}
 						variant={'filled'}
+						value={urlSearchParams.difficult}
 					>
 						<option
 							value='all'
@@ -181,15 +182,22 @@ const Dashboard = () => {
 					</Select>
 				</Flex>
 			</Flex>
-			{!state.data && !state?.error && <SkeletonCards />}
 			{state?.data?.questions.length ? (
 				<QuizCardList QuizCards={state?.data?.questions} />
+			) : state?.error ? (
+				<Flex
+					h='100%'
+					justifyContent={'center'}
+					alignItems='center'
+					flexDir={'column'}
+				>
+					<Heading style={{ color: theme.colors.primaryYellow }}>Oh No</Heading>
+					<Heading style={{ color: 'white', textAlign: 'center' }}>
+						Parece que aun no tienes progreso.
+					</Heading>
+				</Flex>
 			) : (
-				state.error && (
-					<Flex h='100%' justifyContent={'center'} alignItems='center'>
-						<Heading style={{ color: 'white' }}>Not Found</Heading>
-					</Flex>
-				)
+				<SkeletonCards />
 			)}
 			<Flex
 				justifyContent={'center'}
