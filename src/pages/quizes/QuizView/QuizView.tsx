@@ -1,16 +1,21 @@
-import { Center, Container, Spinner } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import QuizQuestion from './components/QuizQuestion/QuizQuestion';
-import { quizResponse } from './utils/interfaces';
-import useFetch from '../../../hooks/useFetch';
 import { toast } from 'react-toastify';
+import { useParams } from 'react-router-dom';
+import { QuizResponse } from './utils/interfaces';
+import { useEffect, useState } from 'react';
+import { Center, Container, Spinner } from '@chakra-ui/react';
+import QuizQuestion from './components/QuizQuestion/QuizQuestion';
+import useFetch from '../../../hooks/useFetch';
+
 const QuizView = () => {
 	const { category, id } = useParams();
+
 	const questionID = category + id!;
+
 	const token = localStorage.getItem('token');
-	const [quizData, setQuizData] = useState<quizResponse>();
-	const state = useFetch<quizResponse>(
+
+	const [quizData, setQuizData] = useState<QuizResponse>();
+
+	const state = useFetch<QuizResponse>(
 		`${
 			import.meta.env.VITE_URL_CONECT_BACKEND
 		}api/quiz/find?questionID=${questionID}`,
@@ -21,7 +26,7 @@ const QuizView = () => {
 			}
 		}
 	);
-	console.log(state);
+
 	useEffect(() => {
 		if (state.data) {
 			setQuizData(state.data);
@@ -39,7 +44,7 @@ const QuizView = () => {
 		};
 		errorToast();
 	}, [state]);
-	console.log(quizData);
+
 	return (
 		<div style={{ height: '100%' }}>
 			{quizData ? (

@@ -1,35 +1,41 @@
+import { toast } from 'react-toastify';
+import { QuizData } from '../../utils/interfaces';
+import { Result } from './components/types/index';
+import { useParams } from 'react-router-dom';
+import { CustomModalContent } from './components/CustomModalContent';
+import { Form, Formik } from 'formik';
 import { useState, useContext } from 'react';
 import {
 	Flex,
 	FormControl,
 	Modal,
 	ModalOverlay,
-	ScaleFade,
-	SlideFade,
 	useDisclosure
 } from '@chakra-ui/react';
-import NextQuizButton from '../../../../../components/NextQuizButton';
-import { qData } from '../../utils/interfaces';
 import Answers from './components/Answers';
 import Questions from './components/Questions';
 import QuizCode from './components/QuizCode';
 import AnswersContext from '../../../../../context/answers/AnswersContext';
-import { useParams } from 'react-router-dom';
-import { Form, Formik } from 'formik';
-import { toast } from 'react-toastify';
-import { CustomModalContent } from './components/CustomModalContent';
-import { Result } from './components/types/index';
-const QuizQuestion = ({ quizData }: qData) => {
+import NextQuizButton from '../../../../../components/NextQuizButton';
+
+const QuizQuestion = ({ quizData }: QuizData) => {
 	const [checkedAnswer, setCheckedAnswer] = useContext(AnswersContext);
+
 	const [reviewResponse, setReviewResponse] = useState<Result>();
+
 	const { isOpen, onOpen, onClose } = useDisclosure();
+
 	const { category, id } = useParams();
+
 	let questionID = category + id!;
+
 	const reviewBody = {
 		questionID,
 		answer: checkedAnswer
 	};
+
 	let token = localStorage.getItem('token');
+
 	function handleSubmit() {
 		fetch(`${import.meta.env.VITE_URL_CONECT_BACKEND}api/quiz/review`, {
 			headers: {
@@ -42,7 +48,6 @@ const QuizQuestion = ({ quizData }: qData) => {
 			.then(data => data.json())
 			.then(response => {
 				setReviewResponse(response.result);
-				console.log(response);
 				onOpen();
 			})
 			.catch(err => {
@@ -55,7 +60,7 @@ const QuizQuestion = ({ quizData }: qData) => {
 	}
 
 	return (
-		<>
+		<Flex height={'100%'} flexDirection='column'>
 			<Formik initialValues={checkedAnswer} onSubmit={handleSubmit}>
 				<Form>
 					<FormControl height={'100%'}>
@@ -80,7 +85,7 @@ const QuizQuestion = ({ quizData }: qData) => {
 				<ModalOverlay />
 				<CustomModalContent {...reviewResponse!} />
 			</Modal>
-		</>
+		</Flex>
 	);
 };
 

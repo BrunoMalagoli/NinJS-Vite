@@ -1,3 +1,4 @@
+import { QuizData } from '../../../utils/interfaces/index';
 import { useContext } from 'react';
 import {
 	Center,
@@ -8,11 +9,12 @@ import {
 	Stack
 } from '@chakra-ui/react';
 import AnswersContext from '../../../../../../context/answers/AnswersContext';
-import { qData } from '../../../utils/interfaces/index';
+
 import styles from './styles/Answers.module.css';
-const Answers = ({ quizData }: qData) => {
+
+const Answers = ({ quizData }: QuizData) => {
 	const [checkedAnswer, setCheckedAnswer] = useContext(AnswersContext);
-	console.log({ checkedAnswer });
+
 	return (
 		<Container className={styles.answersContainer}>
 			<Center>

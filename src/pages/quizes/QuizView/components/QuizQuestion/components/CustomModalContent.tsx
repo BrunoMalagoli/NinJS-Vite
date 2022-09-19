@@ -1,3 +1,6 @@
+import { Result } from './types/index';
+import { FC, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
 	Button,
 	Container,
@@ -7,19 +10,23 @@ import {
 	ModalHeader,
 	Text
 } from '@chakra-ui/react';
-import { FC } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { Result } from './types/index';
-import { useState } from 'react';
+
 export const CustomModalContent: FC<Result> = ({ correct, explanation }) => {
 	const [nextQuizUrl, setNextQuizUrl] = useState('');
+
 	const navigate = useNavigate();
+
 	const location = useLocation();
+
 	console.log(location.pathname);
+
 	function createNextQuizUrl() {
 		let currentUrl = location.pathname;
+
 		let id = parseInt(currentUrl.slice(8, 10));
+
 		let category = currentUrl.slice(6, 7).trim();
+
 		if (id === 16) {
 			switch (category) {
 				case 'G':
@@ -39,15 +46,17 @@ export const CustomModalContent: FC<Result> = ({ correct, explanation }) => {
 			id++;
 		}
 		let newUrl = `/quiz/${category}/${id}`;
-		console.log(newUrl);
 		return newUrl;
 	}
+
 	function handleClick() {
 		navigate('/home');
 	}
+
 	function nextQuizClick() {
 		correct ? navigate(createNextQuizUrl()) : window.location.reload();
 	}
+
 	return (
 		<ModalContent style={{ backgroundColor: '#16191C', padding: '2%' }}>
 			<ModalHeader color={'primaryYellow'} fontSize={'xl'}>
