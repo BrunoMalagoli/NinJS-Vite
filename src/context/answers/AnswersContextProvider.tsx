@@ -6,7 +6,7 @@ const AnswersContextProvider = ({
 }: {
 	children: ReactJSXElement;
 }) => {
-	const [checkedAnswer, setCheckedAnswer] = useState('A');
+	const [checkedAnswer, setCheckedAnswer] = useState('');
 	return (
 		<AnswersContext.Provider value={[checkedAnswer, setCheckedAnswer]}>
 			{children}
