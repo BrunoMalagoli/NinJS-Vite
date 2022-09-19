@@ -1,4 +1,5 @@
-export interface Result {
+export interface ModalContentProps {
 	correct: boolean;
 	explanation: string;
+	onClose: () => void;
 }
