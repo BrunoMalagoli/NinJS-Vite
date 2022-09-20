@@ -56,9 +56,9 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 
 	useEffect(() => {
 		if (
-			(state.error?.message.includes('Unauthorized') ||
-				!localStorage.getItem('token') ||
-				!localStorage.getItem('token')?.length) &&
+			(!localStorage.getItem('token') ||
+				!localStorage.getItem('token')?.length ||
+				state.error?.message.includes('Unauthorized')) &&
 			location.pathname.includes('/home')
 		) {
 			localStorage.clear();
@@ -67,7 +67,7 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 			setMaxPage(1);
 			seturlSearchParams(initialState);
 		}
-	}, [state, url]);
+	}, [state, url, location.pathname]);
 
 	return (
 		<DataContext.Provider
