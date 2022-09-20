@@ -33,7 +33,7 @@ const SelectComponent: FC<SelectProps> = ({ options, name }) => {
 			onChange={handleSetFilters}
 			name={name}
 			color={'white'}
-			w='125px'
+			w='130px'
 			backgroundColor={theme.colors.primaryBGShade}
 			variant={'filled'}
 			value={urlSearchParams.completed}

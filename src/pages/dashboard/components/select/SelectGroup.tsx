@@ -9,22 +9,21 @@ const SelectGroup = () => {
 		<Flex
 			justifyContent={'center'}
 			alignItems='center'
-			gap='1rem'
 			mb='.7rem'
 			mt='.7rem'
+			width={'100%'}
+			gap={6}
 		>
-			<Flex>
-				<Flex flexDirection={'column'} alignItems='center'>
-					<Text color={'#fff'} marginBottom='5px'>
-						Estado
-					</Text>
-					<SelectComponent
-						options={['Todas', 'Aprobadas', 'Falladas']}
-						name={'completed'}
-					/>
-				</Flex>
+			<Flex flexDirection={'column'} alignItems='center' width={'130px'}>
+				<Text color={'#fff'} marginBottom='5px'>
+					Estado
+				</Text>
+				<SelectComponent
+					options={['Todas', 'Aprobadas', 'Falladas']}
+					name={'completed'}
+				/>
 			</Flex>
-			<Flex flexDirection={'column'} alignItems='center'>
+			<Flex flexDirection={'column'} alignItems='center' width={'130px'}>
 				<Text color={'#fff'} marginBottom='5px'>
 					Dificultad
 				</Text>
