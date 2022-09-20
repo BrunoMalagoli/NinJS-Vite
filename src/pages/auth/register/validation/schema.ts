@@ -2,11 +2,11 @@ import * as yup from 'yup';
 export const userRegisterSchema = yup.object({
 	username: yup
 		.string()
-		.required('Username es requerido')
-		.min(4, 'Username debe tener al menos 4 carácteres'),
+		.required('El nombre de usuario es requerido')
+		.min(4, 'El nombre de usuario debe tener al menos 4 carácteres'),
 	email: yup
 		.string()
-		.required('Email es requerido')
+		.required('El email es requerido')
 		.email('El email debe ser válido'),
 	password: yup
 		.string()
