@@ -129,7 +129,7 @@ const Form = () => {
 						<Input
 							name='password'
 							type={showPassword ? 'text' : 'password'}
-							placeholder='Password'
+							placeholder='Contraseña'
 							value={values.password}
 							color='white'
 							focusBorderColor='primaryYellow'
@@ -157,12 +157,12 @@ const Form = () => {
 					{/* </FormControl> */}
 
 					<Link fontSize='14' textAlign={'right'} color='secondaryColor'>
-						Forgot Password?
+						Olvidaste la contraseña?
 					</Link>
 				</Stack>
 
 				<Button mt={5} w='100%' type='submit' bg='primaryYellow' color='black'>
-					Login
+					Iniciar
 				</Button>
 			</form>
 		</>
