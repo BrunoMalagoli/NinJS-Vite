@@ -25,14 +25,14 @@ const RegisterPage = () => {
 
 				<Form />
 				<Text color='white' fontSize='14' textAlign={'center'}>
-					Already an user? {/** no borrar el espacio anterior*/}
+					Ya eres usuario? {/** no borrar el espacio anterior*/}
 					<Link
 						as={'button'}
 						onClick={handleClickLogIn}
 						fontWeight={700}
 						color='primaryYellow'
 					>
-						Log in
+						Inicia Sesión
 					</Link>
 				</Text>
 			</Stack>

@@ -49,7 +49,7 @@ function DesktopNavBar() {
 										: theme.colors.primaryBGLight
 								}
 							/>
-							Home
+							Inicio
 						</Flex>
 					</NavLink>
 				</Box>
@@ -71,7 +71,7 @@ function DesktopNavBar() {
 										: theme.colors.primaryBGLight
 								}
 							/>
-							Profile
+							Perfil
 						</Flex>
 					</NavLink>
 				</Box>
@@ -94,7 +94,7 @@ function DesktopNavBar() {
 										: theme.colors.primaryBGLight
 								}
 							/>
-							Leaderboard
+							Ranking
 						</Flex>
 					</NavLink>
 				</Box>
@@ -107,7 +107,7 @@ function DesktopNavBar() {
 					<NavLink to='/' replace={true} onClick={handleLogout}>
 						<Flex m={'.5rem '} gap='1rem' alignItems={'center'}>
 							<MdLogout size={'30px'} color={theme.colors.error} />
-							Logout
+							Salir
 						</Flex>
 					</NavLink>
 				</Box>
