@@ -26,7 +26,7 @@ const MobileNavBar = () => {
 					}
 				/>
 			</Box>
-			<Box onClick={() => navigate('/home')} >
+			<Box onClick={() => navigate('/home')}>
 				<MdHome
 					size={'30px'}
 					color={
@@ -49,7 +49,7 @@ const MobileNavBar = () => {
 			<Box
 				onClick={() => {
 					handleLogout();
-					navigate('/');
+					navigate('/', { replace: true });
 				}}
 			>
 				<MdLogout size={'30px'} color={theme.colors.error} />

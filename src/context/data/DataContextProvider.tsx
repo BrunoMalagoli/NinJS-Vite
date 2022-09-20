@@ -64,7 +64,7 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 			location.pathname.includes('/home')
 		) {
 			localStorage.clear();
-			navigate('/login');
+			navigate('/login', { replace: true });
 			setPage(1);
 			setMaxPage(1);
 			seturlSearchParams(initialState);

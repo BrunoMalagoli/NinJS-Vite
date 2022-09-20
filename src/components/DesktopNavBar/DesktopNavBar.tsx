@@ -104,7 +104,7 @@ function DesktopNavBar() {
 						background: '#37393a'
 					}}
 				>
-					<NavLink to='/' onClick={handleLogout}>
+					<NavLink to='/' replace={true} onClick={handleLogout}>
 						<Flex m={'.5rem '} gap='1rem' alignItems={'center'}>
 							<MdLogout size={'30px'} color={theme.colors.error} />
 							Logout

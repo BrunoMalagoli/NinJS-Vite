@@ -148,7 +148,7 @@ const ProfileContextProvider = ({
 			location.pathname.includes('/home')
 		) {
 			localStorage.clear();
-			navigate('/login');
+			navigate('/login', { replace: true });
 		}
 	}, [state]);
 
