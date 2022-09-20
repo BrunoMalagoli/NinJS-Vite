@@ -24,6 +24,8 @@ const QuizQuestion = ({ quizData }: QuizData) => {
 
 	const [reviewResponse, setReviewResponse] = useState<ModalContentProps>();
 
+	const [loading, setLoading] = useState<boolean>(false);
+
 	const { isOpen, onOpen, onClose } = useDisclosure();
 
 	const { category, id } = useParams();
@@ -41,6 +43,7 @@ const QuizQuestion = ({ quizData }: QuizData) => {
 		if (!reviewBody.answer.length) {
 			toast.error('Selecciona una opcion.', { style: toastStyles });
 		} else {
+			setLoading(true);
 			fetch(`${import.meta.env.VITE_URL_CONECT_BACKEND}api/quiz/review`, {
 				headers: {
 					'Content-type': 'application/json',
@@ -61,7 +64,8 @@ const QuizQuestion = ({ quizData }: QuizData) => {
 						});
 					}
 					toast.error('Error inesperado', { style: toastStyles });
-				});
+				})
+				.finally(() => setLoading(false));
 			setCheckedAnswer('');
 		}
 	}
@@ -75,7 +79,7 @@ const QuizQuestion = ({ quizData }: QuizData) => {
 							<Questions questions={quizData.question} />
 							<QuizCode code={quizData.code} />
 							<Answers quizData={quizData} />
-							<NextQuizButton />
+							<NextQuizButton isLoading={loading} />
 						</Flex>
 					</FormControl>
 				</Form>

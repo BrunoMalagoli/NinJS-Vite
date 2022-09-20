@@ -1,5 +1,8 @@
+import { FC } from 'react';
+import { QuizButtonProps } from './types';
 import { Box, Button, Flex } from '@chakra-ui/react';
-const NextQuizButton = () => {
+
+const NextQuizButton: FC<QuizButtonProps> = ({ isLoading }) => {
 	return (
 		<Box width={'100%'} height={'100%'}>
 			<Flex
@@ -9,6 +12,7 @@ const NextQuizButton = () => {
 				justifyContent={'center'}
 			>
 				<Button
+					isLoading={isLoading}
 					_hover={{ bgColor: '#dbc146', color: 'black' }}
 					variant={'outline'}
 					color={'#F8D859'}
