@@ -36,7 +36,7 @@ const SelectComponent: FC<SelectProps> = ({ options, name }) => {
 			w='130px'
 			backgroundColor={theme.colors.primaryBGShade}
 			variant={'filled'}
-			value={urlSearchParams.completed}
+			value={urlSearchParams[name]}
 		>
 			{options.map((option, i) => (
 				<option
