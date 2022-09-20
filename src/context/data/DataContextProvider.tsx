@@ -1,10 +1,9 @@
+import { useNavigate } from 'react-router-dom';
+import { QuizCardProps } from '../../pages/dashboard/types';
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import useDebounce from '../../hooks/useDebounce';
 import useFetch from '../../hooks/useFetch';
-import { QuizCardProps } from '../../pages/dashboard/types';
-import toastLogout from '../../pages/dashboard/utils/toastLogout';
+import useDebounce from '../../hooks/useDebounce';
 import DataContext from './DataContext';
 
 const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {

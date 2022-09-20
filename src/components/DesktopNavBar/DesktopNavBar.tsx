@@ -1,8 +1,8 @@
 import { Box, Flex, Heading, Text } from '@chakra-ui/react';
-import { MdHome, MdLeaderboard, MdLogout, MdPerson } from 'react-icons/md';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
-import handleLogout from '../../helpers/handleLogout';
+import { MdHome, MdLeaderboard, MdLogout, MdPerson } from 'react-icons/md';
 import theme from '../../styles/theme';
+import handleLogout from '../../helpers/handleLogout';
 
 function DesktopNavBar() {
 	const location = useLocation();

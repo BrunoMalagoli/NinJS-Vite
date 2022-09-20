@@ -1,13 +1,10 @@
-import { Box, Flex } from '@chakra-ui/react';
-import { Link, Outlet, Route, Routes } from 'react-router-dom';
-import DesktopNavBar from '../../components/DesktopNavBar/DesktopNavBar';
-import handleLogout from '../../helpers/handleLogout';
+import { Route, Routes } from 'react-router-dom';
 import NotFound from '../../pages/404/NotFound';
+import DesktopNavBar from '../../components/DesktopNavBar/DesktopNavBar';
 
 import Dashboard from '../../pages/dashboard/DashboardPage';
-import LeaderboardPage from '../../pages/leaderboard/LeaderboardPage';
 import ProfilePage from '../../pages/profile/ProfilePage';
-import theme from '../../styles/theme';
+import LeaderboardPage from '../../pages/leaderboard/LeaderboardPage';
 
 const DashboardRoutes = () => {
 	return (
