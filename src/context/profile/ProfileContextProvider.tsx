@@ -145,7 +145,7 @@ const ProfileContextProvider = ({
 			localStorage.clear();
 			navigate('/login', { replace: true });
 		}
-	}, [state]);
+	}, [state, location.pathname]);
 
 	return (
 		<ProfileContext.Provider
