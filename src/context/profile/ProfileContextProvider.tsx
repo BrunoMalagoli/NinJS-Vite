@@ -137,15 +137,15 @@ const ProfileContextProvider = ({
 	);
 	useEffect(() => {
 		if (
-			(state.error?.message.includes('Unauthorized') ||
-				!localStorage.getItem('token') ||
-				!localStorage.getItem('token')?.length) &&
+			(!localStorage.getItem('token') ||
+				!localStorage.getItem('token')?.length ||
+				state.error?.message.includes('Unauthorized')) &&
 			location.pathname.includes('/home')
 		) {
 			localStorage.clear();
 			navigate('/login', { replace: true });
 		}
-	}, [state]);
+	}, [state, location.pathname]);
 
 	return (
 		<ProfileContext.Provider

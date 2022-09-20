@@ -5,7 +5,7 @@ import {
 	InputGroup,
 	InputLeftElement,
 	InputRightElement,
-	Link,
+	Text,
 	Stack
 } from '@chakra-ui/react';
 import { useFormik } from 'formik';
@@ -29,6 +29,8 @@ import { userLoginSchema } from '../validation/schema';
 
 import handleErrorSweetAlert from '../utils/handleErrorSweetAlert';
 import handleSuccessLogin from '../utils/handleSuccessLogin';
+import { toast } from 'react-toastify';
+import toastStyles from '../../../../styles/toast';
 
 const Form = () => {
 	const navigate = useNavigate();
@@ -156,9 +158,19 @@ const Form = () => {
 					{showErrorMessage({ prop: 'password', errors, touched, focus })}
 					{/* </FormControl> */}
 
-					<Link fontSize='14' textAlign={'right'} color='secondaryColor'>
+					<Text
+						fontSize='14'
+						textAlign={'right'}
+						color='secondaryColor'
+						_hover={{ cursor: 'pointer', textDecoration: 'underline' }}
+						onClick={() =>
+							toast.warn('Parece que nuestro equipo esta trabajando en esto', {
+								style: toastStyles
+							})
+						}
+					>
 						Olvidaste la contraseña?
-					</Link>
+					</Text>
 				</Stack>
 
 				<Button mt={5} w='100%' type='submit' bg='primaryYellow' color='black'>
