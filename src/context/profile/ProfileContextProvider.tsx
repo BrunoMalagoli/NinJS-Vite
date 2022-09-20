@@ -1,11 +1,10 @@
-import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
-import { useMemo, useState, useCallback, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
-import useFetch from '../../hooks/useFetch';
-import handleErrorSweetAlert from '../../pages/auth/login/utils/handleErrorSweetAlert';
+import { toast } from 'react-toastify';
 import { QuizCardProps } from '../../pages/dashboard/types';
-import toastLogout from '../../pages/dashboard/utils/toastLogout';
+import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useMemo, useState, useCallback, useEffect } from 'react';
+import useFetch from '../../hooks/useFetch';
+import toastStyles from '../../styles/toast';
 import ProfileContext from './ProfileContext';
 
 const ProfileContextProvider = ({
@@ -114,19 +113,15 @@ const ProfileContextProvider = ({
 						response.json().then(data => {
 							localStorage.setItem('username', data?.result.username);
 							localStorage.setItem('variant', data?.result.variant);
-							Swal.fire({
-								icon: 'success',
-								title: 'OK',
-								text: 'Guardado satisfactoriamente',
-								background: '#3b3b3b',
-								color: '#fff'
+							toast.success('Guardado satisfactoriamente', {
+								style: toastStyles
 							});
 						});
 					} else {
 						response
 							.json()
 							.then(a => {
-								handleErrorSweetAlert(a.ErrorMessage);
+								toast.error(a.ErrorMessage, { style: toastStyles });
 								throw new Error(a.ErrorMessage);
 							})
 							.catch(err => {
