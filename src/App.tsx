@@ -6,7 +6,6 @@ import theme from './styles/theme';
 import DataContextProvider from './context/data/DataContextProvider';
 import ProfileContextProvider from './context/profile/ProfileContextProvider';
 import AnswersContextProvider from './context/answers/AnswersContextProvider';
-
 import 'react-toastify/dist/ReactToastify.css';
 function App() {
 	return (
