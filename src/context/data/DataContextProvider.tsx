@@ -17,7 +17,7 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 	const [maxPage, setMaxPage] = useState(1);
 	const [urlSearchParams, seturlSearchParams] = useState(initialState);
 
-	const value = useDebounce<number>(page, 250);
+	const value = useDebounce<number>(page, 400);
 
 	let completed;
 	let difficult;
@@ -56,7 +56,6 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 	});
 
 	useEffect(() => {
-		console.log(urlSearchParams);
 		if (
 			(state.error?.message.includes('Unauthorized') ||
 				!localStorage.getItem('token') ||
