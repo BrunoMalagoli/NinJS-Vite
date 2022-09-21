@@ -15,7 +15,7 @@ const AvatarRadioCard: FC<AvatarRadioCardProps> = ({
 	const input = getInputProps();
 	const checkbox = getCheckboxProps();
 	return (
-		<Box as='label'>
+		<Box as='label' style={{ cursor: 'pointer' }}>
 			<input {...input} />
 			<Flex
 				{...checkbox}
@@ -32,7 +32,12 @@ const AvatarRadioCard: FC<AvatarRadioCardProps> = ({
 				}}
 			>
 				<Avatar variant={variant} name={username} size='1em' />
-				<Text fontSize={{ base: 'sm', md: 'lg' }} color='white' pt='5px'>
+				<Text
+					fontSize={{ base: 'sm', md: 'lg' }}
+					color='white'
+					pt='5px'
+					userSelect={'none'}
+				>
 					{variant}
 				</Text>
 			</Flex>
