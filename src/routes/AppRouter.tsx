@@ -36,7 +36,10 @@ export const AppRoutes = () => {
 				path='/home/*'
 				element={
 					<Box
-						style={{ backgroundColor: theme.colors.primaryBG, height: '100%' }}
+						style={{
+							backgroundColor: theme.colors.primaryBG,
+							height: 'inherit'
+						}}
 					>
 						<motion.div
 							initial='out'
@@ -63,7 +66,10 @@ export const AppRoutes = () => {
 				path='/quiz/*'
 				element={
 					<Box
-						style={{ backgroundColor: theme.colors.primaryBG, height: '100%' }}
+						style={{
+							backgroundColor: theme.colors.primaryBG,
+							height: 'inherit'
+						}}
 					>
 						<motion.div
 							initial='out'
