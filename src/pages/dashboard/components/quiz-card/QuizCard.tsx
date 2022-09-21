@@ -39,7 +39,7 @@ const QuizCard: FC<QuizCardProps> = ({
 		>
 			<Background />
 			<Box>
-				<Text>{number}</Text>
+				<Text fontSize={{ base: '14px', sm: '16px' }}>{number}</Text>
 			</Box>
 			<Flex
 				justifyContent={'center'}
@@ -54,6 +54,7 @@ const QuizCard: FC<QuizCardProps> = ({
 					<Box height={'18px'}>{/*kind of hacky but it does the trick*/}</Box>
 				) : (
 					<Badge
+						fontSize={{ base: '10px', sm: '12px' }}
 						colorScheme={completed ? 'green' : 'red'}
 						variant={'subtle'}
 						borderRadius={'10px'}
