@@ -41,7 +41,7 @@ const QuizQuestion = ({ quizData }: QuizData) => {
 
 	function handleSubmit() {
 		if (!reviewBody.answer.length) {
-			toast.error('Selecciona una opcion.', { style: toastStyles });
+			toast.error('Selecciona una opción.', { style: toastStyles });
 		} else {
 			setLoading(true);
 			fetch(`${import.meta.env.VITE_URL_CONECT_BACKEND}api/quiz/review`, {
