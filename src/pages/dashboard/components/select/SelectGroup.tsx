@@ -1,7 +1,5 @@
-import { Select, Flex, Text } from '@chakra-ui/react';
-import React, { useContext } from 'react';
-import DataContext from '../../../../context/data/DataContext';
-import theme from '../../../../styles/theme';
+import { Flex, Text } from '@chakra-ui/react';
+import { CompletedFilter, DifficultFilter } from '../../../../types';
 import SelectComponent from './SelectComponent';
 
 const SelectGroup = () => {
@@ -19,7 +17,7 @@ const SelectGroup = () => {
 					Estado
 				</Text>
 				<SelectComponent
-					options={['Todas', 'Aprobadas', 'Falladas']}
+					options={Object.values(CompletedFilter)}
 					name={'completed'}
 				/>
 			</Flex>
@@ -28,7 +26,7 @@ const SelectGroup = () => {
 					Dificultad
 				</Text>
 				<SelectComponent
-					options={['Todas', 'Genin', 'Chunin', 'Jonin']}
+					options={Object.values(DifficultFilter)}
 					name={'difficult'}
 				/>
 			</Flex>
