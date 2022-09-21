@@ -29,12 +29,12 @@ const QuizCard: FC<QuizCardProps> = ({
 			w={{
 				base: '140px',
 				sm: '150px',
-				xl: '170px',
+				xl: '170px'
 			}}
 			h={{
 				base: '140px',
 				sm: '150px',
-				xl: '170px',
+				xl: '170px'
 			}}
 		>
 			<Background />
@@ -58,7 +58,7 @@ const QuizCard: FC<QuizCardProps> = ({
 						variant={'subtle'}
 						borderRadius={'10px'}
 					>
-						{completed ? 'Passed' : 'Failed'}
+						{completed ? 'Aprobada' : 'fallada'}
 					</Badge>
 				)}
 			</Flex>
