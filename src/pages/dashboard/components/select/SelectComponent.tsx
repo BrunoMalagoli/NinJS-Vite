@@ -37,6 +37,14 @@ const SelectComponent: FC<SelectProps> = ({ options, name }) => {
 			backgroundColor={theme.colors.primaryBGShade}
 			variant={'filled'}
 			value={urlSearchParams[name]}
+			_focusVisible={{
+				outline: 'none'
+			}}
+			_hover={{
+				color: theme.colors.primaryBGShade,
+				backgroundColor: theme.colors.primaryYellow,
+				iconColor: theme.colors.primaryBGShade
+			}}
 		>
 			{options.map((option, i) => (
 				<option
@@ -44,7 +52,8 @@ const SelectComponent: FC<SelectProps> = ({ options, name }) => {
 					value={option}
 					style={{
 						backgroundColor: theme.colors.primaryBGShade,
-						border: 'none'
+						border: 'none',
+						color: 'white'
 					}}
 				>
 					{option}
