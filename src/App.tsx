@@ -6,28 +6,22 @@ import DataContextProvider from './context/data/DataContextProvider';
 import ProfileContextProvider from './context/profile/ProfileContextProvider';
 import { AppRoutes } from './routes/AppRouter';
 import theme from './styles/theme';
-
-import { createContext, useState } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
-
-export const isNavBarOpenOrNot = createContext({} as any);
+import NavBarContextProvider from './context/navBar/NavBarContextProvider';
 
 function App() {
-	const [isOpenNavBar, setIsOpenNavBar] = useState(true);
 	return (
 		<ChakraProvider theme={theme}>
 			<BrowserRouter>
 				<DataContextProvider>
 					<ProfileContextProvider>
 						<AnswersContextProvider>
-							<>
-								<ToastContainer />
-								<isNavBarOpenOrNot.Provider
-									value={{ isOpenNavBar, setIsOpenNavBar }}
-								>
+							<NavBarContextProvider>
+								<>
+									<ToastContainer />
 									<AppRoutes />
-								</isNavBarOpenOrNot.Provider>
-							</>
+								</>
+							</NavBarContextProvider>
 						</AnswersContextProvider>
 					</ProfileContextProvider>
 				</DataContextProvider>
