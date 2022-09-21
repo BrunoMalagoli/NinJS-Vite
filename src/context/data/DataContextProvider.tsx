@@ -5,11 +5,13 @@ import { useEffect, useState } from 'react';
 import useFetch from '../../hooks/useFetch';
 import useDebounce from '../../hooks/useDebounce';
 import DataContext from './DataContext';
+import urlBuilder from '../../helpers/urlBuilder';
+import { CompletedFilter, DifficultFilter, Filters } from '../../types';
 
 const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
-	const initialState = {
-		completed: 'Todas',
-		difficult: 'Todas'
+	const initialState: Filters = {
+		completed: CompletedFilter.all,
+		difficult: DifficultFilter.all
 	};
 	const navigate = useNavigate();
 	const [page, setPage] = useState(1);
@@ -18,26 +20,7 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 
 	const value = useDebounce<number>(page, 400);
 
-	let completed;
-	let difficult;
-
-	if (urlSearchParams.completed === 'Todas') {
-		completed = '';
-	} else if (urlSearchParams.completed === 'Aprobadas') {
-		completed = '&completed=true&all=true';
-	} else {
-		completed = '&completed=false&all=true';
-	}
-
-	if (urlSearchParams.difficult === 'Todas') {
-		difficult = '';
-	} else if (urlSearchParams.difficult === 'Jonin') {
-		difficult = '&difficult=Jonin';
-	} else if (urlSearchParams.difficult === 'Genin') {
-		difficult = '&difficult=Genin';
-	} else {
-		difficult = '&difficult=Chunin';
-	}
+	let [completed, difficult] = urlBuilder(urlSearchParams);
 
 	let url =
 		localStorage.getItem('token') && localStorage.getItem('token')?.length
