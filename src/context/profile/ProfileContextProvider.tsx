@@ -14,19 +14,20 @@ const ProfileContextProvider = ({
 }) => {
 	const navigate = useNavigate();
 	const location = useLocation();
-
-	const state = useFetch<QuizCardProps[]>(
-		localStorage.getItem('token') && localStorage.getItem('token')?.length
+	const url =
+		localStorage.getItem('token') &&
+		localStorage.getItem('token')?.length &&
+		!location.pathname.includes('/quiz')
 			? `${import.meta.env.VITE_URL_CONECT_BACKEND}api/user/progress`
-			: undefined,
-		{
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json',
-				'x-token': localStorage.getItem('token') || ''
-			}
+			: undefined;
+
+	const state = useFetch<QuizCardProps[]>(url, {
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json',
+			'x-token': localStorage.getItem('token') || ''
 		}
-	);
+	});
 	const jonin = useMemo(() => {
 		if (state.data) {
 			return {
