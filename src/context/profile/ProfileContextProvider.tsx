@@ -28,6 +28,7 @@ const ProfileContextProvider = ({
 			'x-token': localStorage.getItem('token') || ''
 		}
 	});
+
 	const jonin = useMemo(() => {
 		if (state.data) {
 			return {
@@ -47,6 +48,7 @@ const ProfileContextProvider = ({
 		}
 		return { passed: 0, failed: 0 };
 	}, [state.data]);
+
 	const genin = useMemo(() => {
 		if (state.data) {
 			return {
@@ -66,6 +68,7 @@ const ProfileContextProvider = ({
 		}
 		return { passed: 0, failed: 0 };
 	}, [state.data]);
+
 	const chunin = useMemo(() => {
 		if (state.data) {
 			return {
