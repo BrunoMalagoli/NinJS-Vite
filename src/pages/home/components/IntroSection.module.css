@@ -1,0 +1,19 @@
+.cornerRight{
+    position: absolute;
+    top: 85vh;
+    right: 0;
+    height: 20%;
+}
+.cornerLeft{
+    position: absolute;
+    top: 85vh;
+    left: 0;
+    height: 20%;
+    transform: scaleX(-1);
+}
+
+@media screen and (max-width:750px) {
+    .cornerLeft , .cornerRight{
+        display: none;
+    }
+}
