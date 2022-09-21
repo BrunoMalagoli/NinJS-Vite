@@ -43,7 +43,6 @@ const Form = () => {
 	});
 
 	function onSubmit() {
-		console.log('hola');
 		fetch(`${import.meta.env.VITE_URL_CONECT_BACKEND}api/user/login`, {
 			method: 'POST',
 			headers: {
@@ -57,7 +56,6 @@ const Form = () => {
 			.then(response => {
 				if (response.ok) {
 					response.json().then(data => {
-						console.log(data);
 						localStorage.setItem('token', data?.token);
 						localStorage.setItem('username', data?.username);
 						localStorage.setItem('variant', data?.variant);

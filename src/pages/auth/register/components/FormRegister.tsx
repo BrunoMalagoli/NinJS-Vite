@@ -56,7 +56,6 @@ const Form = () => {
 			.then(response => {
 				if (response.ok) {
 					response.json().then(data => {
-						console.log(data);
 						localStorage.setItem('token', data?.token);
 						localStorage.setItem('username', data?.username);
 						localStorage.setItem('variant', data?.variant);
