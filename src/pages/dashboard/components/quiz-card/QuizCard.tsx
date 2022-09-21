@@ -27,12 +27,12 @@ const QuizCard: FC<QuizCardProps> = ({
 				transform: 'scale(1.03)'
 			}}
 			w={{
-				base: '140px',
+				base: '130px',
 				sm: '150px',
 				xl: '170px'
 			}}
 			h={{
-				base: '140px',
+				base: '130px',
 				sm: '150px',
 				xl: '170px'
 			}}
@@ -47,7 +47,7 @@ const QuizCard: FC<QuizCardProps> = ({
 				alignItems='center'
 				direction={'column'}
 			>
-				<Text>{difficult}</Text>
+				<Text fontSize={{ base: 'md', md: 'lg', lg: 'xl' }}>{difficult}</Text>
 			</Flex>
 			<Flex justifyContent={'end'}>
 				{typeof completed == 'undefined' ? (
