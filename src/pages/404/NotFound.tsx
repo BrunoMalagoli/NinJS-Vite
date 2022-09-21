@@ -1,4 +1,4 @@
-import { Flex, Text, Box } from '@chakra-ui/react';
+import { Box, Flex, Text } from '@chakra-ui/react';
 import Shuriken from '../../components/shuriken/Shuriken';
 import theme from '../../styles/theme';
 

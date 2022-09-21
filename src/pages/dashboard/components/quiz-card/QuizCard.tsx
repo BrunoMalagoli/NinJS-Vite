@@ -1,8 +1,9 @@
-import React, { FC } from 'react';
 import { Badge, Box, Flex, Text } from '@chakra-ui/react';
+import { FC } from 'react';
 
-import { BackgroundSwitch, QuizCardProps } from '../../types';
 import { useNavigate } from 'react-router-dom';
+import theme from '../../../../styles/theme';
+import { BackgroundSwitch, QuizCardProps } from '../../types';
 import styles from './QuizCard.module.css';
 
 const QuizCard: FC<QuizCardProps> = ({
@@ -21,6 +22,20 @@ const QuizCard: FC<QuizCardProps> = ({
 		<Box
 			onClick={handleClick}
 			className={`${styles['glass-card-' + difficult]} ${styles.card}`}
+			_hover={{
+				background: [theme.colors.primaryBGLightHover],
+				transform: 'scale(1.03)'
+			}}
+			w={{
+				base: '140px',
+				sm: '150px',
+				xl: '170px',
+			}}
+			h={{
+				base: '140px',
+				sm: '150px',
+				xl: '170px',
+			}}
 		>
 			<Background />
 			<Box>

@@ -1,12 +1,5 @@
-import {
-	Avatar,
-	Flex,
-	Heading,
-	IconButton,
-	Select,
-	Text
-} from '@chakra-ui/react';
-import { useContext, useEffect, useState } from 'react';
+import { Flex, IconButton, Text } from '@chakra-ui/react';
+import { useContext, useEffect } from 'react';
 
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import { Else, If, Then } from '../../components/If/If';
@@ -78,7 +71,7 @@ const Dashboard = () => {
 				justifyContent={'center'}
 				gap='1rem'
 				alignItems='center'
-				mb={'4rem'}
+				mb={{ base: '4rem', md: '1rem' }}
 				mt='.70rem'
 			>
 				<IconButton
