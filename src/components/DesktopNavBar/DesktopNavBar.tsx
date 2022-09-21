@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
 import { MdHome, MdLeaderboard, MdLogout, MdPerson } from 'react-icons/md';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
-import { isNavBarOpenOrNot } from '../../App';
+import isNavBarOpenOrNot from '../../context/navBar/NavBarContext';
 import handleLogout from '../../helpers/handleLogout';
 import theme from '../../styles/theme';
 
