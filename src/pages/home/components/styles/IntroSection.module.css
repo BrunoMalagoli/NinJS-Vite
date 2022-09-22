@@ -1,12 +1,12 @@
 .cornerRight{
     position: absolute;
-    top: 85vh;
+    top: 100vh;
     right: 0;
     height: 20%;
 }
 .cornerLeft{
     position: absolute;
-    top: 85vh;
+    top: 100vh;
     left: 0;
     height: 20%;
     transform: scaleX(-1);

@@ -16,7 +16,7 @@ export const Hero = () => {
 			className={styles.heroContainer}
 		>
 			<Flex
-				minHeight={'85vh'}
+				minHeight={'100vh'}
 				justify={'center'}
 				alignItems='center'
 				flexDir={'column'}

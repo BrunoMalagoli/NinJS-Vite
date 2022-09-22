@@ -1,5 +1,5 @@
 import { Container, Flex, Heading, Image, Text } from '@chakra-ui/react';
-import styles from './IntroSection.module.css';
+import styles from './styles/IntroSection.module.css';
 
 const IntroSection = () => {
 	return (
