@@ -74,8 +74,10 @@ const Form = () => {
 					});
 				}
 			})
-			.catch(err => {
-				console.error(err);
+			.catch(_ => {
+				toast.error('Oops... Algo salio mal, intenta mas tarde', {
+					style: toastStyles
+				});
 			})
 			.finally(() => {
 				setIsButtonLoading(false);
