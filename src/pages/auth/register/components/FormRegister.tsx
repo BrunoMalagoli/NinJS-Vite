@@ -208,7 +208,6 @@ const Form = () => {
 				</InputGroup>
 				{showErrorMessage({ prop: 'repeatPassword', errors, touched, focus })}
 			</Stack>
-
 			<Button
 				mt={5}
 				w='100%'
@@ -217,6 +216,7 @@ const Form = () => {
 				color='black'
 				isLoading={isButtonLoading}
 			>
+			<Button mt={5} w='100%' type='submit' bg='primaryYellow' color='black'>
 				Registrarme
 			</Button>
 		</form>
