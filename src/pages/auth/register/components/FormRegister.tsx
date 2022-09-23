@@ -216,7 +216,6 @@ const Form = () => {
 				color='black'
 				isLoading={isButtonLoading}
 			>
-			<Button mt={5} w='100%' type='submit' bg='primaryYellow' color='black'>
 				Registrarme
 			</Button>
 		</form>
