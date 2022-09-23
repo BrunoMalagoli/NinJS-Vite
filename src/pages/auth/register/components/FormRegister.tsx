@@ -67,7 +67,6 @@ const Form = () => {
 					});
 				} else {
 					response.json().then(err => {
-						console.log(err);
 						if (err.ErrorMessage.includes('email')) {
 							toast.error('Este email ya existe', { style: toastStyles });
 						}
