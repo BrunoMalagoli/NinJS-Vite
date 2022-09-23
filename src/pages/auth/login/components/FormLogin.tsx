@@ -5,7 +5,7 @@ import {
 	InputGroup,
 	InputLeftElement,
 	InputRightElement,
-	Link,
+	Text,
 	Stack
 } from '@chakra-ui/react';
 import { useFormik } from 'formik';
@@ -29,6 +29,8 @@ import { userLoginSchema } from '../validation/schema';
 
 import handleErrorSweetAlert from '../utils/handleErrorSweetAlert';
 import handleSuccessLogin from '../utils/handleSuccessLogin';
+import { toast } from 'react-toastify';
+import toastStyles from '../../../../styles/toast';
 
 const Form = () => {
 	const navigate = useNavigate();
@@ -41,7 +43,6 @@ const Form = () => {
 	});
 
 	function onSubmit() {
-		console.log('hola');
 		fetch(`${import.meta.env.VITE_URL_CONECT_BACKEND}api/user/login`, {
 			method: 'POST',
 			headers: {
@@ -55,7 +56,6 @@ const Form = () => {
 			.then(response => {
 				if (response.ok) {
 					response.json().then(data => {
-						console.log(data);
 						localStorage.setItem('token', data?.token);
 						localStorage.setItem('username', data?.username);
 						localStorage.setItem('variant', data?.variant);
@@ -129,7 +129,7 @@ const Form = () => {
 						<Input
 							name='password'
 							type={showPassword ? 'text' : 'password'}
-							placeholder='Password'
+							placeholder='Contraseña'
 							value={values.password}
 							color='white'
 							focusBorderColor='primaryYellow'
@@ -156,13 +156,23 @@ const Form = () => {
 					{showErrorMessage({ prop: 'password', errors, touched, focus })}
 					{/* </FormControl> */}
 
-					<Link fontSize='14' textAlign={'right'} color='secondaryColor'>
-						Forgot Password?
-					</Link>
+					<Text
+						fontSize='14'
+						textAlign={'right'}
+						color='secondaryColor'
+						_hover={{ cursor: 'pointer', textDecoration: 'underline' }}
+						onClick={() =>
+							toast.warn('Parece que nuestro equipo esta trabajando en esto', {
+								style: toastStyles
+							})
+						}
+					>
+						Olvidaste la contraseña?
+					</Text>
 				</Stack>
 
 				<Button mt={5} w='100%' type='submit' bg='primaryYellow' color='black'>
-					Login
+					Iniciar
 				</Button>
 			</form>
 		</>

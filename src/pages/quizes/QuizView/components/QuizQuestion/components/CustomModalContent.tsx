@@ -40,7 +40,10 @@ export const CustomModalContent: FC<ModalContentProps> = ({
 			</ModalHeader>
 			<ModalBody>
 				<Text
-					style={{ paddingBottom: '5%', color: correct ? 'lightgreen' : 'red' }}
+					style={{
+						paddingBottom: '5%',
+						color: correct ? '#02B65C' : '#C0354A'
+					}}
 					fontSize={'md'}
 				>
 					{explanation}

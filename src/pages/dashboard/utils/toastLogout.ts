@@ -3,7 +3,7 @@ import toastStyles from '../../../styles/toast';
 
 export default function toastLogout() {
 	toast.success(
-		`Deslogueado satisfactoriamente ${localStorage.getItem('username')}`,
+		`Hasta pronto! ${localStorage.getItem('username') || 'unknown'}`,
 		{
 			position: 'top-center',
 			autoClose: 3000,

@@ -56,7 +56,6 @@ const Form = () => {
 			.then(response => {
 				if (response.ok) {
 					response.json().then(data => {
-						console.log(data);
 						localStorage.setItem('token', data?.token);
 						localStorage.setItem('username', data?.username);
 						localStorage.setItem('variant', data?.variant);
@@ -99,7 +98,7 @@ const Form = () => {
 					<Input
 						type='text'
 						name='username'
-						placeholder='User Name'
+						placeholder='Nombre de Usuario'
 						value={values.username}
 						focusBorderColor='primaryYellow'
 						borderColor={borderError({ prop: 'username', errors, touched })}
@@ -157,7 +156,7 @@ const Form = () => {
 						type={showPassword.password ? 'text' : 'password'}
 						focusBorderColor='primaryYellow'
 						borderColor={borderError({ prop: 'password', errors, touched })}
-						placeholder='Password'
+						placeholder='Contraseña'
 					/>
 					<InputRightElement>
 						<Icon
@@ -192,7 +191,7 @@ const Form = () => {
 							errors,
 							touched
 						})}
-						placeholder='Repeat Password'
+						placeholder='Repetir Contraseña'
 					/>
 					<InputRightElement>
 						<Icon
@@ -206,7 +205,7 @@ const Form = () => {
 			</Stack>
 
 			<Button mt={5} w='100%' type='submit' bg='primaryYellow' color='black'>
-				Register
+				Registrarme
 			</Button>
 		</form>
 	);

@@ -1,14 +1,14 @@
 import { Box } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
-import { Route, Routes, useLocation } from 'react-router-dom';
-import MobileNavBar from '../components/MobileNavBar';
-import Shuriken from '../components/shuriken/Shuriken';
-import theme from '../styles/theme';
-import DashboardRoutes from './components/DashboardRoutes';
 import { MainRoutes } from './components/MainRoutes';
+import { pageTransition } from './utils/transitions';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import theme from '../styles/theme';
+import Shuriken from '../components/shuriken/Shuriken';
 import QuizRoutes from './components/QuizRoutes';
 import UserLogged from './components/UserLogged';
-import { pageTransition } from './utils/transitions';
+import MobileNavBar from '../components/MobileNavBar';
+import DashboardRoutes from './components/DashboardRoutes';
 
 export const AppRoutes = () => {
 	const location = useLocation();
@@ -36,7 +36,10 @@ export const AppRoutes = () => {
 				path='/home/*'
 				element={
 					<Box
-						style={{ backgroundColor: theme.colors.primaryBG, height: '100%' }}
+						style={{
+							backgroundColor: theme.colors.primaryBG,
+							height: 'inherit'
+						}}
 					>
 						<motion.div
 							initial='out'
@@ -63,7 +66,10 @@ export const AppRoutes = () => {
 				path='/quiz/*'
 				element={
 					<Box
-						style={{ backgroundColor: theme.colors.primaryBG, height: '100%' }}
+						style={{
+							backgroundColor: theme.colors.primaryBG,
+							height: 'inherit'
+						}}
 					>
 						<motion.div
 							initial='out'

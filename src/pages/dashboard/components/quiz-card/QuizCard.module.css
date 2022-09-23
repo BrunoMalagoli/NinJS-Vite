@@ -1,26 +1,26 @@
 /* this might change */
 /* #01793D */
 .glass-card-Genin {
-	background: #25292D;
-	color: #E9C46A;
+	background: #25292d;
+	color: #e9c46a;
 	border-radius: 16px;
-	border: 1px solid #E9C46A;
+	border: 1px solid #e9c46a;
 	/* box-shadow: 0px 0px 5px 0px #e9c56ac0; */
 }
 
 .glass-card-Chunin {
-	background: #25292D;
-	color: #2BB6A8;
+	background: #25292d;
+	color: #2bb6a8;
 	border-radius: 16px;
 	/* box-shadow: 0px 0px 5px 0px #2BB6A8c0; */
-	border: 1px solid #2BB6A8;
+	border: 1px solid #2bb6a8;
 }
 
 .glass-card-Jonin {
-	background: #25292D;
-	color: #CF4F62;
+	background: #25292d;
+	color: #cf4f62;
 	border-radius: 16px;
-	border: 1px solid #CF4F62;
+	border: 1px solid #cf4f62;
 	/* box-shadow: 0px 0px 5px 0px #CF4F62c0; */
 }
 .card {
@@ -36,7 +36,6 @@
 	overflow: hidden;
 	z-index: 2;
 }
-
-.card:hover{
+.card:hover {
 	cursor: pointer;
 }

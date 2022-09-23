@@ -1,11 +1,10 @@
-import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
-import { useMemo, useState, useCallback, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
-import useFetch from '../../hooks/useFetch';
-import handleErrorSweetAlert from '../../pages/auth/login/utils/handleErrorSweetAlert';
+import { toast } from 'react-toastify';
 import { QuizCardProps } from '../../pages/dashboard/types';
-import toastLogout from '../../pages/dashboard/utils/toastLogout';
+import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useMemo, useState, useCallback, useEffect } from 'react';
+import useFetch from '../../hooks/useFetch';
+import toastStyles from '../../styles/toast';
 import ProfileContext from './ProfileContext';
 
 const ProfileContextProvider = ({
@@ -15,19 +14,21 @@ const ProfileContextProvider = ({
 }) => {
 	const navigate = useNavigate();
 	const location = useLocation();
-
-	const state = useFetch<QuizCardProps[]>(
-		localStorage.getItem('token') && localStorage.getItem('token')?.length
+	const url =
+		localStorage.getItem('token') &&
+		localStorage.getItem('token')?.length &&
+		!location.pathname.includes('/quiz')
 			? `${import.meta.env.VITE_URL_CONECT_BACKEND}api/user/progress`
-			: undefined,
-		{
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json',
-				'x-token': localStorage.getItem('token') || ''
-			}
+			: undefined;
+
+	const state = useFetch<QuizCardProps[]>(url, {
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json',
+			'x-token': localStorage.getItem('token') || ''
 		}
-	);
+	});
+
 	const jonin = useMemo(() => {
 		if (state.data) {
 			return {
@@ -47,6 +48,7 @@ const ProfileContextProvider = ({
 		}
 		return { passed: 0, failed: 0 };
 	}, [state.data]);
+
 	const genin = useMemo(() => {
 		if (state.data) {
 			return {
@@ -66,6 +68,7 @@ const ProfileContextProvider = ({
 		}
 		return { passed: 0, failed: 0 };
 	}, [state.data]);
+
 	const chunin = useMemo(() => {
 		if (state.data) {
 			return {
@@ -114,19 +117,15 @@ const ProfileContextProvider = ({
 						response.json().then(data => {
 							localStorage.setItem('username', data?.result.username);
 							localStorage.setItem('variant', data?.result.variant);
-							Swal.fire({
-								icon: 'success',
-								title: 'OK',
-								text: 'Guardado satisfactoriamente',
-								background: '#3b3b3b',
-								color: '#fff'
+							toast.success('Guardado satisfactoriamente', {
+								style: toastStyles
 							});
 						});
 					} else {
 						response
 							.json()
 							.then(a => {
-								handleErrorSweetAlert(a.ErrorMessage);
+								toast.error(a.ErrorMessage, { style: toastStyles });
 								throw new Error(a.ErrorMessage);
 							})
 							.catch(err => {
@@ -142,15 +141,15 @@ const ProfileContextProvider = ({
 	);
 	useEffect(() => {
 		if (
-			(state.error?.message.includes('Unauthorized') ||
-				!localStorage.getItem('token') ||
-				!localStorage.getItem('token')?.length) &&
+			(!localStorage.getItem('token') ||
+				!localStorage.getItem('token')?.length ||
+				state.error?.message.includes('Unauthorized')) &&
 			location.pathname.includes('/home')
 		) {
 			localStorage.clear();
-			navigate('/login');
+			navigate('/login', { replace: true });
 		}
-	}, [state]);
+	}, [state, location.pathname]);
 
 	return (
 		<ProfileContext.Provider

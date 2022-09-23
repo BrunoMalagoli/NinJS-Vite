@@ -1,44 +1,26 @@
+import { useNavigate } from 'react-router-dom';
+import { QuizCardProps } from '../../pages/dashboard/types';
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import useDebounce from '../../hooks/useDebounce';
 import useFetch from '../../hooks/useFetch';
-import { QuizCardProps } from '../../pages/dashboard/types';
-import toastLogout from '../../pages/dashboard/utils/toastLogout';
+import useDebounce from '../../hooks/useDebounce';
 import DataContext from './DataContext';
+import urlBuilder from '../../helpers/urlBuilder';
+import { CompletedFilter, DifficultFilter, Filters } from '../../types';
 
 const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
-	const initialState = {
-		completed: 'Todas',
-		difficult: 'Todas'
+	const initialState: Filters = {
+		completed: CompletedFilter.all,
+		difficult: DifficultFilter.all
 	};
 	const navigate = useNavigate();
 	const [page, setPage] = useState(1);
 	const [maxPage, setMaxPage] = useState(1);
 	const [urlSearchParams, seturlSearchParams] = useState(initialState);
 
-	const value = useDebounce<number>(page, 250);
+	const value = useDebounce<number>(page, 400);
 
-	let completed;
-	let difficult;
-
-	if (urlSearchParams.completed === 'Todas') {
-		completed = '';
-	} else if (urlSearchParams.completed === 'Aprobadas') {
-		completed = '&completed=true&all=true';
-	} else {
-		completed = '&completed=false&all=true';
-	}
-
-	if (urlSearchParams.difficult === 'Todas') {
-		difficult = '';
-	} else if (urlSearchParams.difficult === 'Jonin') {
-		difficult = '&difficult=Jonin';
-	} else if (urlSearchParams.difficult === 'Genin') {
-		difficult = '&difficult=Genin';
-	} else {
-		difficult = '&difficult=Chunin';
-	}
+	let [completed, difficult] = urlBuilder(urlSearchParams);
 
 	let url =
 		localStorage.getItem('token') && localStorage.getItem('token')?.length
@@ -56,20 +38,19 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 	});
 
 	useEffect(() => {
-		console.log(urlSearchParams);
 		if (
-			(state.error?.message.includes('Unauthorized') ||
-				!localStorage.getItem('token') ||
-				!localStorage.getItem('token')?.length) &&
+			(!localStorage.getItem('token') ||
+				!localStorage.getItem('token')?.length ||
+				state.error?.message.includes('Unauthorized')) &&
 			location.pathname.includes('/home')
 		) {
 			localStorage.clear();
-			navigate('/login');
+			navigate('/login', { replace: true });
 			setPage(1);
 			setMaxPage(1);
 			seturlSearchParams(initialState);
 		}
-	}, [state, url]);
+	}, [state, url, location.pathname]);
 
 	return (
 		<DataContext.Provider

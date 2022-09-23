@@ -10,8 +10,8 @@ const ProfilePage = () => {
 		useContext(ProfileContext);
 	return (
 		<Flex
-			h='100%'
-			p='1em'
+			h='100vh'
+			px='1em'
 			w='100%'
 			flexDirection={'column'}
 			alignItems='center'
