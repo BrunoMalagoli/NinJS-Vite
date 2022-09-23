@@ -1,0 +1,18 @@
+.question-box{
+    background-color: #2B2B2B ;
+    color: #F8F8F2;
+    padding: 3% 3%;
+    border-radius: 10rem;
+    text-align: center;
+    border: 1px solid #F8D859;
+}
+.question-container{
+    padding-top: 6%;
+    padding-bottom: 5%;
+}
+@media screen and (max-width: 500px) {
+    .question-container{
+        padding-top: 10%;
+        padding-bottom: 6%;
+    }
+}

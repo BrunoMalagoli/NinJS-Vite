@@ -1,0 +1,117 @@
+@font-face {
+  font-family: Katakana;
+  src: url('https://s.cdpn.io/26175/MoonBeams-katakana_.TTF');
+}
+
+#matrix {
+  font-family: Katakana;
+  width: 170px;
+  height: 170px;
+  overflow: hidden;
+  background: none;
+  color: #02B65C;
+  /* background-image: -webkit-gradient(linear, 0% 90%, 0% 100%, from(rgba(0, 255, 0, 0)), to(rgba(0, 255, 0, 0.1))); */
+  position: absolute;
+  z-index: -1;
+
+}
+
+@-webkit-keyframes fade {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes fall {
+  from {
+    top: -250px;
+  }
+
+  to {
+    top: 300px;
+  }
+}
+
+@keyframes fall {
+  from {
+    top: -250px;
+  }
+
+  to {
+    top: 300px;
+  }
+}
+
+
+#matrix div {
+  /* writing-mode: tb-rl; - ughh. doesn't work */
+  position: absolute;
+  top: 0;
+  /* arrearance */
+  -webkit-transform-origin: 0%;
+  transform-origin: 0%;
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+
+  /* animation */
+  -webkit-animation-name: fall, fade;
+  animation-name: fall, fade;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  /* use 0 to infinite */
+  -webkit-animation-direction: normal;
+  animation-direction: normal;
+  /* default is normal. use 'alternate' to reverse direction */
+  -webkit-animation-timing-function: ease-out;
+  animation-timing-function: ease-out;
+}
+
+#matrix span {
+  color: #02B65C;
+}
+
+.f1 {
+  font-size: 1.2em;
+}
+
+.f2 {
+  font-size: .9em;
+}
+
+.c1 {
+  color: #02B65C;
+}
+
+.d1 {
+  -webkit-animation-duration: 4s;
+  animation-duration: 4s;
+}
+
+.d2 {
+  -webkit-animation-duration: 6s;
+  animation-duration: 6s;
+}
+
+.d3 {
+  -webkit-animation-duration: 8s;
+  animation-duration: 8s;
+}
+
+.d4 {
+  -webkit-animation-duration: 10s;
+  animation-duration: 10s;
+}

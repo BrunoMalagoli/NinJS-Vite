@@ -1,0 +1,70 @@
+.shuriken-transition {
+  position: fixed;
+  display: inline-block;
+  animation-name: rotating;
+  animation-duration: 0.3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+
+  -webkit-animation-name: rotating;
+  -webkit-animation-duration: 0.3s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+}
+
+.shuriken-rotate {
+  animation-name: rotate;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+
+  -webkit-animation-name: rotate;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+}
+
+@keyframes rotating {
+  from {
+    transform: translate(-100px, 40vh) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-100px, 40vh) rotate(-180deg);
+  }
+
+}
+
+@-webkit-keyframes rotating {
+  from {
+    -webkit-transform: translate(-100px, 40vh) rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: translate(-100px, 40vh) rotate(-180deg);
+  }
+
+}
+
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(-180deg);
+  }
+
+}
+
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(-180deg);
+  }
+
+}
