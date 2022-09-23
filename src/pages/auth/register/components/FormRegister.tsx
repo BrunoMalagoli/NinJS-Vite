@@ -22,6 +22,8 @@ import { useNavigate } from 'react-router-dom';
 import { handleShowHidePasswordTypes } from '../../types';
 import { INITIAL_VALUES_FORM } from '../../utils/constants/initialValuesForm';
 import { userRegisterSchema } from '../validation/schema';
+import { toast } from 'react-toastify';
+import toastStyles from '../../../../styles/toast';
 
 const Form = () => {
 	const navigate = useNavigate();
@@ -64,14 +66,12 @@ const Form = () => {
 						navigate('/home', { replace: true });
 					});
 				} else {
-					response
-						.json()
-						.then(a => {
-							throw new Error(a.ErrorMessage);
-						})
-						.catch(err => {
-							console.error(err);
-						});
+					response.json().then(err => {
+						console.log(err);
+						if (err.ErrorMessage.includes('email')) {
+							toast.error('Este email ya existe', { style: toastStyles });
+						}
+					});
 				}
 			})
 			.catch(err => {
