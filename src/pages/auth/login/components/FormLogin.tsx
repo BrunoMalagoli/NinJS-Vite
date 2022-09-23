@@ -29,7 +29,6 @@ import { userLoginSchema } from '../validation/schema';
 
 import { toast } from 'react-toastify';
 import toastStyles from '../../../../styles/toast';
-import handleErrorSweetAlert from '../utils/handleErrorSweetAlert';
 import handleSuccessLogin from '../utils/handleSuccessLogin';
 
 const Form = () => {
@@ -64,19 +63,19 @@ const Form = () => {
 						navigate('/home/', { replace: true });
 					});
 				} else {
-					response
-						.json()
-						.then(a => {
-							handleErrorSweetAlert(a.ErrorMessage);
-							throw new Error(a.ErrorMessage);
-						})
-						.catch(err => {
-							console.error(err);
-						});
+					response.json().then(error => {
+						if (error.ErrorMessage) {
+							toast.error('Parece que la información es erronea...', {
+								style: toastStyles
+							});
+						}
+					});
 				}
 			})
-			.catch(err => {
-				console.error(err);
+			.catch(_ => {
+				toast.error('Oops... Parece que algo salio mal. Intenta mas tarde', {
+					style: toastStyles
+				});
 			})
 			.finally(() => {
 				setIsButtonLoading(false);
@@ -119,9 +118,6 @@ const Form = () => {
 						/>
 					</InputGroup>
 					{showErrorMessage({ prop: 'email', errors, touched, focus })}
-					{/* </FormControl> */}
-
-					{/* <FormControl id="password"> */}
 					<InputGroup>
 						<InputLeftElement
 							color={focus.password ? 'primaryYellow' : 'secondaryColor'}
