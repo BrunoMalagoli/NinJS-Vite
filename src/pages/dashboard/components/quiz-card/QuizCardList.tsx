@@ -10,7 +10,7 @@ const QuizCardList: FC<QuizCardListProps> = ({
 	return (
 		<Box
 			overflowY={'auto'}
-			h='inherit'
+			h='100%'
 			w={{
 				base: '100%',
 				sm: '80%',
@@ -27,7 +27,7 @@ const QuizCardList: FC<QuizCardListProps> = ({
 				flexWrap={'wrap'}
 				p={'0.8em'}
 				gap={4}
-				h='inherit'
+				h='100%'
 			>
 				{QuizCards.map(card => (
 					<QuizCard

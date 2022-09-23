@@ -13,7 +13,7 @@ const RegisterPage = () => {
 		<Flex
 			justify='center'
 			align='center'
-			h='100vh'
+			h='100%'
 			w='100%'
 			bg='primaryBG'
 			color='white'

@@ -5,7 +5,7 @@ import theme from '../../styles/theme';
 const NotFound = () => {
 	return (
 		<Flex
-			h='100vh'
+			h='100%'
 			w='100%'
 			flexDirection={'column'}
 			justifyContent={'center'}
