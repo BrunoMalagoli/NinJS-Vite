@@ -1,0 +1,29 @@
+.sectionCards{
+    background-color:#25292D;
+    width:20rem; 
+    height: 55%;
+    border-radius: 20px;
+    box-shadow: 0px 8px 10px #212428;
+}
+.sectionContainer{
+    background-color: #EFCB68;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    height: 100%;
+    justify-content: space-evenly;
+}
+@media screen and (max-width: 625px) {
+    .sectionCards{
+        height:45%;
+        width: 17rem;
+    }
+    .sectionContainer{
+        flex-direction: column;
+    }
+}
+@media screen and (min-width:625px) and (max-width:765px) {
+    .sectionCards{
+        width: 40%;
+    }
+}
