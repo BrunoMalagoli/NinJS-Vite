@@ -44,8 +44,8 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 				state.error?.message.includes('Unauthorized')) &&
 			location.pathname.includes('/home')
 		) {
-			localStorage.clear();
 			navigate('/login', { replace: true });
+			localStorage.clear();
 			setPage(1);
 			setMaxPage(1);
 			seturlSearchParams(initialState);

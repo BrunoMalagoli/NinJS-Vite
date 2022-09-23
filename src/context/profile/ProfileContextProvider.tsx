@@ -14,6 +14,12 @@ const ProfileContextProvider = ({
 }) => {
 	const navigate = useNavigate();
 	const location = useLocation();
+	const [variant, setVariant] = useState(
+		localStorage.getItem('variant') || 'marble'
+	);
+	const [username, setUsername] = useState(
+		localStorage.getItem('username') || 'a'
+	);
 	const url =
 		localStorage.getItem('token') &&
 		localStorage.getItem('token')?.length &&
@@ -94,11 +100,6 @@ const ProfileContextProvider = ({
 		return 0;
 	}, [state.data]);
 
-	const [variant, setVariant] = useState(localStorage.getItem('variant') || '');
-	const [username, setUsername] = useState(
-		localStorage.getItem('username') || ''
-	);
-
 	const updateProfile = useCallback(
 		(username: string) => {
 			fetch(`${import.meta.env.VITE_URL_CONECT_BACKEND}api/user/profile`, {
@@ -137,7 +138,7 @@ const ProfileContextProvider = ({
 					console.error(err);
 				});
 		},
-		[variant]
+		[variant, username]
 	);
 	useEffect(() => {
 		if (
@@ -146,8 +147,10 @@ const ProfileContextProvider = ({
 				state.error?.message.includes('Unauthorized')) &&
 			location.pathname.includes('/home')
 		) {
-			localStorage.clear();
 			navigate('/login', { replace: true });
+			localStorage.clear();
+			setUsername('');
+			setVariant('');
 		}
 	}, [state, location.pathname]);
 

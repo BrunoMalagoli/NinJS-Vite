@@ -24,7 +24,7 @@ export const AppRoutes = () => {
 							exit='out'
 							transition={{ delay: 0.1, type: 'keyframes' }}
 							variants={pageTransition}
-							style={{ height: '100%' }}
+							style={{ height: 'inherit' }}
 						>
 							<Shuriken rotate={'transition'} size={100} />
 							<MainRoutes />
@@ -47,9 +47,10 @@ export const AppRoutes = () => {
 							exit='out'
 							transition={{ delay: 0.1, type: 'keyframes' }}
 							variants={pageTransition}
-							style={{ height: '100%' }}
+							style={{ height: 'inherit' }}
 						>
-							<Shuriken rotate={'transition'} size={100} /> <DashboardRoutes />
+							<Shuriken rotate={'transition'} size={100} />
+							<DashboardRoutes />
 						</motion.div>
 						<Box
 							display={{ md: 'none' }}
@@ -77,7 +78,7 @@ export const AppRoutes = () => {
 							exit='out'
 							transition={{ delay: 0.1, type: 'keyframes' }}
 							variants={pageTransition}
-							style={{ height: '100%' }}
+							style={{ height: 'inherit' }}
 						>
 							<Shuriken rotate={'transition'} size={100} />
 							<QuizRoutes />
