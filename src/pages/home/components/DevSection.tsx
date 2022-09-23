@@ -1,5 +1,5 @@
 import { Box, Container, Flex, Avatar, Link, Button } from '@chakra-ui/react';
-import { BsLinkedin, BsGithub } from 'react-icons/Bs';
+import { FaLinkedin, FaGithub } from 'react-icons/fa';
 import styles from './styles/DevSection.module.css';
 const DevSection = () => {
 	return (
@@ -28,7 +28,7 @@ const DevSection = () => {
 							<Button
 								variant={'ghost'}
 								height={'10px'}
-								leftIcon={<BsLinkedin color='#F8D859' />}
+								leftIcon={<FaLinkedin color='#F8D859' />}
 								_hover={{ bgColor: 'none' }}
 							>
 								<Link
@@ -42,7 +42,7 @@ const DevSection = () => {
 							<Button
 								variant={'ghost'}
 								height={'10px'}
-								leftIcon={<BsGithub color='#F8D859' />}
+								leftIcon={<FaGithub color='#F8D859' />}
 								_hover={{ bgColor: 'none' }}
 							>
 								<Link
@@ -77,7 +77,7 @@ const DevSection = () => {
 							<Button
 								variant={'ghost'}
 								height={'10px'}
-								leftIcon={<BsLinkedin color='#F8D859' />}
+								leftIcon={<FaLinkedin color='#F8D859' />}
 								_hover={{ bgColor: 'none' }}
 							>
 								<Link
@@ -91,7 +91,7 @@ const DevSection = () => {
 							<Button
 								variant={'ghost'}
 								height={'10px'}
-								leftIcon={<BsGithub color=' #F8D859' />}
+								leftIcon={<FaGithub color=' #F8D859' />}
 								_hover={{ bgColor: 'none' }}
 							>
 								<Link
@@ -126,7 +126,7 @@ const DevSection = () => {
 							<Button
 								variant={'ghost'}
 								height={'10px'}
-								leftIcon={<BsLinkedin color='#F8D859' />}
+								leftIcon={<FaLinkedin color='#F8D859' />}
 								_hover={{ bgColor: 'none' }}
 							>
 								<Link
@@ -140,7 +140,7 @@ const DevSection = () => {
 							<Button
 								variant={'ghost'}
 								height={'10px'}
-								leftIcon={<BsGithub color='#F8D859' />}
+								leftIcon={<FaGithub color='#F8D859' />}
 								_hover={{ bgColor: 'none' }}
 							>
 								<Link

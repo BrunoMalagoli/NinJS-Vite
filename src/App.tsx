@@ -1,5 +1,5 @@
 import { AppRoutes } from './routes/AppRouter';
-import { BrowserRouter } from 'react-router-dom';
+import {  HashRouter } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
 import { ToastContainer } from 'react-toastify';
 import theme from './styles/theme';
@@ -12,7 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 function App() {
 	return (
 		<ChakraProvider theme={theme}>
-			<BrowserRouter>
+			<HashRouter>
 				<DataContextProvider>
 					<ProfileContextProvider>
 						<AnswersContextProvider>
@@ -25,7 +25,7 @@ function App() {
 						</AnswersContextProvider>
 					</ProfileContextProvider>
 				</DataContextProvider>
-			</BrowserRouter>
+			</HashRouter>
 		</ChakraProvider>
 	);
 }
