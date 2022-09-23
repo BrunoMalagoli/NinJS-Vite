@@ -1,4 +1,5 @@
 import { Box } from '@chakra-ui/react';
+import DevSection from './components/DevSection';
 import { Hero } from './components/Hero';
 import IntroSection from './components/IntroSection';
 import MainSection from './components/MainSection';
@@ -9,6 +10,7 @@ export const LandingPage = () => {
 			<Hero />
 			<IntroSection />
 			<MainSection />
+			<DevSection />
 		</Box>
 	);
 };
