@@ -8,7 +8,7 @@ const IntroSection = () => {
 			padding={'0'}
 			height={'45vh'}
 			maxWidth={'100%'}
-			paddingBottom={'5%'}
+			paddingBottom={'3%'}
 		>
 			<Flex
 				height={'100%'}

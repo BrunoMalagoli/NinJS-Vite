@@ -5,77 +5,153 @@ const DevSection = () => {
 	return (
 		<Container bgColor={'primaryBG'} className={styles.container}>
 			<Flex className={styles.cardsContainer}>
-				<Box bgColor={'#EFCB68'} className={styles.devCard}>
+				<Box bgColor={'transparent'} className={styles.devCard}>
 					<Flex
-						paddingTop={'4%'}
-						justifyContent={'center'}
+						paddingTop={'6%'}
+						justifyContent={'space-between'}
 						alignItems={'center'}
 						flexDirection={'column'}
-						gap={{ base: 4, sm: 6, md: 12, lg: 14 }}
+						height={'100%'}
 					>
 						<Box>
 							<Avatar
-								size={'xl'}
+								size={'2xl'}
 								src='/BrunoProfile.jpg'
 								name='Bruno Malagoli Avatar'
 							/>
 						</Box>
-						<Button variant={'ghost'} height={'10px'} leftIcon={<BsLinkedin />}>
-							<Link href='https://www.linkedin.com/in/bruno-malagoli/'>
-								Bruno's LinkedIn
-							</Link>
-						</Button>
-						<Button variant={'ghost'} height={'10px'} leftIcon={<BsGithub />}>
-							<Link href='https://github.com/BrunoMalagoli'>
-								Bruno's GitHub
-							</Link>
-						</Button>
+						<Flex
+							height={'100%'}
+							flexDirection={'column'}
+							justifyContent={'space-evenly'}
+						>
+							<Button
+								variant={'ghost'}
+								height={'10px'}
+								leftIcon={<BsLinkedin color='#F8D859' />}
+								_hover={{ bgColor: 'none' }}
+							>
+								<Link
+									color={'primaryYellow'}
+									href='https://www.linkedin.com/in/bruno-malagoli/'
+									fontSize={'xl'}
+								>
+									Bruno's LinkedIn
+								</Link>
+							</Button>
+							<Button
+								variant={'ghost'}
+								height={'10px'}
+								leftIcon={<BsGithub color='#F8D859' />}
+								_hover={{ bgColor: 'none' }}
+							>
+								<Link
+									color={'primaryYellow'}
+									href='https://github.com/BrunoMalagoli'
+									fontSize={'xl'}
+								>
+									Bruno's GitHub
+								</Link>
+							</Button>
+						</Flex>
 					</Flex>
 				</Box>
-				<Box bgColor={'#EFCB68'} className={styles.devCard}>
+				<Box bgColor={'transparent'} className={styles.devCard}>
 					<Flex
-						paddingTop={'4%'}
-						justifyContent={'center'}
+						paddingTop={'6%'}
+						justifyContent={'space-between'}
 						alignItems={'center'}
 						flexDirection={'column'}
-						gap={{ base: 4, sm: 6, md: 12, lg: 14 }}
+						height={'100%'}
 					>
 						<Avatar
-							size={'xl'}
+							size={'2xl'}
 							src='/GermanProfile.png'
 							name='German Hornus Avatar'
 						/>
-						<Button variant={'ghost'} height={'10px'} leftIcon={<BsLinkedin />}>
-							<Link href='https://www.linkedin.com/in/german-hornus-438003226/'>
-								German's LinkedIn
-							</Link>
-						</Button>
-						<Button variant={'ghost'} height={'10px'} leftIcon={<BsGithub />}>
-							<Link href='https://github.com/charly8888'>German's GitHub</Link>
-						</Button>
+						<Flex
+							height={'100%'}
+							flexDirection={'column'}
+							justifyContent={'space-evenly'}
+						>
+							<Button
+								variant={'ghost'}
+								height={'10px'}
+								leftIcon={<BsLinkedin color='#F8D859' />}
+								_hover={{ bgColor: 'none' }}
+							>
+								<Link
+									color={'primaryYellow'}
+									href='https://www.linkedin.com/in/german-hornus-438003226/'
+									fontSize={'xl'}
+								>
+									German's LinkedIn
+								</Link>
+							</Button>
+							<Button
+								variant={'ghost'}
+								height={'10px'}
+								leftIcon={<BsGithub color=' #F8D859' />}
+								_hover={{ bgColor: 'none' }}
+							>
+								<Link
+									color={'primaryYellow'}
+									href='https://github.com/charly8888'
+									fontSize={'xl'}
+								>
+									German's GitHub
+								</Link>
+							</Button>
+						</Flex>
 					</Flex>
 				</Box>
-				<Box bgColor={'#EFCB68'} className={styles.devCard}>
+				<Box bgColor={'transparent'} className={styles.devCard}>
 					<Flex
-						paddingTop={'4%'}
-						justifyContent={'center'}
+						paddingTop={'6%'}
+						justifyContent={'space-between'}
 						alignItems={'center'}
 						flexDirection={'column'}
-						gap={{ base: 4, sm: 6, md: 10, lg: 14 }}
+						height={'100%'}
 					>
 						<Avatar
-							size={'xl'}
+							size={'2xl'}
 							src='/JalProfile.png'
 							name='Jalinson Diaz Avatar'
 						/>
-						<Button variant={'ghost'} height={'10px'} leftIcon={<BsLinkedin />}>
-							<Link href='https://www.linkedin.com/in/jalinson-diaz/'>
-								Jal's LinkedIn
-							</Link>
-						</Button>
-						<Button variant={'ghost'} height={'10px'} leftIcon={<BsGithub />}>
-							<Link href='https://github.com/zJaaal'>Jal's GitHub</Link>
-						</Button>
+						<Flex
+							height={'100%'}
+							flexDirection={'column'}
+							justifyContent={'space-evenly'}
+						>
+							<Button
+								variant={'ghost'}
+								height={'10px'}
+								leftIcon={<BsLinkedin color='#F8D859' />}
+								_hover={{ bgColor: 'none' }}
+							>
+								<Link
+									color={'primaryYellow'}
+									href='https://www.linkedin.com/in/jalinson-diaz/'
+									fontSize={'xl'}
+								>
+									Jalinson's LinkedIn
+								</Link>
+							</Button>
+							<Button
+								variant={'ghost'}
+								height={'10px'}
+								leftIcon={<BsGithub color='#F8D859' />}
+								_hover={{ bgColor: 'none' }}
+							>
+								<Link
+									color={'primaryYellow'}
+									href='https://github.com/zJaaal'
+									fontSize={'xl'}
+								>
+									Jalinson's GitHub
+								</Link>
+							</Button>
+						</Flex>
 					</Flex>
 				</Box>
 			</Flex>
