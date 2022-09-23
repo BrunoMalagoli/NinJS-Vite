@@ -29,6 +29,7 @@ const Form = () => {
 		password: false,
 		repeatPassword: false
 	});
+	const [isButtonLoading, setIsButtonLoading] = useState(false);
 	const { handleFocusUser, handleBlurUser, focus } = useHandleBlurAndFocus({
 		username: false,
 		email: false,
@@ -42,6 +43,7 @@ const Form = () => {
 		});
 	}
 	function onSubmit() {
+		setIsButtonLoading(true);
 		fetch(`${import.meta.env.VITE_URL_CONECT_BACKEND}api/user`, {
 			method: 'POST',
 			headers: {
@@ -74,6 +76,9 @@ const Form = () => {
 			})
 			.catch(err => {
 				console.error(err);
+			})
+			.finally(() => {
+				setIsButtonLoading(false);
 			});
 	}
 
@@ -204,7 +209,14 @@ const Form = () => {
 				{showErrorMessage({ prop: 'repeatPassword', errors, touched, focus })}
 			</Stack>
 
-			<Button mt={5} w='100%' type='submit' bg='primaryYellow' color='black'>
+			<Button
+				mt={5}
+				w='100%'
+				type='submit'
+				bg='primaryYellow'
+				color='black'
+				isLoading={isButtonLoading}
+			>
 				Registrarme
 			</Button>
 		</form>
