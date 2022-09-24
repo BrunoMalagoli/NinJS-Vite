@@ -9,7 +9,7 @@ const LoginPage = () => {
 		navigate('/register', { replace: true });
 	}
 	return (
-		<Flex bg='primaryBG' h='100vh' justify='center' align='center' w='100%'>
+		<Flex bg='primaryBG' h='100%' justify='center' align='center' w='100%'>
 			<Stack width='100%' p={8} maxWidth={'md'}>
 				<Text fontSize='2xl' fontWeight={700} mb='6' color='white'>
 					Iniciar Sesión

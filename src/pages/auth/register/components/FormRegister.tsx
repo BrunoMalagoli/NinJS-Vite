@@ -22,6 +22,8 @@ import { useNavigate } from 'react-router-dom';
 import { handleShowHidePasswordTypes } from '../../types';
 import { INITIAL_VALUES_FORM } from '../../utils/constants/initialValuesForm';
 import { userRegisterSchema } from '../validation/schema';
+import { toast } from 'react-toastify';
+import toastStyles from '../../../../styles/toast';
 
 const Form = () => {
 	const navigate = useNavigate();
@@ -29,6 +31,7 @@ const Form = () => {
 		password: false,
 		repeatPassword: false
 	});
+	const [isButtonLoading, setIsButtonLoading] = useState(false);
 	const { handleFocusUser, handleBlurUser, focus } = useHandleBlurAndFocus({
 		username: false,
 		email: false,
@@ -42,6 +45,7 @@ const Form = () => {
 		});
 	}
 	function onSubmit() {
+		setIsButtonLoading(true);
 		fetch(`${import.meta.env.VITE_URL_CONECT_BACKEND}api/user`, {
 			method: 'POST',
 			headers: {
@@ -62,18 +66,20 @@ const Form = () => {
 						navigate('/home', { replace: true });
 					});
 				} else {
-					response
-						.json()
-						.then(a => {
-							throw new Error(a.ErrorMessage);
-						})
-						.catch(err => {
-							console.error(err);
-						});
+					response.json().then(err => {
+						if (err.ErrorMessage.includes('email')) {
+							toast.error('Este email ya existe', { style: toastStyles });
+						}
+					});
 				}
 			})
-			.catch(err => {
-				console.error(err);
+			.catch(_ => {
+				toast.error('Oops... Algo salio mal, intenta mas tarde', {
+					style: toastStyles
+				});
+			})
+			.finally(() => {
+				setIsButtonLoading(false);
 			});
 	}
 
@@ -203,8 +209,14 @@ const Form = () => {
 				</InputGroup>
 				{showErrorMessage({ prop: 'repeatPassword', errors, touched, focus })}
 			</Stack>
-
-			<Button mt={5} w='100%' type='submit' bg='primaryYellow' color='black'>
+			<Button
+				mt={5}
+				w='100%'
+				type='submit'
+				bg='primaryYellow'
+				color='black'
+				isLoading={isButtonLoading}
+			>
 				Registrarme
 			</Button>
 		</form>
