@@ -152,6 +152,10 @@ const ProfileContextProvider = ({
 			setUsername('');
 			setVariant('');
 		}
+		if (!location.pathname.includes('/home')) {
+			setUsername('');
+			setVariant('');
+		}
 	}, [state, location.pathname]);
 
 	return (
