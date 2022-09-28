@@ -18,7 +18,7 @@ const ProfileContextProvider = ({
 		localStorage.getItem('variant') || 'marble'
 	);
 	const [username, setUsername] = useState(
-		localStorage.getItem('username') || 'a'
+		localStorage.getItem('username') || ''
 	);
 	const url =
 		localStorage.getItem('token') &&

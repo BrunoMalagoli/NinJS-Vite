@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { QuizCardProps } from '../../pages/dashboard/types';
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 import { useEffect, useState } from 'react';
@@ -14,6 +14,7 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 		difficult: DifficultFilter.all
 	};
 	const navigate = useNavigate();
+	const location = useLocation();
 	const [page, setPage] = useState(1);
 	const [maxPage, setMaxPage] = useState(1);
 	const [urlSearchParams, seturlSearchParams] = useState(initialState);
@@ -46,6 +47,11 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 		) {
 			navigate('/login', { replace: true });
 			localStorage.clear();
+			setPage(1);
+			setMaxPage(1);
+			seturlSearchParams(initialState);
+		}
+		if (!location.pathname.includes('/home')) {
 			setPage(1);
 			setMaxPage(1);
 			seturlSearchParams(initialState);
