@@ -42,7 +42,7 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 		if (
 			(!localStorage.getItem('token') ||
 				!localStorage.getItem('token')?.length ||
-				state.error &&
+				state.error) &&
 			location.pathname.includes('/home')
 		) {
 			navigate('/login', { replace: true });
