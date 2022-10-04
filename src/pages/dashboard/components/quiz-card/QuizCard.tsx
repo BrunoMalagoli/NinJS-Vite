@@ -4,7 +4,7 @@ import { HiCheck, HiX } from 'react-icons/hi';
 
 import { useNavigate } from 'react-router-dom';
 import theme from '../../../../styles/theme';
-import { BackgroundSwitch, QuizCardProps } from '../../types';
+import { QuizCardProps } from '../../types';
 import styles from './QuizCard.module.css';
 
 const QuizCard: FC<QuizCardProps> = ({
