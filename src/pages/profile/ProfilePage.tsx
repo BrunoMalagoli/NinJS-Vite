@@ -17,15 +17,7 @@ const ProfilePage = () => {
 			alignItems='center'
 			overflowY={'auto'}
 		>
-			<Flex
-				direction={'row'}
-				p='16px'
-				borderRadius={'0.5em'}
-				color={'white'}
-				w='95%'
-				fontSize={{ base: '80px', md: '100px' }}
-			>
-				<Avatar name={username} variant={variant} size={'1em'} />
+			<Flex flexDirection={'column'}>
 				<Flex
 					direction={'row'}
 					py='16px'
