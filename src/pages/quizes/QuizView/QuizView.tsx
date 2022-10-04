@@ -23,6 +23,7 @@ const QuizView = () => {
 			import.meta.env.VITE_URL_CONECT_BACKEND
 		}api/quiz/find?questionID=${questionID}`,
 		{
+			mode: 'cors',
 			headers: {
 				'Content-Type': 'application/json',
 				'x-token': token as string

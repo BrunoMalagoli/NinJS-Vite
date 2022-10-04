@@ -32,6 +32,7 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 
 	const state = useFetch<QuizCardProps[]>(url, {
 		method: 'GET',
+		mode:"cors",
 		headers: {
 			'Content-Type': 'application/json',
 			'x-token': localStorage.getItem('token') || ''
@@ -39,6 +40,7 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 	});
 
 	useEffect(() => {
+		console.log(location.pathname);
 		if (
 			(!localStorage.getItem('token') ||
 				!localStorage.getItem('token')?.length ||
@@ -56,7 +58,7 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 			setMaxPage(1);
 			seturlSearchParams(initialState);
 		}
-	}, [state, url, location.pathname]);
+	}, [state.error, url, location.pathname]);
 
 	return (
 		<DataContext.Provider

@@ -48,6 +48,7 @@ const Form = () => {
 		setIsButtonLoading(true);
 		fetch(`${import.meta.env.VITE_URL_CONECT_BACKEND}api/user`, {
 			method: 'POST',
+			mode: 'cors',
 			headers: {
 				'Content-Type': 'application/json'
 			},

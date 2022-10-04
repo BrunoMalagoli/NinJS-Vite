@@ -29,6 +29,7 @@ const ProfileContextProvider = ({
 
 	const state = useFetch<QuizCardProps[]>(url, {
 		method: 'GET',
+		mode: 'cors',
 		headers: {
 			'Content-Type': 'application/json',
 			'x-token': localStorage.getItem('token') || ''
@@ -104,6 +105,7 @@ const ProfileContextProvider = ({
 		(username: string) => {
 			fetch(`${import.meta.env.VITE_URL_CONECT_BACKEND}api/user/profile`, {
 				method: 'PUT',
+				mode: 'cors',
 				headers: {
 					'Content-Type': 'application/json',
 					'x-token': localStorage.getItem('token') || ''
