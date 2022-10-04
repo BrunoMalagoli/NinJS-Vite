@@ -17,8 +17,6 @@
 - Jalinson Díaz [Github](https://github.com/zJaaal) [Linkedin](https://www.linkedin.com/in/jalinson-diaz/)
 <img src="https://avatars.githubusercontent.com/u/63567962?v=4" width="100px" alt="German Hornus profile photo"/>
 - Bruno Malagoni  [Github](https://github.com/BrunoMalagoli) [Linkedin](https://www.linkedin.com/in/jalinson-diaz/)
-<img src="  
-https://avatars.githubusercontent.com/u/87399643?v=4" width="100px" alt="German Hornus profile photo"/>
+<img src="https://avatars.githubusercontent.com/u/87399643?v=4" width="100px" alt="German Hornus profile photo"/>
 - German Hornus  [Github](https://github.com/charly8888) [Linkedin](https://www.linkedin.com/in/german-hornus/)
- <img src="  
-https://avatars.githubusercontent.com/u/91563520?v=4" width="100px" alt="German Hornus profile photo"/>
+ <img src="https://avatars.githubusercontent.com/u/91563520?v=4" width="100px" alt="German Hornus profile photo"/>
