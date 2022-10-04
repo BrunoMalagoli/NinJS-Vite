@@ -6,7 +6,16 @@ An educational website with **Ninja** theme where you can test your knowledge in
 It also provides educational content between questions, so you can also learn while answering the questions.
 This project was made as part of [ **Alkemy**](https://www.alkemy.org/) React JS Acceleration.
 
-[Play Now!](https://nin-js.netlify.app)
+[Want to test your knowledge in JS?](https://nin-js.netlify.app)
+
+## Technologies
+
+- React.JS
+- TypeScript
+- Chakra UI
+- Yup
+- Formik
+- React Router
 
 ## Authors
 
