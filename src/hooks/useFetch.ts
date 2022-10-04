@@ -49,9 +49,7 @@ function useFetch<T>(url?: string, options?: RequestInit) {
 				if (cancelRequest.current) return;
 
 				dispatch({ type: 'fetched', payload: data.result });
-				console.log(data);
 			} catch (error) {
-				console.log(error);
 				if (cancelRequest.current) return;
 
 				dispatch({ type: 'error', payload: error as Error });
