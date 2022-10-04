@@ -1,29 +1,17 @@
-<img src="./public/readme.svg" width="100%" height="100%" />
+# NinJS
 
-<div style="display:flex;justify-content:space-around">
+## The project
 
-<div style="display:flex;flex-direction:column;align-items:center">
+An educational website with **Ninja** theme where you can test your knowledge in **JavaScript** with multiple code quizes of different difficults as: Genin, Chunin & Jonin.
+It also provides educational content between questions, so you can also learn while answering the questions.
+This project was made as part of [ **Alkemy**](https://www.alkemy.org/) React JS Acceleration.
 
-<img style="border-radius:50%" src="https://avatars.githubusercontent.com/u/63567962?v=4" width="150px" alt="Jalinson Diaz profile photo"/>
+[Play Now!](https://nin-js.netlify.app)
 
-[Jalinson Díaz](https://www.linkedin.com/in/jalinson-diaz/)
+## Authors
 
-</div>
+- [Jalinson Díaz](https://www.linkedin.com/in/jalinson-diaz/)
 
-<div style="display:flex;flex-direction:column;align-items:center">
+- [Bruno Malagoli](https://www.linkedin.com/in/bruno-malagoli/)
 
-<img style="border-radius:50%" src="https://avatars.githubusercontent.com/u/87399643?v=4" width="150px" alt="Bruno Malagoli profile photo"/>
-
-[Bruno Malagoli](https://www.linkedin.com/in/bruno-malagoli/)
-
-</div>
-
-<div style="display:flex;flex-direction:column;align-items:center">
-
-<img style="border-radius:50%" src="https://avatars.githubusercontent.com/u/91563520?v=4" width="150px" alt="German Hornus profile photo"/>
-
-[German Hornus](https://www.linkedin.com/in/german-hornus/)
-
-</div>
-
-</div>
+- [German Hornus ](https://www.linkedin.com/in/german-hornus/)
