@@ -45,7 +45,6 @@ const QuizQuestion = ({ quizData }: QuizData) => {
 		} else {
 			setLoading(true);
 			fetch(`${import.meta.env.VITE_URL_CONECT_BACKEND}api/quiz/review`, {
-				mode: 'cors',
 				headers: {
 					'Content-type': 'application/json',
 					'x-token': token as string

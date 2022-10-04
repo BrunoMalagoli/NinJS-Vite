@@ -32,7 +32,6 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 
 	const state = useFetch<QuizCardProps[]>(url, {
 		method: 'GET',
-		mode:"cors",
 		headers: {
 			'Content-Type': 'application/json',
 			'x-token': localStorage.getItem('token') || ''

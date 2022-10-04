@@ -8,7 +8,6 @@ const UserLogged: FC<PropsMiddlewaresAutentication> = ({ children }) => {
 	useEffect(() => {
 		if (localStorage.getItem('token')) {
 			fetch(`${import.meta.env.VITE_URL_CONECT_BACKEND}api/user/validate`, {
-				mode: 'cors',
 				method: 'GET',
 				headers: {
 					'x-token': localStorage.getItem('token') || ''
