@@ -1,28 +1,30 @@
 /* this might change */
 /* #01793D */
+/* background: #25292d; */
 .glass-card-Genin {
-	background: #25292d;
-	color: #e9c46a;
+	background: #c0a257;
+	color: #25292d;
 	border-radius: 16px;
-	border: 1px solid #e9c46a;
+	/* border: 1px solid #e9c46a; */
 	/* box-shadow: 0px 0px 5px 0px #e9c56ac0; */
 }
 
 .glass-card-Chunin {
-	background: #25292d;
-	color: #2bb6a8;
+	background: #218f84;
+	color: #25292d;
 	border-radius: 16px;
 	/* box-shadow: 0px 0px 5px 0px #2BB6A8c0; */
-	border: 1px solid #2bb6a8;
+	/* border: 1px solid #2bb6a8; */
 }
 
 .glass-card-Jonin {
-	background: #25292d;
-	color: #cf4f62;
+	background: #ac4252;
+	color: #25292d;
 	border-radius: 16px;
-	border: 1px solid #cf4f62;
+	/* border: 1px solid #cf4f62; */
 	/* box-shadow: 0px 0px 5px 0px #CF4F62c0; */
 }
+
 .card {
 	position: relative;
 	display: flex;
@@ -35,7 +37,33 @@
 	padding: 0.5em;
 	overflow: hidden;
 	z-index: 2;
+	transition: all ease-in 0.1s;
 }
+
 .card:hover {
 	cursor: pointer;
+}
+
+.card:hover.glass-card-Genin {
+	color: #c0a257;
+}
+
+.card:hover.glass-card-Chunin {
+	color: #218f84;
+}
+
+.card:hover.glass-card-Jonin {
+	color: #ac4252;
+}
+
+.card:hover.glass-card-Genin svg {
+	color: #c0a257 !important;
+}
+
+.card:hover.glass-card-Chunin svg {
+	color: #218f84 !important;
+}
+
+.card:hover.glass-card-Jonin svg {
+	color: #ac4252 !important;
 }

@@ -1,9 +1,17 @@
-import { Box, Container, Flex, Avatar, Link, Button } from '@chakra-ui/react';
+import {
+	Box,
+	Container,
+	Flex,
+	Avatar,
+	Link,
+	Button,
+	Text
+} from '@chakra-ui/react';
 import { DevCard } from './DevCard';
 import styles from './styles/DevSection.module.css';
 const DevSection = () => {
 	return (
-		<Container bgColor={'primaryBG'} className={styles.container}>
+		<Box bgColor={'primaryBG'} className={styles.container}>
 			<Flex className={styles.cardsContainer}>
 				<DevCard
 					name={'Bruno Malagoli'}
@@ -24,7 +32,7 @@ const DevSection = () => {
 					profilePic={'https://avatars.githubusercontent.com/u/63567962?v=4'}
 				/>
 			</Flex>
-		</Container>
+		</Box>
 	);
 };
 
