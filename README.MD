@@ -1,19 +1,4 @@
-<div style="font-size:4rem;text-align:center">
-  Nin<span style="color:#F8D859">JS</span>
-  <p style="font-size:2rem">Practice and learn <span style="color:#F8D859">JavaScript</span>!</p>
-</div>
-
-<p>
-  An educational website with <b>Ninja</b> theme where you can test your knowledge in <span style="color:#F8D859;font-weight:bold">JavaScript</span>
-  with multiple code quizes, provided in three diferents difficults: <span style="color:#F8D859;font-weigth:bold">Genin</span>, <span style="color:#2bb6a8;font-weigth:bold">Chunin</span> and
-  <span style="color:#cf4f62;font-weigth:bold">Jonin</span> .
-  It also provides educational content between questions, so you can also learn while answering the questions.
-  This project was made as part of <a href="https://www.alkemy.org/">Alkemy</a> React JS Acceleration.
-</p>
-
-<div style="font-size:2rem;text-align:center;margin-bottom:4px">
-  About us
-</div>
+<img src="./public/readme.svg" width="100%" height="100%" />
 
 <div style="display:flex;justify-content:space-around">
 
