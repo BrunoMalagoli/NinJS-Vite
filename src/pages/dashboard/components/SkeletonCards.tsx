@@ -1,5 +1,6 @@
 import { Box, Flex, Skeleton } from '@chakra-ui/react';
 import theme from '../../../styles/theme';
+import { cardSize } from '../types';
 const SkeletonCards = () => {
 	const arr = ['s', 's', 's', 's', 's', 's', 's', 's', 's', 's'];
 
@@ -24,22 +25,14 @@ const SkeletonCards = () => {
 				gap={4}
 				h='100%'
 			>
-				{arr.map((x, i) => (
+				{arr.map((_, i) => (
 					<Skeleton
 						key={i}
 						startColor={theme.colors.primaryBGLight}
 						endColor={theme.colors.primaryBGShade}
 						borderRadius={'10px'}
-						w={{
-							base: '140px',
-							sm: '150px',
-							xl: '170px'
-						}}
-						h={{
-							base: '140px',
-							sm: '150px',
-							xl: '170px'
-						}}
+						w={cardSize}
+						h={cardSize}
 					/>
 				))}
 			</Flex>

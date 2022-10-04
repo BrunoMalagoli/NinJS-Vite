@@ -4,7 +4,7 @@ import { HiCheck, HiX } from 'react-icons/hi';
 
 import { useNavigate } from 'react-router-dom';
 import theme from '../../../../styles/theme';
-import { QuizCardProps } from '../../types';
+import { cardSize, QuizCardProps } from '../../types';
 import styles from './QuizCard.module.css';
 
 const QuizCard: FC<QuizCardProps> = ({
@@ -26,16 +26,8 @@ const QuizCard: FC<QuizCardProps> = ({
 				background: [theme.colors.primaryBGShade],
 				transform: 'scale(1.03)'
 			}}
-			w={{
-				base: '130px',
-				sm: '150px',
-				xl: '170px'
-			}}
-			h={{
-				base: '130px',
-				sm: '150px',
-				xl: '170px'
-			}}
+			w={cardSize}
+			h={cardSize}
 		>
 			<Box>
 				<Text fontSize={{ base: '14px', sm: '16px' }}>{number}</Text>
