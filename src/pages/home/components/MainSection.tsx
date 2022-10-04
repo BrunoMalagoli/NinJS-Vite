@@ -29,8 +29,8 @@ const MainSection = () => {
 					justifyContent={'space-around'}
 				>
 					<Text
-						paddingTop={'3%'}
-						paddingX={'3%'}
+						paddingTop={'10px'}
+						paddingX={'10px'}
 						textAlign={'center'}
 						fontSize={{ base: 'xl', sm: '2xl', md: '3xl' }}
 						fontWeight={'bold'}
@@ -69,7 +69,7 @@ const MainSection = () => {
 						fontWeight={'bold'}
 						textAlign={'center'}
 						color={'primaryYellow'}
-						padding={'4%'}
+						padding={'15px'}
 					>
 						desafios para poner a prueba tus habilidades
 					</Text>

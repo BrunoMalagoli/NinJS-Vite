@@ -22,22 +22,26 @@ export const DevCard: FC<DevCardProp> = ({
 		window.open(url, '_blank');
 	};
 	return (
-		<Box bgColor={'transparent'} className={styles.devCard}>
+		<Box bgColor={'transparent'} className={styles.devCard} padding={'12px'}>
 			<Flex
-				paddingTop={'6%'}
 				justifyContent={'space-between'}
 				alignItems={'center'}
 				flexDirection={'column'}
 				height={'100%'}
 			>
 				<Box>
-					<Avatar size={'2xl'} src={profilePic} name={`${name} Avatar`} />
+					<Avatar
+						size={'2xl'}
+						src={profilePic}
+						name={`${name} Avatar`}
+						bg={'transparent'}
+					/>
 				</Box>
 				<Flex
 					width={'100%'}
 					height={'100%'}
 					flexDirection={'column'}
-					justifyContent={'space-evenly'}
+					justifyContent={'center'}
 				>
 					<Text
 						textAlign={'center'}

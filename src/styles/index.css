@@ -37,3 +37,9 @@ div#root {
 ::-webkit-scrollbar-thumb:hover {
 	background: #535B65;
 }
+
+@media (pointer: coarse) {
+	::-webkit-scrollbar {
+		display: none;
+	}
+}
