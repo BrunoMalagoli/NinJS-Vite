@@ -1,7 +1,5 @@
 # NinJS
 
-## The project
-
 An educational website with **Ninja** theme where you can test your knowledge in **JavaScript** with multiple code quizes of different difficults as: Genin, Chunin & Jonin.
 It also provides educational content between questions, so you can also learn while answering the questions.
 This project was made as part of [ **Alkemy**](https://www.alkemy.org/) React JS Acceleration.
