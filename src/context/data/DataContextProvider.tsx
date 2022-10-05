@@ -48,7 +48,7 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 		if (
 			(!localStorage.getItem('token') ||
 				!localStorage.getItem('token')?.length ||
-				state.error) &&
+				state.error?.message.includes('Unauthorized')) &&
 			location.pathname.includes('/home')
 		) {
 			navigate('/login', { replace: true });
