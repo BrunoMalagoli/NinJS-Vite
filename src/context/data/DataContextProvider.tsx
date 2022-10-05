@@ -45,11 +45,10 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 	});
 
 	useEffect(() => {
-		console.log(state.error?.message);
 		if (
 			(!localStorage.getItem('token') ||
 				!localStorage.getItem('token')?.length ||
-				state.error?.message.includes('Unauthorized')) &&
+				state.error?.message.includes('401')) &&
 			location.pathname.includes('/home')
 		) {
 			navigate('/login', { replace: true });
