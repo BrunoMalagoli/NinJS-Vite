@@ -42,6 +42,7 @@ function useFetch<T>(url?: string, options?: RequestInit) {
 			try {
 				const response = await fetch(url, options);
 				if (!response.ok) {
+					console.log(response);
 					const error = new Error(response.statusText);
 					return dispatch({ type: 'error', payload: error as Error });
 				}
