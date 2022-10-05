@@ -35,16 +35,16 @@ const QuizView = () => {
 			setQuizData(state.data);
 		}
 		if (
-			(state.error?.message.includes('Unauthorized') ||
-				!localStorage.getItem('token') ||
-				!localStorage.getItem('token')?.length) &&
+			(!localStorage.getItem('token') ||
+				!localStorage.getItem('token')?.length ||
+				state.error?.message.includes('401')) &&
 			location.pathname.includes('/quiz')
 		) {
 			localStorage.clear();
 			navigate('/login');
 		}
 		const errorToast = () => {
-			if (state.error?.message.includes('Found')) {
+			if (state.error?.message.includes('404')) {
 				toast.error('Parece que trataste de ir a tierras desconocidas...', {
 					position: toast.POSITION.BOTTOM_CENTER,
 					style: toastStyles

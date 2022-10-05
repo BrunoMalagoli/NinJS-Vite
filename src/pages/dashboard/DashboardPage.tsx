@@ -31,16 +31,9 @@ const Dashboard = () => {
 	useEffect(() => {
 		state?.data?.maxPage && setMaxPage(state?.data?.maxPage);
 
-		if ((state?.error as Error)?.message.includes('Found') && page < 2) {
+		if ((state?.error as Error)?.message.includes('404') && page < 2) {
 			return setMaxPage(1);
 		}
-		// } else if (
-		// 	(state?.error as Error)?.message.includes('Found') &&
-		// 	page > maxPage
-		// ) {
-		// 	state?.data?.maxPage && setMaxPage(state?.data?.maxPage);
-		// 	return setPage(maxPage);
-		// }
 	}, [state]);
 
 	return (
