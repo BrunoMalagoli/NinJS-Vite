@@ -60,8 +60,6 @@ const CircleProgressBar: FC<CircleProgressBarProps> = ({
 		passed
 	]);
 
-	// console.log({ progressBarValue, progressBarValueError })
-
 	return passed + errors > 100 ? (
 		<h1>La suma supera el 100%</h1>
 	) : (

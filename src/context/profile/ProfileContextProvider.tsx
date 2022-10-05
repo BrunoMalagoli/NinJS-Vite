@@ -2,10 +2,11 @@ import { toast } from 'react-toastify';
 import { QuizCardProps } from '../../pages/dashboard/types';
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useMemo, useState, useCallback, useEffect } from 'react';
+import { useMemo, useState, useCallback, useEffect, useContext } from 'react';
 import useFetch from '../../hooks/useFetch';
 import toastStyles from '../../styles/toast';
 import ProfileContext from './ProfileContext';
+import DataContext from '../data/DataContext';
 
 const ProfileContextProvider = ({
 	children
@@ -35,63 +36,65 @@ const ProfileContextProvider = ({
 		}
 	});
 
+	const { state: dataState } = useContext(DataContext);
+
 	const jonin = useMemo(() => {
-		if (state.data) {
+		if (state.data && dataState.data) {
 			return {
 				passed:
 					(state.data?.filter(
 						x => x.difficult == 'Jonin' && x.completed == true
 					).length *
 						100) /
-					16,
+					dataState.data.totalJonin,
 				failed:
 					(state.data?.filter(
 						x => x.difficult == 'Jonin' && x.completed == false
 					).length *
 						100) /
-					16
+					dataState.data.totalJonin
 			};
 		}
 		return { passed: 0, failed: 0 };
-	}, [state.data]);
+	}, [state.data, dataState.data]);
 
 	const genin = useMemo(() => {
-		if (state.data) {
+		if (state.data && dataState.data) {
 			return {
 				passed:
 					(state.data?.filter(
 						x => x.difficult == 'Genin' && x.completed == true
 					).length *
 						100) /
-					16,
+					dataState.data.totalGenin,
 				failed:
 					(state.data?.filter(
 						x => x.difficult == 'Genin' && x.completed == false
 					).length *
 						100) /
-					16
+					dataState.data.totalGenin
 			};
 		}
 		return { passed: 0, failed: 0 };
-	}, [state.data]);
+	}, [state.data, dataState.data]);
 
 	const chunin = useMemo(() => {
-		if (state.data) {
+		if (state.data && dataState.data) {
 			return {
 				passed:
 					(state.data?.filter(
 						x => x.difficult == 'Chunin' && x.completed == true
 					).length *
 						100) /
-					16,
+					dataState.data.totalChunin,
 				failed:
 					(state.data?.filter(
 						x => x.difficult == 'Chunin' && x.completed == false
-					).length ?? 0 * 100) / 16
+					).length ?? 0 * 100) / dataState.data.totalChunin
 			};
 		}
 		return { passed: 0, failed: 0 };
-	}, [state.data]);
+	}, [state.data, dataState.data]);
 
 	const completed = useMemo(() => {
 		if (state.data) {
