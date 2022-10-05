@@ -1,5 +1,5 @@
 import { ModalContentProps } from './types/index';
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
 	Button,
@@ -10,6 +10,7 @@ import {
 	Text
 } from '@chakra-ui/react';
 import createNextQuizUrl from '../../../../../../helpers/createNextQuizUrl';
+import DataContext from '../../../../../../context/data/DataContext';
 
 export const CustomModalContent: FC<ModalContentProps> = ({
 	correct,
@@ -20,12 +21,25 @@ export const CustomModalContent: FC<ModalContentProps> = ({
 
 	const location = useLocation();
 
+	const { state } = useContext(DataContext);
+
+	const { totalGenin, totalChunin, totalJonin } = state.data;
+
 	function handleClick() {
 		navigate('/home');
 	}
 
 	function nextQuizClick() {
-		correct ? navigate(createNextQuizUrl(location.pathname)) : onClose();
+		correct
+			? navigate(
+					createNextQuizUrl(
+						location.pathname,
+						totalGenin,
+						totalChunin,
+						totalJonin
+					)
+			  )
+			: onClose();
 	}
 
 	return (
