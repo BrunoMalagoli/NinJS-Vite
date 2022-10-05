@@ -1,6 +1,7 @@
 import { Flex, Text } from '@chakra-ui/react';
 import Avatar from 'boring-avatars';
 import { useContext } from 'react';
+import DataContext from '../../context/data/DataContext';
 import ProfileContext from '../../context/profile/ProfileContext';
 import CircleProgressBar from '../dashboard/components/CircleProgressBar/CIrcleProgressBar';
 import UsernameInput from './components/UsernameInput';
@@ -8,6 +9,7 @@ import UsernameInput from './components/UsernameInput';
 const ProfilePage = () => {
 	const { variant, username, jonin, genin, chunin, completed } =
 		useContext(ProfileContext);
+	const { state } = useContext(DataContext);
 	return (
 		<Flex
 			h={'100%'}
@@ -37,7 +39,10 @@ const ProfilePage = () => {
 							{username}
 						</Text>
 						<Text color={'white'} fontSize={{ base: 'xs', sm: 'md', md: 'xl' }}>
-							Completadas: {completed} / 48
+							Completadas: {completed} /{' '}
+							{state.data.totalGenin +
+								state.data.totalChunin +
+								state.data.totalJonin}
 						</Text>
 					</Flex>
 				</Flex>
