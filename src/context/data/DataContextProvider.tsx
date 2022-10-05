@@ -13,11 +13,17 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 		completed: CompletedFilter.all,
 		difficult: DifficultFilter.all
 	};
+	const initialQuestionState = {
+		totalGenin: 0,
+		totalChunin: 0,
+		totalJonin: 0
+	};
 	const navigate = useNavigate();
 	const location = useLocation();
 	const [page, setPage] = useState(1);
 	const [maxPage, setMaxPage] = useState(1);
 	const [urlSearchParams, seturlSearchParams] = useState(initialState);
+	const [totalQuestions, setTotalQuestions] = useState(initialQuestionState);
 
 	const value = useDebounce<number>(page, 400);
 
@@ -57,6 +63,16 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 			seturlSearchParams(initialState);
 		}
 	}, [state.error, url, location.pathname]);
+	useEffect(() => {
+		if (state.data) {
+			setTotalQuestions(prev => ({
+				...prev,
+				totalGenin: (state.data as any)?.totalGenin,
+				totalChunin: (state.data as any)?.totalChunin,
+				totalJonin: (state.data as any)?.totalJonin
+			}));
+		}
+	}, [state.data]);
 
 	return (
 		<DataContext.Provider
@@ -67,7 +83,8 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 				maxPage,
 				setMaxPage,
 				seturlSearchParams,
-				urlSearchParams
+				urlSearchParams,
+				totalQuestions
 			}}
 		>
 			{children}

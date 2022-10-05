@@ -36,65 +36,67 @@ const ProfileContextProvider = ({
 		}
 	});
 
-	const { state: dataState } = useContext(DataContext);
+	const { totalQuestions } = useContext(DataContext);
 
 	const jonin = useMemo(() => {
-		if (state.data && dataState.data) {
+		if (state.data && totalQuestions.totalJonin) {
 			return {
 				passed:
 					(state.data?.filter(
 						x => x.difficult == 'Jonin' && x.completed == true
 					).length *
 						100) /
-					dataState.data.totalJonin,
+					totalQuestions.totalJonin,
 				failed:
 					(state.data?.filter(
 						x => x.difficult == 'Jonin' && x.completed == false
 					).length *
 						100) /
-					dataState.data.totalJonin
+					totalQuestions.totalJonin
 			};
 		}
 		return { passed: 0, failed: 0 };
-	}, [state.data, dataState.data]);
+	}, [state.data, totalQuestions.totalJonin]);
 
 	const genin = useMemo(() => {
-		if (state.data && dataState.data) {
+		if (state.data && totalQuestions.totalGenin) {
 			return {
 				passed:
 					(state.data?.filter(
 						x => x.difficult == 'Genin' && x.completed == true
 					).length *
 						100) /
-					dataState.data.totalGenin,
+					totalQuestions.totalGenin,
 				failed:
 					(state.data?.filter(
 						x => x.difficult == 'Genin' && x.completed == false
 					).length *
 						100) /
-					dataState.data.totalGenin
+					totalQuestions.totalGenin
 			};
 		}
 		return { passed: 0, failed: 0 };
-	}, [state.data, dataState.data]);
+	}, [state.data, totalQuestions.totalGenin]);
 
 	const chunin = useMemo(() => {
-		if (state.data && dataState.data) {
+		if (state.data && totalQuestions.totalChunin) {
 			return {
 				passed:
 					(state.data?.filter(
 						x => x.difficult == 'Chunin' && x.completed == true
 					).length *
 						100) /
-					dataState.data.totalChunin,
+					totalQuestions.totalChunin,
 				failed:
 					(state.data?.filter(
 						x => x.difficult == 'Chunin' && x.completed == false
-					).length ?? 0 * 100) / dataState.data.totalChunin
+					).length *
+						100) /
+					totalQuestions.totalChunin
 			};
 		}
 		return { passed: 0, failed: 0 };
-	}, [state.data, dataState.data]);
+	}, [state.data, totalQuestions.totalChunin]);
 
 	const completed = useMemo(() => {
 		if (state.data) {

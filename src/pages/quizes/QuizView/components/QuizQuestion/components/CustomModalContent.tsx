@@ -21,9 +21,9 @@ export const CustomModalContent: FC<ModalContentProps> = ({
 
 	const location = useLocation();
 
-	const { state } = useContext(DataContext);
+	const { totalQuestions } = useContext(DataContext);
 
-	const { totalGenin, totalChunin, totalJonin } = state.data;
+	const { totalGenin, totalChunin, totalJonin } = totalQuestions;
 
 	function handleClick() {
 		navigate('/home');

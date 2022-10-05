@@ -7,9 +7,9 @@ import CircleProgressBar from '../dashboard/components/CircleProgressBar/CIrcleP
 import UsernameInput from './components/UsernameInput';
 
 const ProfilePage = () => {
+	const { totalQuestions } = useContext(DataContext);
 	const { variant, username, jonin, genin, chunin, completed } =
 		useContext(ProfileContext);
-	const { state } = useContext(DataContext);
 	return (
 		<Flex
 			h={'100%'}
@@ -40,9 +40,9 @@ const ProfilePage = () => {
 						</Text>
 						<Text color={'white'} fontSize={{ base: 'xs', sm: 'md', md: 'xl' }}>
 							Completadas: {completed} /{' '}
-							{state.data?.totalGenin +
-								state.data?.totalChunin +
-								state.data?.totalJonin}
+							{totalQuestions?.totalGenin +
+								totalQuestions?.totalChunin +
+								totalQuestions?.totalJonin}
 						</Text>
 					</Flex>
 				</Flex>
@@ -51,7 +51,6 @@ const ProfilePage = () => {
 					width='100%'
 					gap={4}
 					fontSize={{ base: '7px', sm: '8px', md: '10px', lg: '12px' }}
-					// maxW=""
 				>
 					<CircleProgressBar
 						passed={genin.passed}
