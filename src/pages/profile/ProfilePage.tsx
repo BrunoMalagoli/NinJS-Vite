@@ -40,9 +40,9 @@ const ProfilePage = () => {
 						</Text>
 						<Text color={'white'} fontSize={{ base: 'xs', sm: 'md', md: 'xl' }}>
 							Completadas: {completed} /{' '}
-							{state.data.totalGenin +
-								state.data.totalChunin +
-								state.data.totalJonin}
+							{state.data?.totalGenin +
+								state.data?.totalChunin +
+								state.data?.totalJonin}
 						</Text>
 					</Flex>
 				</Flex>
