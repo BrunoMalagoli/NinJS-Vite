@@ -45,6 +45,7 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 	});
 
 	useEffect(() => {
+		console.log(state.error?.message);
 		if (
 			(!localStorage.getItem('token') ||
 				!localStorage.getItem('token')?.length ||
