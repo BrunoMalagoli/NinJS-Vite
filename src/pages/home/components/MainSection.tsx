@@ -8,10 +8,10 @@ const MainSection = () => {
 	const [count, setCount] = useState(0);
 	useEffect(() => {
 		let intervalId = setInterval(() => {
-			if (count >= 40) return;
+			if (count >= 80) return;
 			setCount(x => ++x);
-		}, 200);
-		if (count >= 40) {
+		}, 80);
+		if (count >= 80) {
 			clearInterval(intervalId);
 		}
 		return () => {
