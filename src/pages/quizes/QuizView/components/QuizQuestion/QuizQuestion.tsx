@@ -71,7 +71,7 @@ const QuizQuestion = ({ quizData }: QuizData) => {
 	}
 
 	return (
-		<Flex height={'100%'} flexDirection='column'>
+		<Flex height={'100%'} flexDirection='column' paddingBottom={'10px'}>
 			<Formik initialValues={checkedAnswer} onSubmit={handleSubmit}>
 				<Form>
 					<FormControl height={'100%'}>

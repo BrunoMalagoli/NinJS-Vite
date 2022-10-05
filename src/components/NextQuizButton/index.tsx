@@ -4,7 +4,7 @@ import { Box, Button, Flex } from '@chakra-ui/react';
 
 const NextQuizButton: FC<QuizButtonProps> = ({ isLoading }) => {
 	return (
-		<Box width={'100%'} height={'100%'}>
+		<Box width={'100%'} height={'100%'} paddingBottom={'20px'}>
 			<Flex
 				w={'100%'}
 				height={'100%'}

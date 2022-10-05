@@ -2,7 +2,7 @@ import { toast } from 'react-toastify';
 import { useNavigate, useParams } from 'react-router-dom';
 import { QuizResponse } from './utils/interfaces';
 import { useEffect, useState } from 'react';
-import { Center, Container, Spinner } from '@chakra-ui/react';
+import { Box, Center, Container, Spinner } from '@chakra-ui/react';
 import useFetch from '../../../hooks/useFetch';
 import toastStyles from '../../../styles/toast';
 import QuizQuestion from './components/QuizQuestion/QuizQuestion';
@@ -62,13 +62,13 @@ const QuizView = () => {
 	}, [state]);
 
 	return (
-		<div style={{ height: '100%' }}>
+		<Box style={{ height: '100%', overflowY: 'auto' }}>
 			{quizData ? (
 				<Container height={'inherit'} paddingTop={'5%'}>
 					<QuizQuestion quizData={quizData!} />
 				</Container>
 			) : (
-				<Center>
+				<Center height={'100%'}>
 					<Spinner
 						marginTop={20}
 						thickness='4px'
@@ -79,7 +79,7 @@ const QuizView = () => {
 					/>
 				</Center>
 			)}
-		</div>
+		</Box>
 	);
 };
 
