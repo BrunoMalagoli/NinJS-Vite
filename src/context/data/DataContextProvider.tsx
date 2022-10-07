@@ -30,7 +30,9 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 	let [completed, difficult] = urlBuilder(urlSearchParams);
 
 	let url =
-		localStorage.getItem('token') && localStorage.getItem('token')?.length
+		localStorage.getItem('token') &&
+		localStorage.getItem('token')?.length &&
+		!location.pathname.includes('/quiz')
 			? `${
 					import.meta.env.VITE_URL_CONECT_BACKEND
 			  }api/quiz/list?page=${value}${difficult}${completed}`
@@ -51,11 +53,9 @@ const DataContextProvider = ({ children }: { children: ReactJSXElement }) => {
 				state.error?.message.includes('401')) &&
 			location.pathname.includes('/home')
 		) {
-			navigate('/login', { replace: true });
 			localStorage.clear();
-			setPage(1);
-			setMaxPage(1);
-			seturlSearchParams(initialState);
+			navigate('/login', { replace: true });
+			window.location.reload();
 		}
 		if (!location.pathname.includes('/home')) {
 			setPage(1);

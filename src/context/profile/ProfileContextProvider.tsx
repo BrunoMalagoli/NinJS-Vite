@@ -128,15 +128,11 @@ const ProfileContextProvider = ({
 							});
 						});
 					} else {
-						response
-							.json()
-							.then(a => {
-								toast.error(a.ErrorMessage, { style: toastStyles });
-								throw new Error(a.ErrorMessage);
-							})
-							.catch(err => {
-								console.error(err);
-							});
+						if (response.status == 401) {
+							localStorage.clear();
+							navigate('/login', { replace: true });
+							window.location.reload();
+						}
 					}
 				})
 				.catch(err => {
@@ -150,18 +146,17 @@ const ProfileContextProvider = ({
 			(!localStorage.getItem('token') ||
 				!localStorage.getItem('token')?.length ||
 				state.error?.message.includes('401')) &&
-			location.pathname.includes('/home')
+			location.pathname.includes('/home/profile')
 		) {
-			navigate('/login', { replace: true });
 			localStorage.clear();
-			setUsername('');
-			setVariant('');
+			navigate('/login', { replace: true });
+			window.location.reload();
 		}
 		if (!location.pathname.includes('/home')) {
 			setUsername('');
 			setVariant('');
 		}
-	}, [state, location.pathname]);
+	}, [state.error, url, location.pathname]);
 
 	return (
 		<ProfileContext.Provider

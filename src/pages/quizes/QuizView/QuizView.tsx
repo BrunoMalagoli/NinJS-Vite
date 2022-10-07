@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { QuizResponse } from './utils/interfaces';
 import { useEffect, useState } from 'react';
 import { Box, Center, Container, Spinner } from '@chakra-ui/react';
@@ -11,6 +11,7 @@ const QuizView = () => {
 	const { category, id } = useParams();
 
 	const navigate = useNavigate();
+	const location = useLocation();
 
 	const questionID = category + id!;
 
@@ -31,9 +32,6 @@ const QuizView = () => {
 	);
 
 	useEffect(() => {
-		if (state.data) {
-			setQuizData(state.data);
-		}
 		if (
 			(!localStorage.getItem('token') ||
 				!localStorage.getItem('token')?.length ||
@@ -41,17 +39,15 @@ const QuizView = () => {
 			location.pathname.includes('/quiz')
 		) {
 			localStorage.clear();
-			navigate('/login');
+			navigate('/login', { replace: true });
+			window.location.reload();
+		}
+		if (state.data) {
+			setQuizData(state.data);
 		}
 		const errorToast = () => {
 			if (state.error?.message.includes('404')) {
 				toast.error('Parece que trataste de ir a tierras desconocidas...', {
-					position: toast.POSITION.BOTTOM_CENTER,
-					style: toastStyles
-				});
-				navigate('/home');
-			} else if (state.error) {
-				toast.error('Parece que algo salio mal :c', {
 					position: toast.POSITION.BOTTOM_CENTER,
 					style: toastStyles
 				});

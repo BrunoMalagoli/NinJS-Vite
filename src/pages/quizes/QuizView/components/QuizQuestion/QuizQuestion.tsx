@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 import { QuizData } from '../../utils/interfaces';
 import { ModalContentProps } from './components/types/index';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { CustomModalContent } from './components/CustomModalContent';
 import { Form, Formik } from 'formik';
 import { useState, useContext } from 'react';
@@ -30,6 +30,8 @@ const QuizQuestion = ({ quizData }: QuizData) => {
 
 	const { category, id } = useParams();
 
+	const navigate = useNavigate();
+
 	let questionID = category + id!;
 
 	const reviewBody = {
@@ -52,13 +54,22 @@ const QuizQuestion = ({ quizData }: QuizData) => {
 				method: 'PUT',
 				body: JSON.stringify(reviewBody)
 			})
-				.then(data => data.json())
 				.then(response => {
-					setReviewResponse(response.result);
-					onOpen();
+					if (response.ok) {
+						response.json().then(data => {
+							setReviewResponse(data.result);
+							onOpen();
+						});
+					} else {
+						if (response.status == 401) {
+							localStorage.clear();
+							navigate('/login', { replace: true });
+							window.location.reload();
+						}
+					}
 				})
 				.catch(err => {
-					if (err.message?.includes('Internal')) {
+					if (err.message?.includes('500')) {
 						toast.error('Ups algo sucedió mal! (Internal server error)', {
 							style: toastStyles
 						});
